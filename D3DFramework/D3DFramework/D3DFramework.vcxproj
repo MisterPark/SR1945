@@ -148,7 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Bullet03.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CollisionManager03.h" />
@@ -169,8 +169,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster03.h" />
-    <ClInclude Include="Monster03_2.h" />
-    <ClInclude Include="Monster03_Boss.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player03.h" />
@@ -192,7 +190,7 @@
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Bullet03.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="CollisionManager03.cpp" />
@@ -210,8 +208,6 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster03.cpp" />
-    <ClCompile Include="Monster03_2.cpp" />
-    <ClCompile Include="Monster03_Boss.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player03.cpp" />

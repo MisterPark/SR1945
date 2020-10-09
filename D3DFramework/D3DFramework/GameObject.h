@@ -35,10 +35,11 @@ namespace PKH
 		bool isDead = false;
 		bool isVisible = true;
 		bool isEnable = true;
-
+		
 		map<wstring, PKH::IComponent*> components;
 
-		
+		//±æ
+		int hp = 1;
 	};
 	template<class T>
 	inline IComponent* GameObject::AddComponent(const wstring & _key)

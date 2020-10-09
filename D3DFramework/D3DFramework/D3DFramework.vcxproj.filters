@@ -159,19 +159,13 @@
     <ClInclude Include="CollisionManager03.h">
       <Filter>길문호</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>길문호\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster03_2.h">
-      <Filter>길문호\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Monster03.h">
       <Filter>길문호\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Monster03_Boss.h">
+    <ClInclude Include="Player03.h">
       <Filter>길문호\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Player03.h">
+    <ClInclude Include="Bullet03.h">
       <Filter>길문호\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
@@ -269,19 +263,13 @@
     <ClCompile Include="CollisionManager03.cpp">
       <Filter>길문호</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>길문호\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster03_Boss.cpp">
-      <Filter>길문호\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Monster03.cpp">
       <Filter>길문호\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Monster03_2.cpp">
+    <ClCompile Include="Player03.cpp">
       <Filter>길문호\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Player03.cpp">
+    <ClCompile Include="Bullet03.cpp">
       <Filter>길문호\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
