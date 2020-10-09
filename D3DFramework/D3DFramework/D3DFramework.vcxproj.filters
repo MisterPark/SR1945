@@ -76,7 +76,7 @@
     <Filter Include="길문호\GameObject">
       <UniqueIdentifier>{3eb161c7-2875-498c-89e3-f2139bfd7e02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\CSH">
+    <Filter Include="차승현">
       <UniqueIdentifier>{515dbe37-92c9-451e-979a-8ff1b0d0599d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -231,20 +231,20 @@
     <ClInclude Include="Scene03.h">
       <Filter>길문호</Filter>
     </ClInclude>
-    <ClInclude Include="Scene4.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerBullet4.h">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClInclude>
     <ClInclude Include="Player4.h">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClInclude>
     <ClInclude Include="MonsterBullet4.h">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClInclude>
     <ClInclude Include="Monster4.h">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene4.h">
+      <Filter>차승현</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -377,20 +377,20 @@
     <ClCompile Include="Scene03.cpp">
       <Filter>길문호</Filter>
     </ClCompile>
-    <ClCompile Include="Scene4.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerBullet4.cpp">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClCompile>
     <ClCompile Include="Player4.cpp">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClCompile>
     <ClCompile Include="MonsterBullet4.cpp">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
     </ClCompile>
     <ClCompile Include="Monster4.cpp">
-      <Filter>GameObject\CSH</Filter>
+      <Filter>차승현</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene4.cpp">
+      <Filter>차승현</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
