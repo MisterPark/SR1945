@@ -26,7 +26,6 @@ void PKH::GameObject::Render()
 		Mesh* mesh = dynamic_cast<Mesh*>(comp.second);
 		if (mesh == nullptr) continue;
 
-		D2DRenderManager::GetDevice()->SetTransform(D3DTS_WORLD, &transform->world);
 		mesh->Render();
 	}
 }

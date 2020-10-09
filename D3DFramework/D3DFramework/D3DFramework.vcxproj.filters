@@ -40,11 +40,35 @@
     <Filter Include="Component">
       <UniqueIdentifier>{bbd383ed-dc02-4e36-a0dc-9981d706ad10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="길문호">
-      <UniqueIdentifier>{0d463cc0-7046-4c69-b57b-76aa404b1206}</UniqueIdentifier>
+    <Filter Include="강희재">
+      <UniqueIdentifier>{32ed1b08-3fd3-4fb9-9a51-3672f37cd2e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="길문호\GameObject">
-      <UniqueIdentifier>{540dc24a-2a62-48fb-b8ba-062dcee98cfe}</UniqueIdentifier>
+    <Filter Include="강희재\Scene">
+      <UniqueIdentifier>{c46dc441-3b2d-4397-ac00-e8f2b74cf89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Player">
+      <UniqueIdentifier>{e0e0d6f7-e341-412a-89ba-1c234a7f25d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Bullet">
+      <UniqueIdentifier>{3c809080-c7f7-4c90-b96a-af7b1b06705a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Mesh">
+      <UniqueIdentifier>{488f1084-54e8-4e22-9bd5-c5e55b2f4aeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Enemy">
+      <UniqueIdentifier>{060a600d-a3a9-421f-9e66-811a3aa1e7cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Mesh\PlayerBullet">
+      <UniqueIdentifier>{39b9771f-9feb-4a81-b8b3-a8c71a7113e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Mesh\Plane">
+      <UniqueIdentifier>{38253c32-4e70-48df-821a-4dc622b7c3b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\Header">
+      <UniqueIdentifier>{b8961e32-9f87-4a9f-8cc7-323351200ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="강희재\MyCollisionManager">
+      <UniqueIdentifier>{5cff36d5-c296-48bb-8edc-50696d70241c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -153,20 +177,32 @@
     <ClInclude Include="Matrix.h">
       <Filter>Lib</Filter>
     </ClInclude>
-    <ClInclude Include="Scene03.h">
-      <Filter>길문호</Filter>
+    <ClInclude Include="AxisCube.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionManager03.h">
-      <Filter>길문호</Filter>
+    <ClInclude Include="Player02.h">
+      <Filter>강희재\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Monster03.h">
-      <Filter>길문호\GameObject</Filter>
+    <ClInclude Include="Scene02.h">
+      <Filter>강희재\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Player03.h">
-      <Filter>길문호\GameObject</Filter>
+    <ClInclude Include="Bullet02.h">
+      <Filter>강희재\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet03.h">
-      <Filter>길문호\GameObject</Filter>
+    <ClInclude Include="Cube02.h">
+      <Filter>강희재\Mesh\PlayerBullet</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy02.h">
+      <Filter>강희재\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle02.h">
+      <Filter>강희재\Mesh\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="MyCollisionManager.h">
+      <Filter>강희재\MyCollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum02.h">
+      <Filter>강희재\Header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,20 +293,29 @@
     <ClCompile Include="Quaternion.cpp">
       <Filter>Lib</Filter>
     </ClCompile>
-    <ClCompile Include="Scene03.cpp">
-      <Filter>길문호</Filter>
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionManager03.cpp">
-      <Filter>길문호</Filter>
+    <ClCompile Include="Player02.cpp">
+      <Filter>강희재\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Monster03.cpp">
-      <Filter>길문호\GameObject</Filter>
+    <ClCompile Include="Scene02.cpp">
+      <Filter>강희재\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Player03.cpp">
-      <Filter>길문호\GameObject</Filter>
+    <ClCompile Include="Bullet02.cpp">
+      <Filter>강희재\Bullet</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet03.cpp">
-      <Filter>길문호\GameObject</Filter>
+    <ClCompile Include="Cube02.cpp">
+      <Filter>강희재\Mesh\PlayerBullet</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy02.cpp">
+      <Filter>강희재\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Triangle02.cpp">
+      <Filter>강희재\Mesh\Plane</Filter>
+    </ClCompile>
+    <ClCompile Include="MyCollisionManager.cpp">
+      <Filter>강희재\MyCollisionManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

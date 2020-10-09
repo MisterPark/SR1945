@@ -1,7 +1,11 @@
 #include "stdafx.h"
-#include "Cube.h"
+#include "Cube02.h"
 
-PKH::Cube::Cube()
+PKH::Cube02::Cube02()
+{
+}
+
+PKH::Cube02::Cube02(D3DCOLOR color)
 {
 	this->vertexCount = 8;
 	this->triangleCount = 12;
@@ -26,15 +30,15 @@ PKH::Cube::Cube()
 	Vertex* vertices;
 	vb->Lock(0, 0, (void**)&vertices, 0);
 
-	vertices[0] = Vertex(-0.1f, -0.1f, -0.1f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[1] = Vertex(-0.1f, 0.1f, -0.1f, D3DCOLOR_XRGB(0, 255, 0));
-	vertices[2] = Vertex(0.1f, 0.1f, -0.1f, D3DCOLOR_XRGB(0, 0, 255));
-	vertices[3] = Vertex(0.1f, -0.1f, -0.1f, D3DCOLOR_XRGB(255, 0, 255));
-
-	vertices[4] = Vertex(-0.1f, -0.1f, 0.1f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[5] = Vertex(-0.1f, 0.1f, 0.1f, D3DCOLOR_XRGB(0, 255, 0));
-	vertices[6] = Vertex(0.1f, 0.1f, 0.1f, D3DCOLOR_XRGB(0, 0, 255));
-	vertices[7] = Vertex(0.1f, -0.1f, 0.1f, D3DCOLOR_XRGB(255, 0, 255));
+	vertices[0] = Vertex(-0.1f, -0.1f, -0.1f, color);
+	vertices[1] = Vertex(-0.1f, 0.1f, -0.1f, color);
+	vertices[2] = Vertex(0.1f, 0.1f, -0.1f, color);
+	vertices[3] = Vertex(0.1f, -0.1f, -0.1f, color);
+											 
+	vertices[4] = Vertex(-0.1f, -0.1f, 0.1f, color);
+	vertices[5] = Vertex(-0.1f, 0.1f, 0.1f, color);
+	vertices[6] = Vertex(0.1f, 0.1f, 0.1f, color);
+	vertices[7] = Vertex(0.1f, -0.1f, 0.1f, color);
 	vb->Unlock();
 
 	WORD* indices = nullptr;
@@ -63,18 +67,16 @@ PKH::Cube::Cube()
 
 }
 
-PKH::Cube::~Cube()
+PKH::Cube02::~Cube02()
 {
 }
 
-void PKH::Cube::Update()
+void PKH::Cube02::Update()
 {
-
-	
 }
 
 
-IComponent* PKH::Cube::Clone()
+IComponent* PKH::Cube02::Clone()
 {
-	return new Cube(*this);
+	return new Cube02(*this);
 }

@@ -3,6 +3,8 @@
 #include "TestScene.h"
 #include "CollisionManager03.h"
 #include "Scene03.h"
+#include "Scene02.h"
+
 using namespace PKH;
 
 PKH::MainGame* pMainGame = nullptr;
@@ -54,8 +56,7 @@ void PKH::MainGame::Initialize()
 	SoundManager::GetInstance()->Initialize();
 
     // 리소스 로드
-	/*SceneManager::LoadScene<TestScene>();*/
-	SceneManager::LoadScene<Scene03>();
+	SceneManager::LoadScene<Scene02>();
 
 }
 
@@ -82,6 +83,7 @@ void PKH::MainGame::Update()
 	ObjectManager::Update();
 	Camera::GetInstance()->Update();
 	CollisionManager::Update();
+
 	CollisionManager03::Update();
 	ObjectManager::PostUpdate();
 
