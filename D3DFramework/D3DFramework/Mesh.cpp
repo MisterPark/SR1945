@@ -25,6 +25,17 @@ void PKH::Mesh::Render()
 		device->SetFVF(Vertex::FVF);
 		device->SetIndices(triangles);
 
+		Matrix world, matTrans, rotX, rotY, rotZ, matScale;
+		D3DXMatrixScaling(&matScale, transform->scale.x, transform->scale.y, transform->scale.z);
+		D3DXMatrixRotationX(&rotX, transform->rotation.x);
+		D3DXMatrixRotationY(&rotY, transform->rotation.y);
+		D3DXMatrixRotationZ(&rotZ, transform->rotation.z);
+		D3DXMatrixTranslation(&matTrans, transform->position.x, transform->position.y, transform->position.z);
+
+		world = matScale * rotX * rotY * rotZ * matTrans;
+
+		device->SetTransform(D3DTS_WORLD, &world);
+
 		D2DRenderManager::GetDevice()->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
 		D2DRenderManager::GetDevice()->SetRenderState(D3DRS_LIGHTING, false);
 
@@ -36,4 +47,16 @@ void PKH::Mesh::Render()
 PKH::IComponent * PKH::Mesh::Clone()
 {
 	return new Mesh(*this);
+}
+
+void PKH::Mesh::SetColor(D3DCOLOR color)
+{
+	Vertex* vertices;
+	vb->Lock(0, 0, (void**)&vertices, 0);
+	for (int i = 0; i < vertexCount; i++)
+	{
+		vertices[i].color = color;
+	}
+	
+	vb->Unlock();
 }

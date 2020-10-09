@@ -48,6 +48,11 @@ void PKH::ObjectManager::DestroyAll()
 	}
 }
 
+void PKH::ObjectManager::AddObject(GameObject* _obj)
+{
+	pObjectManager->objectList.push_back(_obj);
+}
+
 void PKH::ObjectManager::Destroy()
 {
 	delete pObjectManager;

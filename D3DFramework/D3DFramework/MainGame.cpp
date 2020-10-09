@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "TestScene.h"
+#include "CollisionManager03.h"
+#include "Scene03.h"
+#include "Scene02.h"
 #include "Scene4.h"
 
 using namespace PKH;
@@ -41,6 +44,7 @@ void PKH::MainGame::Initialize()
 	TimeManager::SetFPS(60.f);
 	D2DRenderManager::GetInstance();
 	CollisionManager::GetInstance();
+	CollisionManager03::GetInstance();
 	InputManager::GetInstance();
 	ObjectManager::GetInstance();
 	//RenderManager::GetInstance();
@@ -67,6 +71,7 @@ void PKH::MainGame::Release()
 	D2DRenderManager::Destroy();
 	InputManager::Destroy();
 	CollisionManager::Destroy();
+	CollisionManager03::Destroy();
 	Camera::Destroy();
 	FileManager::Destroy();
 
@@ -79,6 +84,8 @@ void PKH::MainGame::Update()
 	ObjectManager::Update();
 	Camera::GetInstance()->Update();
 	CollisionManager::Update();
+
+	CollisionManager03::Update();
 	ObjectManager::PostUpdate();
 
 	if (!TimeManager::SkipFrame())

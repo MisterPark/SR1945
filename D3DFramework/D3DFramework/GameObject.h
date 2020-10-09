@@ -22,7 +22,7 @@ namespace PKH
 		virtual void OnCollision(GameObject* target);
 
 		void Move(Vector3 _target);
-
+		void SetPosition(Vector3 _vPos);
 		template<class T>
 		IComponent* AddComponent(const wstring& _key);
 
@@ -37,6 +37,8 @@ namespace PKH
 		bool isEnable = true;
 
 		map<wstring, PKH::IComponent*> components;
+
+		
 	};
 	template<class T>
 	inline IComponent* GameObject::AddComponent(const wstring & _key)
