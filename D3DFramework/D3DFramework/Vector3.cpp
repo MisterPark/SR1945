@@ -32,6 +32,22 @@ PKH::Vector3::~Vector3()
 {
 }
 
+bool PKH::Vector3::operator==(const Vector3& other)
+{
+	if (this->x != other.x) return false;
+	if (this->y != other.y) return false;
+	if (this->z != other.z) return false;
+	return true;
+}
+
+bool PKH::Vector3::operator!=(const Vector3& other)
+{
+	if (this->x != other.x) return true;
+	if (this->y != other.y) return true;
+	if (this->z != other.z) return true;
+	return false;
+}
+
 float PKH::Vector3::Magnitude() const
 {
 	return sqrtf(x * x + y * y + z * z);

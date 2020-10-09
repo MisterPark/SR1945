@@ -48,3 +48,15 @@ PKH::IComponent * PKH::Mesh::Clone()
 {
 	return new Mesh(*this);
 }
+
+void PKH::Mesh::SetColor(D3DCOLOR color)
+{
+	Vertex* vertices;
+	vb->Lock(0, 0, (void**)&vertices, 0);
+	for (int i = 0; i < vertexCount; i++)
+	{
+		vertices[i].color = color;
+	}
+	
+	vb->Unlock();
+}

@@ -12,6 +12,9 @@ namespace PKH
 
 		virtual void Update() override;
 
+
+		float tick = 0.f;
+		float delay = 2.f;
 	};
 
 
