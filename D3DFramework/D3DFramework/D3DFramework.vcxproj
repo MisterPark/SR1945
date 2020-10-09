@@ -144,13 +144,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AxisCube.h" />
+    <ClInclude Include="Bullet02.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Cube02.h" />
     <ClInclude Include="D2DRenderManager.h" />
     <ClInclude Include="D3DFramework.h" />
     <ClInclude Include="Define.h" />
+    <ClInclude Include="Enemy02.h" />
+    <ClInclude Include="Enum02.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameObject.h" />
@@ -162,12 +166,15 @@
     <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Monster.h" />
+    <ClInclude Include="MyCollisionManager.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player02.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="Scene02.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -177,17 +184,21 @@
     <ClInclude Include="TimeManager.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Triangle.h" />
+    <ClInclude Include="Triangle02.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AxisCube.cpp" />
+    <ClCompile Include="Bullet02.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cube.cpp" />
+    <ClCompile Include="Cube02.cpp" />
     <ClCompile Include="D2DRenderManager.cpp" />
     <ClCompile Include="D3DFramework.cpp" />
+    <ClCompile Include="Enemy02.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IComponent.cpp" />
@@ -197,10 +208,13 @@
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="MyCollisionManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player02.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Scene02.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -211,6 +225,7 @@
     <ClCompile Include="TimeManager.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Triangle.cpp" />
+    <ClCompile Include="Triangle02.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
