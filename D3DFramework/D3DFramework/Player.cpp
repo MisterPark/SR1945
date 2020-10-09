@@ -16,6 +16,7 @@ PKH::Player::~Player()
 
 void PKH::Player::Update()
 {
+
 	if (InputManager::GetKey(VK_UP))
 	{
 		Move(transform->position + Vector3::UP);

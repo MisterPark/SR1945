@@ -38,6 +38,17 @@ void PKH::GameObject::Die()
 
 void PKH::GameObject::OnCollision(GameObject* target)
 {
+	//switch (target->GetObjId()) {
+	//case OBJ::BULLET: {
+
+	//	}
+	//	break;
+	//}
+
+	//default:
+	//	break;
+	//}
+
 }
 
 
@@ -48,6 +59,11 @@ void PKH::GameObject::Move(Vector3 _target)
 	transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
 	transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
 	transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
+}
+
+void PKH::GameObject::SetPosition(Vector3 _vPos)
+{
+	transform->position = _vPos;
 }
 
 IComponent* PKH::GameObject::GetComponent(const wstring& _key)

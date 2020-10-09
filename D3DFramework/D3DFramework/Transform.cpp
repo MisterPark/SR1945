@@ -13,6 +13,8 @@ PKH::Transform::~Transform()
 
 void PKH::Transform::Update()
 {
+	D3DXMatrixIdentity(&world);
+
 	rotation.x = fmodf(rotation.x, D3DXToRadian(360.f));
 	rotation.y = fmodf(rotation.y, D3DXToRadian(360.f));
 	rotation.z = fmodf(rotation.z, D3DXToRadian(360.f));

@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "TestScene.h"
-
+#include "CollisionManager03.h"
+#include "Scene03.h"
 using namespace PKH;
 
 PKH::MainGame* pMainGame = nullptr;
@@ -40,6 +41,7 @@ void PKH::MainGame::Initialize()
 	TimeManager::SetFPS(60.f);
 	D2DRenderManager::GetInstance();
 	CollisionManager::GetInstance();
+	CollisionManager03::GetInstance();
 	InputManager::GetInstance();
 	ObjectManager::GetInstance();
 	//RenderManager::GetInstance();
@@ -52,7 +54,8 @@ void PKH::MainGame::Initialize()
 	SoundManager::GetInstance()->Initialize();
 
     // 리소스 로드
-	SceneManager::LoadScene<TestScene>();
+	/*SceneManager::LoadScene<TestScene>();*/
+	SceneManager::LoadScene<Scene03>();
 
 }
 
@@ -66,6 +69,7 @@ void PKH::MainGame::Release()
 	D2DRenderManager::Destroy();
 	InputManager::Destroy();
 	CollisionManager::Destroy();
+	CollisionManager03::Destroy();
 	Camera::Destroy();
 	FileManager::Destroy();
 
@@ -78,6 +82,7 @@ void PKH::MainGame::Update()
 	ObjectManager::Update();
 	Camera::GetInstance()->Update();
 	CollisionManager::Update();
+	CollisionManager03::Update();
 	ObjectManager::PostUpdate();
 
 	if (!TimeManager::SkipFrame())
