@@ -148,6 +148,7 @@
     <ClInclude Include="Bullet02.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
+    <ClInclude Include="CollisionManager03.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Cube02.h" />
@@ -168,7 +169,6 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster03.h" />
-
     <ClInclude Include="MyCollisionManager.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
@@ -197,6 +197,7 @@
     <ClCompile Include="Bullet02.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
+    <ClCompile Include="CollisionManager03.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Cube02.cpp" />
@@ -213,7 +214,6 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster03.cpp" />
-  
     <ClCompile Include="MyCollisionManager.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Player.cpp" />

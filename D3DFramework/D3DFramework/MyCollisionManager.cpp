@@ -12,7 +12,7 @@ MyCollisionManager::MyCollisionManager()
 
 MyCollisionManager::~MyCollisionManager()
 {
-	Release();
+	//Release();
 }
 
 MyCollisionManager * MyCollisionManager::GetInstance()
