@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainGame.h"
 #include "TestScene.h"
+#include "Scene4.h"
 
 using namespace PKH;
 
@@ -52,7 +53,7 @@ void PKH::MainGame::Initialize()
 	SoundManager::GetInstance()->Initialize();
 
     // 리소스 로드
-	SceneManager::LoadScene<TestScene>();
+	SceneManager::LoadScene<Scene4>();
 
 }
 

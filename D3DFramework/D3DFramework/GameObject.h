@@ -27,7 +27,7 @@ namespace PKH
 		IComponent* AddComponent(const wstring& _key);
 
 		IComponent* GetComponent(const wstring& _key);
-
+		Transform* GetTransform() { return transform; } //¼öÁ¤
 	public:
 		Transform* transform = nullptr;
 
