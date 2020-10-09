@@ -70,6 +70,12 @@
     <Filter Include="강희재\MyCollisionManager">
       <UniqueIdentifier>{5cff36d5-c296-48bb-8edc-50696d70241c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="길문호">
+      <UniqueIdentifier>{7ce481f5-b1fa-478c-8959-1e1c0e83f457}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="길문호\GameObject">
+      <UniqueIdentifier>{3eb161c7-2875-498c-89e3-f2139bfd7e02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -195,16 +201,32 @@
     <ClInclude Include="Enemy02.h">
       <Filter>강희재\Enemy</Filter>
     </ClInclude>
-
     <ClInclude Include="Triangle02.h">
       <Filter>강희재\Mesh\Plane</Filter>
     </ClInclude>
-   
     <ClInclude Include="MyCollisionManager.h">
       <Filter>강희재\MyCollisionManager</Filter>
     </ClInclude>
     <ClInclude Include="Enum02.h">
       <Filter>강희재\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Player03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager03.h">
+      <Filter>길문호</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene03.h">
+      <Filter>길문호</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -310,7 +332,6 @@
     <ClCompile Include="Cube02.cpp">
       <Filter>강희재\Mesh\PlayerBullet</Filter>
     </ClCompile>
-
     <ClCompile Include="Enemy02.cpp">
       <Filter>강희재\Enemy</Filter>
     </ClCompile>
@@ -319,6 +340,24 @@
     </ClCompile>
     <ClCompile Include="MyCollisionManager.cpp">
       <Filter>강희재\MyCollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet03.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player03.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager03.cpp">
+      <Filter>길문호</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster03.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene03.cpp">
+      <Filter>길문호</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

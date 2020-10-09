@@ -2,7 +2,7 @@
 #include "Player03.h"
 #include "IComponent.h"
 #include "Mesh.h"
-#include "Bullet.h"
+#include "Bullet03.h"
 #include "Cube.h"
 using namespace PKH;
 
@@ -61,19 +61,19 @@ void PKH::Player03::Update()
 			}
 		}
 	
-	if (InputManager::GetKey(VK_SPACE))
-	{
+	//if (InputManager::GetKey(VK_SPACE))
+	//{
 		tick += 5.f*TimeManager::DeltaTime();
 		if(tick>delay)
 		{
-			Bullet* b = (Bullet*)ObjectManager::GetInstance()->CreateObject<Bullet>();
+			Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 			b->SetPosition(transform->position);
-			b->MyBullet = true;
+			b->MyBullet03 = true;
 			b->AddComponent<PKH::Cube>(L"Mesh"); 
 			tick = 0;
 		}
 		
-	}
+	/*}*/
 
 	if (InputManager::GetKey(VK_NUMPAD7))
 	{

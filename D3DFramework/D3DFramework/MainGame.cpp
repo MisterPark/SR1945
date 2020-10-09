@@ -56,7 +56,7 @@ void PKH::MainGame::Initialize()
 	SoundManager::GetInstance()->Initialize();
 
     // 리소스 로드
-	SceneManager::LoadScene<Scene02>();
+	SceneManager::LoadScene<Scene03>();
 
 }
 

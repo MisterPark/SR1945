@@ -16,5 +16,12 @@ namespace PKH
         float tick = 0.f;
         float delay = 2.f;
         
+        float movePattern = 0.f;
+        bool xType = false;
+        bool BossType = false;
+
+        bool isSetting = false;
+
+        int hp = 1;
     };
 }

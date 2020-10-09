@@ -4,13 +4,16 @@
 
 namespace PKH
 {
-    class Monster03_2 :
+    class Bullet03 :
         public GameObject
     {
     public:
-        Monster03_2();
-        virtual ~Monster03_2();
+        Bullet03();
+       
+        virtual ~Bullet03();
         // GameObject을(를) 통해 상속됨
         virtual void Update() override;
+        Vector3 TargetPos;
+        bool MyBullet03 = false;
     };
 }
