@@ -195,12 +195,24 @@
     <ClInclude Include="Enemy02.h">
       <Filter>강희재\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster03_2.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster03.h">
+      <Filter>길문호\GameObject</Filter>
     <ClInclude Include="Triangle02.h">
       <Filter>강희재\Mesh\Plane</Filter>
     </ClInclude>
+    <ClInclude Include="Monster03_Boss.h">
+      <Filter>길문호\GameObject</Filter>
     <ClInclude Include="MyCollisionManager.h">
       <Filter>강희재\MyCollisionManager</Filter>
     </ClInclude>
+    <ClInclude Include="Player03.h">
+      <Filter>길문호\GameObject</Filter>
     <ClInclude Include="Enum02.h">
       <Filter>강희재\Header</Filter>
     </ClInclude>
@@ -308,12 +320,24 @@
     <ClCompile Include="Cube02.cpp">
       <Filter>강희재\Mesh\PlayerBullet</Filter>
     </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster03_Boss.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster03.cpp">
+      <Filter>길문호\GameObject</Filter>
     <ClCompile Include="Enemy02.cpp">
       <Filter>강희재\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Triangle02.cpp">
       <Filter>강희재\Mesh\Plane</Filter>
+    <ClCompile Include="Monster03_2.cpp">
+      <Filter>길문호\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Player03.cpp">
+      <Filter>길문호\GameObject</Filter>
     <ClCompile Include="MyCollisionManager.cpp">
       <Filter>강희재\MyCollisionManager</Filter>
     </ClCompile>

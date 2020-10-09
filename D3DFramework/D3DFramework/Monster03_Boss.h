@@ -4,17 +4,14 @@
 
 namespace PKH
 {
-    class Monster03 :
+    class Monster03_Boss :
         public GameObject
     {
     public:
-        Monster03();
-        
-        virtual ~Monster03();
+        Monster03_Boss();
+    
+        virtual ~Monster03_Boss();
         // GameObject을(를) 통해 상속됨
         virtual void Update() override;
-        float tick = 0.f;
-        float delay = 2.f;
-        
     };
 }

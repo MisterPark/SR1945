@@ -1,9 +1,9 @@
 #include "stdafx.h"
-#include "Bullet03.h"
+#include "Bullet.h"
 #include "Player03.h"
 #include "Monster03.h"
 
-PKH::Bullet03::Bullet03()
+PKH::Bullet::Bullet()
 {
 	transform->scale = { 0.5f,0.5f,0.5f };
 	moveSpeed = 10.f;
@@ -11,15 +11,13 @@ PKH::Bullet03::Bullet03()
 
 
 
-PKH::Bullet03::~Bullet03()
+PKH::Bullet::~Bullet()
 {
 }
 
-void PKH::Bullet03::Update()
+void PKH::Bullet::Update()
 {
-
-
-	if (!MyBullet03)
+	if (!MyBullet)
 	{
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
@@ -64,7 +62,7 @@ void PKH::Bullet03::Update()
 			Die();
 		}
 	}
-	if(MyBullet03)
+	if(MyBullet)
 	{
 
 
@@ -97,19 +95,6 @@ void PKH::Bullet03::Update()
 					Die();
 
 			}
-
-			
-			fRadiusSum = static_cast<float>((transform->scale.x) + (transform->scale.x));
-			fX = monster->transform->position.x - transform->position.x;
-			fY = monster->transform->position.y - transform->position.y;
-			fZ = monster->transform->position.z - transform->position.z;
-			fDist = sqrtf(fX * fX + fY * fY + fZ * fZ);
-			if (fDist - fRadiusSum < 0)
-			{
-				monster->hp --;
-				Die();
-			}
-
 		//}
 		//else
 		//{
