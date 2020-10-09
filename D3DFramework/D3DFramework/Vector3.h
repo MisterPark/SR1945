@@ -28,6 +28,9 @@ namespace PKH
 		using D3DXVECTOR3::operator/=;
 		using D3DXVECTOR3::operator==;
 		using D3DXVECTOR3::operator!=;
+
+		bool operator==(const Vector3& other);
+		bool operator!=(const Vector3& other);
 		
 		//=====================================
 		// Public Function

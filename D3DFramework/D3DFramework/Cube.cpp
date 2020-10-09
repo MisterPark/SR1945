@@ -69,6 +69,8 @@ PKH::Cube::~Cube()
 
 void PKH::Cube::Update()
 {
+
+	
 }
 
 

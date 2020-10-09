@@ -27,13 +27,13 @@ PKH::AxisCube::AxisCube()
 	vb->Lock(0, 0, (void**)&vertices, 0);
 	
 	vertices[0] = Vertex(-0.1f, -0.1f, -0.1f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[1] = Vertex(-0.1f, 0.1f, -0.1f, D3DCOLOR_XRGB(0, 255, 0));
-	vertices[2] = Vertex(0.1f, 0.1f, -0.1f, D3DCOLOR_XRGB(0, 0, 255));
+	vertices[1] = Vertex(-0.1f, 0.3f, -0.1f, D3DCOLOR_XRGB(0, 255, 0));
+	vertices[2] = Vertex(0.1f, 0.3f, -0.1f, D3DCOLOR_XRGB(0, 0, 255));
 	vertices[3] = Vertex(0.1f, -0.1f, -0.1f, D3DCOLOR_XRGB(255, 0, 255));
 
 	vertices[4] = Vertex(-0.1f, -0.1f, 0.1f, D3DCOLOR_XRGB(255, 0, 0));
-	vertices[5] = Vertex(-0.1f, 0.1f, 0.1f, D3DCOLOR_XRGB(0, 255, 0));
-	vertices[6] = Vertex(0.1f, 0.1f, 0.1f, D3DCOLOR_XRGB(0, 0, 255));
+	vertices[5] = Vertex(-0.1f, 0.3f, 0.1f, D3DCOLOR_XRGB(0, 255, 0));
+	vertices[6] = Vertex(0.1f, 0.3f, 0.1f, D3DCOLOR_XRGB(0, 0, 255));
 	vertices[7] = Vertex(0.1f, -0.1f, 0.1f, D3DCOLOR_XRGB(255, 0, 255));
 	vb->Unlock();
 
@@ -66,6 +66,33 @@ PKH::AxisCube::~AxisCube()
 
 void PKH::AxisCube::Update()
 {
+}
+
+void PKH::AxisCube::Render(Vector3 _pos, Vector3 _axis)
+{
+	LPDIRECT3DDEVICE9 device = D2DRenderManager::GetDevice();
+	if (device)
+	{
+		device->SetStreamSource(0, vb, 0, sizeof(Vertex));
+		device->SetFVF(Vertex::FVF);
+		device->SetIndices(triangles);
+
+		Matrix world, matTrans, rotX, rotY, rotZ;
+		D3DXMatrixRotationX(&rotX, _axis.x);
+		D3DXMatrixRotationY(&rotY, _axis.y);
+		D3DXMatrixRotationZ(&rotZ, _axis.z);
+		D3DXMatrixTranslation(&matTrans, _pos.x, _pos.y, _pos.z);
+
+		world = rotX * rotY * rotZ * matTrans;
+
+		device->SetTransform(D3DTS_WORLD, &world);
+
+		D2DRenderManager::GetDevice()->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
+		D2DRenderManager::GetDevice()->SetRenderState(D3DRS_LIGHTING, false);
+
+		//device->DrawPrimitive(D3DPT_TRIANGLELIST, 0, triangleCount);
+		device->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, vertexCount, 0, triangleCount);
+	}
 }
 
 IComponent* PKH::AxisCube::Clone()

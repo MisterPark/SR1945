@@ -79,6 +79,7 @@ void PKH::MainGame::Update()
 	ObjectManager::Update();
 	Camera::GetInstance()->Update();
 	CollisionManager::Update();
+
 	ObjectManager::PostUpdate();
 
 	if (!TimeManager::SkipFrame())

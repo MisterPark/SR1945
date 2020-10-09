@@ -18,7 +18,8 @@ void PKH::Player::Update()
 {
 	if (InputManager::GetKey(VK_UP))
 	{
-		Move(transform->position + Vector3::UP);
+		Move(transform->position + transform->up);
+		//Move(transform->position + Vector3::UP);
 	}
 	if (InputManager::GetKey(VK_DOWN))
 	{
@@ -43,28 +44,36 @@ void PKH::Player::Update()
 
 	if (InputManager::GetKey(VK_NUMPAD7))
 	{
-		transform->rotation.x += TimeManager::DeltaTime();
+		//transform->rotation.x += TimeManager::DeltaTime();
+		transform->Rotate(transform->right, TimeManager::DeltaTime());
+	
 	}
 	if (InputManager::GetKey(VK_NUMPAD4))
 	{
-		transform->rotation.x -= TimeManager::DeltaTime();
+		//transform->rotation.x -= TimeManager::DeltaTime();
+		transform->Rotate(transform->right, -TimeManager::DeltaTime());
 	}
 	if (InputManager::GetKey(VK_NUMPAD8))
 	{
-		transform->rotation.y += TimeManager::DeltaTime();
+		//transform->rotation.y += TimeManager::DeltaTime();
+		transform->Rotate(transform->up, TimeManager::DeltaTime());
 	}
 	if (InputManager::GetKey(VK_NUMPAD5))
 	{
-		transform->rotation.y -= TimeManager::DeltaTime();
+		//transform->rotation.y -= TimeManager::DeltaTime();
+		transform->Rotate(transform->up, -TimeManager::DeltaTime());
 	}
 	if (InputManager::GetKey(VK_NUMPAD9))
 	{
-		transform->rotation.z += TimeManager::DeltaTime();
+		//transform->rotation.z += TimeManager::DeltaTime();
+		transform->Rotate(transform->look, TimeManager::DeltaTime());
 	}
 	if (InputManager::GetKey(VK_NUMPAD6))
 	{
-		transform->rotation.z -= TimeManager::DeltaTime();
+		//transform->rotation.z -= TimeManager::DeltaTime();
+		transform->Rotate(transform->look, -TimeManager::DeltaTime());
 	}
+
 
 	for (auto& comp : components)
 	{
