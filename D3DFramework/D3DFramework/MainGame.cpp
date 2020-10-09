@@ -4,6 +4,7 @@
 #include "CollisionManager03.h"
 #include "Scene03.h"
 #include "Scene02.h"
+#include "Scene4.h"
 
 using namespace PKH;
 
@@ -56,7 +57,7 @@ void PKH::MainGame::Initialize()
 	SoundManager::GetInstance()->Initialize();
 
     // 리소스 로드
-	SceneManager::LoadScene<Scene03>();
+	SceneManager::LoadScene<Scene4>();
 
 }
 

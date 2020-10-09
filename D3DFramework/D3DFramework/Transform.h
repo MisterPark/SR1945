@@ -17,6 +17,7 @@ namespace PKH
 		void Rotate(Vector3 _axis, float _angle);
 		void LookAt(Transform _target, Vector3 _worldUp = Vector3::UP);
 		void LookAt(Vector3 _target, Vector3 _worldUp = Vector3::UP);
+		Vector3* Get_Pos() { return &position; } //¼öÁ¤
 
 	public:
 		Vector3 position{ 0.f,0.f,0.f };
