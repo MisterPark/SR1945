@@ -147,6 +147,9 @@
     <ClInclude Include="Matrix.h">
       <Filter>Lib</Filter>
     </ClInclude>
+    <ClInclude Include="AxisCube.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -235,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="Quaternion.cpp">
       <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

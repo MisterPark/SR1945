@@ -22,6 +22,7 @@ namespace PKH
 		template<class T>
 		GameObject* FindObject();
 
+		static void AddObject(GameObject* _obj);
 
 		static void Destroy();
 		static void Update();
