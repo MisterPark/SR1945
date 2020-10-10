@@ -150,6 +150,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CollisionManager.h" />
     <ClInclude Include="CollisionManager03.h" />
+    <ClInclude Include="CollisionManager4.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Cube02.h" />
@@ -181,6 +182,7 @@
     <ClInclude Include="PlayerBullet4.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Random_Manager4.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Scene4.h" />
@@ -207,6 +209,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="CollisionManager03.cpp" />
+    <ClCompile Include="CollisionManager4.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Cube02.cpp" />
@@ -233,6 +236,7 @@
     <ClCompile Include="Player4.cpp" />
     <ClCompile Include="PlayerBullet4.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Random_Manager4.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Scene02.cpp" />
     <ClCompile Include="Scene03.cpp" />

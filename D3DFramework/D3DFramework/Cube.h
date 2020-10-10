@@ -15,7 +15,7 @@ namespace PKH
         virtual void Update() override;
         
         virtual IComponent* Clone() override;
-        void Scene4ToDimension();
+
     };
 }
  

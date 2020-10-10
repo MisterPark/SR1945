@@ -20,6 +20,8 @@ namespace PKH
         Vector3 TargetPos;
         //Vector3 TargetPos;
         int BulletCode;
+        float BulletPatternTime;
+        int BulletPattern;
  
     };
 }

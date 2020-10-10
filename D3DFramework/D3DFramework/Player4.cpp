@@ -4,17 +4,18 @@
 #include "IComponent.h"
 #include "Mesh.h"
 #include "Cube.h"
+#include "CollisionManager4.h"
 
 using namespace PKH;
 
 PKH::Player4::Player4()
 {
 	moveSpeed = 3.f;
-	Key_C = false;
-	Key_V = false;
+	Key_Z = false;
+	Key_X = false;
 	Key_T = false;
-	Dimension2D = false;
-	DimensionChangeCheck = false;
+	Dimension3D = true;
+	//transform->position.z = 0.1f;
 }
 
 PKH::Player4::~Player4()
@@ -23,8 +24,6 @@ PKH::Player4::~Player4()
 
 void PKH::Player4::Update()
 {
-	if (DimensionChangeCheck)
-		dynamic_cast<Cube*>(GetComponent(L"Mesh"))->Scene4ToDimension();
 	if (InputManager::GetKey(VK_UP))
 	{
 		Move(transform->position + Vector3::UP);
@@ -41,44 +40,46 @@ void PKH::Player4::Update()
 	{
 		Move(transform->position + Vector3::RIGHT);
 	}
+	//if (InputManager::GetKey('C'))
+	//{
+	//	Move(transform->position + Vector3::FORWARD);
+	//}
+	//if (InputManager::GetKey('V'))
+	//{
+	//	Move(transform->position + Vector3::BACK);
+	//}
 	if (InputManager::GetKey('Z'))
 	{
-		Move(transform->position + Vector3::FORWARD);
+		if (!Key_Z) {
+			CreateBullet(1);
+			Key_Z = true;
+		}
+	}
+	else {
+		Key_Z = false;
 	}
 	if (InputManager::GetKey('X'))
 	{
-		Move(transform->position + Vector3::BACK);
-	}
-	if (InputManager::GetKey('C'))
-	{
-		if (!Key_C) {
-			CreateBullet(1);
-			Key_C = true;
-		}
-	}
-	else {
-		Key_C = false;
-	}
-	if (InputManager::GetKey('V'))
-	{
-		if (!Key_V) {
+		if (!Key_X) {
 			CreateBullet(2);
-			Key_V = true;
+			Key_X = true;
 		}
 	}
 	else {
-		Key_V = false;
+		Key_X = false;
 	}
-	DimensionChangeCheck = false;
 	if (InputManager::GetKey('T'))
 	{
 		if (!Key_T) {
 			Key_T = true;
-			DimensionChangeCheck = true;
-			if (Dimension2D)
-				Dimension2D = false;
-			else
-				Dimension2D = true;
+			if (Dimension3D) {
+				Dimension3D = false;
+				Camera::SetProjection3D(false);
+			}
+			else {
+				Dimension3D = true;
+				Camera::SetProjection3D(true);
+			}
 		}
 	}
 	else {
@@ -118,7 +119,7 @@ void PKH::Player4::Update()
 void PKH::Player4::CreateBullet(int Code) {
 	PlayerBullet4* b = (PlayerBullet4*)ObjectManager::GetInstance()->CreateObject<PlayerBullet4>();
 	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
-	Comp->Scene4ToDimension();
+	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::PLAYER_BULLET, b);
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();

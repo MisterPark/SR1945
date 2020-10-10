@@ -4,6 +4,7 @@
 #include "MonsterBullet4.h"
 #include "Cube.h"
 #include "Monster.h"
+#include "CollisionManager4.h"
 
 PKH::Monster4::Monster4()
 {
@@ -15,6 +16,7 @@ PKH::Monster4::~Monster4()
 
 void PKH::Monster4::Ready()
 {
+	
 	switch (MonsterCode)
 	{
 	case 1:
@@ -47,11 +49,10 @@ void PKH::Monster4::Update()
 {
 	if (transform->position.x < -5 || transform->position.x > 5
 		|| transform->position.y < -5 || transform->position.y > 5
-		|| transform->position.z < -5 || transform->position.z > 5)
+		|| transform->position.z < -5 || transform->position.z > 5){
+		CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
 		isDead = true;
-	Player4* player = dynamic_cast<Player4*>(ObjectManager::GetInstance()->FindObject<Player4>());
-	if (player->Get_DimensionChangeCheck())
-		dynamic_cast<Cube*>(GetComponent(L"Mesh"))->Scene4ToDimension();
+	}
 
 	MonsterPattern();
 
@@ -70,11 +71,12 @@ void PKH::Monster4::MonsterPattern() {
 
 			transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
 			transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
-			transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
+			//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
+			transform->position.z = 0.f;
 
 			float rotX = atan2f(dir.z, dir.y);
 			float rotY = atan2f(dir.x, dir.z);
-			float rotZ = atan2f(dir.y, dir.x);
+			//float rotZ = atan2f(dir.y, dir.x);
 
 			//if(transform->rotation.x < rotX)
 			//transform->rotation.x += rotX * TimeManager::DeltaTime();
@@ -112,8 +114,8 @@ void PKH::Monster4::MonsterPattern() {
 
 void PKH::Monster4::CreateBullet(int Code) {
 	MonsterBullet4* b = (MonsterBullet4*)ObjectManager::GetInstance()->CreateObject<MonsterBullet4>();
+	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER_BULLET, b);
 	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
-	Comp->Scene4ToDimension();
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();

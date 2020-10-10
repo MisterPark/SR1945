@@ -12,15 +12,13 @@ namespace PKH
 		virtual ~Player4();
 
 		virtual void Update() override;
-		bool Get_Dimension2D() { return Dimension2D; }
-		bool Get_DimensionChangeCheck() { return DimensionChangeCheck; }
+		bool Get_Dimension2D() { return Dimension3D; }
 	private:
 		void CreateBullet(int Code);
-		bool Key_C;
-		bool Key_V;
+		bool Key_Z;
+		bool Key_X;
 		bool Key_T;
-		bool Dimension2D;
-		bool DimensionChangeCheck;
+		bool Dimension3D;
 	};
 
 

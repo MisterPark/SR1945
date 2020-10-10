@@ -3,6 +3,8 @@
 #include "Player4.h"
 #include "Monster4.h"
 #include "Cube.h"
+#include "CollisionManager4.h"
+#include "Random_Manager4.h"
 
 
 void Scene4::OnLoaded()
@@ -11,8 +13,9 @@ void Scene4::OnLoaded()
 	MonsterRegenTime1 = 0.f;
 	MonsterRegenTime2 = 0.f;
 	Player4* p = (Player4*)ObjectManager::GetInstance()->CreateObject<Player4>();
+	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::PLAYER, p);
 	p->AddComponent<PKH::Cube>(L"Mesh");
-
+	Random_Manager::Get_Instance()->Ready_Random();
 	//Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
 	//m->AddComponent<PKH::Cube>(L"Mesh");
 
@@ -35,8 +38,8 @@ void Scene4::Update()
 	if (MonsterRegenTime1 > 2.f) {
 		MonsterRegenTime1 = 0.f;
 		Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
+		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, m);
 		Cube* Comp = dynamic_cast<Cube*>(m->AddComponent<PKH::Cube>(L"Mesh"));
-		Comp->Scene4ToDimension();
 		//Monster4* m = (Monster4*)ObjectManager::GetInstance()->FindObject<Monster4>();
 		m->SetCode(1);
 		m->Ready();
@@ -44,10 +47,11 @@ void Scene4::Update()
 	if (MonsterRegenTime2 > 3.f) {
 		MonsterRegenTime2 = 0.f;
 		Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
+		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, m);
 		Cube* Comp = dynamic_cast<Cube*>(m->AddComponent<PKH::Cube>(L"Mesh"));
-		Comp->Scene4ToDimension();
 		//Monster4* m = (Monster4*)ObjectManager::GetInstance()->FindObject<Monster4>();
 		m->SetCode(2);
 		m->Ready();
 	}
+	CollisionManager4::GetInstance()->Update();
 }

@@ -20,8 +20,11 @@ namespace PKH
 		static float GetX();
 		static float GetY();
 		static void GetViewMatrix(Matrix* outView);
-
-
+		static void SetProjection3D(bool ProjectionSet);
+	private:
+		void PerspectiveProjection();
+		void OrthogonalProjection();
+		bool isProjection3D;
 	public:
 		Vector3 look = Vector3(0, 0, 1);
 		Vector3 up = Vector3(0, 1, 0);

@@ -13,7 +13,7 @@ void PKH::MonsterBullet4::Ready()
 	switch (BulletCode)
 	{
 	case 1:
-		transform->scale = { 1,1,1 };
+		transform->scale = { 0.5f, 0.5f, 0.5f };
 		TargetPlayer = ObjectManager::GetInstance()->FindObject<Player4>();
 		if (TargetPlayer == nullptr) {
 			isDead = true;
@@ -33,11 +33,10 @@ void PKH::MonsterBullet4::Update()
 {
 	if (transform->position.x < -5 || transform->position.x > 5
 		|| transform->position.y < -5 || transform->position.y > 5
-		|| transform->position.z < -5 || transform->position.z > 5)
+		|| transform->position.z < -5 || transform->position.z > 5) {
 		isDead = true;
-	Player4* player = dynamic_cast<Player4*>(ObjectManager::GetInstance()->FindObject<Player4>());
-	if (player->Get_DimensionChangeCheck())
-		dynamic_cast<Cube*>(GetComponent(L"Mesh"))->Scene4ToDimension();
+		//CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
+	}
 
 	if (1 == BulletCode) {
 		//Move(TargetPos);
@@ -45,11 +44,11 @@ void PKH::MonsterBullet4::Update()
 		{
 		transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
 		transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
-		transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
+		//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
 
-		float rotX = atan2f(dir.z, dir.y);
-		float rotY = atan2f(dir.x, dir.z);
-		float rotZ = atan2f(dir.y, dir.x);
+		//float rotX = atan2f(dir.z, dir.y);
+		//float rotY = atan2f(dir.x, dir.z);
+		//float rotZ = atan2f(dir.y, dir.x);
 
 		//if(transform->rotation.x < rotX)
 		//transform->rotation.x += rotX * TimeManager::DeltaTime();

@@ -246,6 +246,12 @@
     <ClInclude Include="Scene4.h">
       <Filter>차승현</Filter>
     </ClInclude>
+    <ClInclude Include="CollisionManager4.h">
+      <Filter>차승현</Filter>
+    </ClInclude>
+    <ClInclude Include="Random_Manager4.h">
+      <Filter>차승현</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -390,6 +396,12 @@
       <Filter>차승현</Filter>
     </ClCompile>
     <ClCompile Include="Scene4.cpp">
+      <Filter>차승현</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager4.cpp">
+      <Filter>차승현</Filter>
+    </ClCompile>
+    <ClCompile Include="Random_Manager4.cpp">
       <Filter>차승현</Filter>
     </ClCompile>
   </ItemGroup>
