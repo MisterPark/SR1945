@@ -4,17 +4,17 @@
 
 namespace PKH
 {
-    class Bullet03 :
+    class Dust03 :
         public GameObject
     {
     public:
-        Bullet03();
-       
-        virtual ~Bullet03();
+        Dust03();
+
+        virtual ~Dust03();
         // GameObject을(를) 통해 상속됨
         virtual void Update() override;
-        Vector3 TargetPos;
-        bool MyBullet03 = false;
-        int Extinction = 0;
+
+        float tick = 0.f;
+        float delay = 1.f;
     };
 }
