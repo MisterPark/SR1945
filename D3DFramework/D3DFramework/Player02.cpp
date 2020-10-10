@@ -3,7 +3,6 @@
 #include "Cube02.h"
 #include "Bullet02.h"
 #include "MyCollisionManager.h"
-#include "Enum02.h"
 
 Player02::Player02()
 {
@@ -29,19 +28,27 @@ void Player02::Update()
 
 	if (InputManager::GetKey(VK_UP))
 	{
-		Move(transform->position + Vector3::UP);
+		float futureValue = transform->position.y + (moveSpeed * TimeManager::DeltaTime());
+
+		if (futureValue <= 2.9f) Move(transform->position + Vector3::UP);
 	}
 	if (InputManager::GetKey(VK_DOWN))
 	{
-		Move(transform->position + Vector3::DOWN);
+		float futureValue = transform->position.y - (moveSpeed * TimeManager::DeltaTime());
+
+		if(futureValue >= -2.9f) Move(transform->position + Vector3::DOWN);
 	}
 	if (InputManager::GetKey(VK_LEFT))
 	{
-		Move(transform->position + Vector3::LEFT);
+		float futureValue = transform->position.x - (moveSpeed * TimeManager::DeltaTime());
+
+		if(futureValue >= -3.9f) Move(transform->position + Vector3::LEFT);
 	}
 	if (InputManager::GetKey(VK_RIGHT))
 	{
-		Move(transform->position + Vector3::RIGHT);
+		float futureValue = transform->position.x + (moveSpeed * TimeManager::DeltaTime());
+
+		if(futureValue <= 3.9f) Move(transform->position + Vector3::RIGHT);
 	}
 	if (InputManager::GetKey(VK_SPACE))
 	{
@@ -58,12 +65,16 @@ void Player02::Attack()
 {
 	if (canAttack)
 	{
-		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.2f, 0.2f, 0.2f), transform->up);
+		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), transform->up);
 		ObjectManager::AddObject(newBullet);
 
-		MyCollisionManager::GetInstance()->RegisterObject(OBJTAG::PLAYER_BULLET, newBullet);
+		MyCollisionManager::GetInstance()->RegisterObject(MyCollisionManager::PLAYER_BULLET, newBullet);
 
 		canAttack = false;
 		coolTime = 0.3f;
 	}
+}
+
+void Player02::OnCollision(GameObject * from)
+{
 }

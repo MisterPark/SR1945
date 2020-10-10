@@ -5,7 +5,7 @@
 
 PKH::Monster::Monster()
 {
-	transform->scale = { 3,3,3 };
+	//transform->scale = { 3,3,3 };
 }
 
 PKH::Monster::~Monster()
@@ -21,7 +21,7 @@ void PKH::Monster::Update()
 		Vector3 dir = player->transform->position - transform->position;
 		Vector3::Normalize(&dir);
 
-		Move(player->transform->position);
+		//Move(player->transform->position);
 
 		
 		//float rotX = atan2f(dir.z, dir.y);
