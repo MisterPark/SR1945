@@ -5,7 +5,7 @@
 
 PKH::Monster::Monster()
 {
-	transform->scale = { 3,3,3 };
+	//transform->scale = { 3,3,3 };
 }
 
 PKH::Monster::~Monster()

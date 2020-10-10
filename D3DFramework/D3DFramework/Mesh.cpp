@@ -25,14 +25,16 @@ void PKH::Mesh::Render()
 		device->SetFVF(Vertex::FVF);
 		device->SetIndices(triangles);
 
-		Matrix world, matTrans, rotX, rotY, rotZ, matScale;
+		Matrix world, matTrans, matScale, matRot;//, rotX, rotY, rotZ
 		D3DXMatrixScaling(&matScale, transform->scale.x, transform->scale.y, transform->scale.z);
-		D3DXMatrixRotationX(&rotX, transform->rotation.x);
-		D3DXMatrixRotationY(&rotY, transform->rotation.y);
-		D3DXMatrixRotationZ(&rotZ, transform->rotation.z);
+		//D3DXMatrixRotationX(&rotX, transform->eulerAngles.x);
+		//D3DXMatrixRotationY(&rotY, transform->eulerAngles.y);
+		//D3DXMatrixRotationZ(&rotZ, transform->eulerAngles.z);
+		D3DXMatrixRotationQuaternion(&matRot, &transform->rotation);
 		D3DXMatrixTranslation(&matTrans, transform->position.x, transform->position.y, transform->position.z);
-
-		world = matScale * rotX * rotY * rotZ * matTrans;
+		
+		//world = matScale * rotX * rotY * rotZ * matTrans;
+		world = matScale * matRot * matTrans;
 
 		device->SetTransform(D3DTS_WORLD, &world);
 

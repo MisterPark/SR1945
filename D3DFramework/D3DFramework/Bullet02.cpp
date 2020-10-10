@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Bullet02.h"
 #include "Cube02.h"
+#include "MyCollisionManager.h"
 
 Bullet02::Bullet02()
 {
@@ -11,7 +12,7 @@ Bullet02::Bullet02(Vector3 pos, Vector3 scale, Vector3 look, bool isPlayer) :
 {
 	transform->position = pos;
 	transform->scale = scale;
-	transform->look = look;
+	dir = look;
 
 	Ready();
 }
@@ -40,10 +41,28 @@ void Bullet02::Ready()
 
 void Bullet02::Update()
 {
-	Move(transform->position + transform->look);
+	Move(transform->position + dir);
 
 	for (auto& iter : components)
 	{
 		iter.second->Update();
 	}
+}
+
+bool Bullet02::Culling()
+{
+	Vector3 pos = transform->position;
+
+	if (-5.f > pos.x || pos.x > 5.f || -5.f > pos.y || pos.y > 5.f)
+	{
+		Die();
+		return true;
+	}
+
+	return false;
+}
+
+void Bullet02::OnCollision(GameObject * from)
+{
+	Die();
 }

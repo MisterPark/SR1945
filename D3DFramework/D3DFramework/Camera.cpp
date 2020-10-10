@@ -51,31 +51,6 @@ void PKH::Camera::Destroy()
 
 void PKH::Camera::Update()
 {
-	if (InputManager::GetKey('W'))
-	{
-		transform->position.y += 1.0f * TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey('A'))
-	{
-		transform->position.x -= 1.0f * TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey('S'))
-	{
-		transform->position.y -= 1.0f * TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey('D'))
-	{
-		transform->position.x += 1.0f * TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey('Q'))
-	{
-		transform->position.z += 1.0f * TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey('E'))
-	{
-		transform->position.z -= 1.0f * TimeManager::DeltaTime();
-	}
-
 	
 	Matrix view;
 	//GetViewMatrix(&view);

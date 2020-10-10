@@ -21,9 +21,9 @@ namespace PKH
 
 	public:
 		Vector3 position{ 0.f,0.f,0.f };
-		Vector3 rotation{ 0.f,0.f,0.f };
+		Vector3 eulerAngles{ 0.f,0.f,0.f };
 		Vector3 scale{ 1.f,1.f,1.f };
-		//Quaternion rota{ 0,0,0,0 };
+		Quaternion rotation;
 
 		Vector3 right = Vector3::RIGHT;
 		Vector3 up = Vector3::UP;

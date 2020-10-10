@@ -7,5 +7,10 @@ class Scene03 :
     virtual void OnLoaded() override;
     virtual void OnUnloaded() override;
     virtual void Update() override;
+    float tick = 0.f;
+
+    float fdust = 0.f;
+    int MonsterMakeCount = 0;
+    int BossmakeCount = 0;
 };
 

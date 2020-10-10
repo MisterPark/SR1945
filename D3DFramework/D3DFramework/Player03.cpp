@@ -4,11 +4,14 @@
 #include "Mesh.h"
 #include "Bullet03.h"
 #include "Cube.h"
+#include "Monster03.h"
 using namespace PKH;
 
 PKH::Player03::Player03()
 {
+	transform->scale = { 1.f,1.f,1.f };
 	moveSpeed = 3.f;
+	hp = 10;
 }
 
 PKH::Player03::~Player03()
@@ -61,43 +64,53 @@ void PKH::Player03::Update()
 			}
 		}
 	
-	//if (InputManager::GetKey(VK_SPACE))
-	//{
-		tick += 5.f*TimeManager::DeltaTime();
-		if(tick>delay)
+	if (InputManager::GetKey(VK_SPACE))
+	{
+		GameObject* monstercheck = ObjectManager::GetInstance()->FindObject<Monster03>();
+
+		if (monstercheck)
 		{
-			Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
-			b->SetPosition(transform->position);
-			b->MyBullet03 = true;
-			b->AddComponent<PKH::Cube>(L"Mesh"); 
-			tick = 0;
+			tick += 5.f * TimeManager::DeltaTime();
+			if (tick > delay)
+			{
+				Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
+				b->SetPosition(transform->position);
+				b->MyBullet03 = true;
+				b->AddComponent<PKH::Cube>(L"Mesh");
+				tick = 0;
+			}
 		}
-		
-	/*}*/
+	}
 
 	if (InputManager::GetKey(VK_NUMPAD7))
 	{
-		transform->rotation.x += TimeManager::DeltaTime();
+		transform->eulerAngles.x += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD4))
 	{
-		transform->rotation.x -= TimeManager::DeltaTime();
+		transform->eulerAngles.x -= TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD8))
 	{
-		transform->rotation.y += TimeManager::DeltaTime();
+		transform->eulerAngles.y += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD5))
 	{
-		transform->rotation.y -= TimeManager::DeltaTime();
+		transform->eulerAngles.y -= TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD9))
 	{
-		transform->rotation.z += TimeManager::DeltaTime();
+		transform->eulerAngles.z += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD6))
 	{
-		transform->rotation.z -= TimeManager::DeltaTime();
+		transform->eulerAngles.z -= TimeManager::DeltaTime();
+	}
+
+	
+	if (hp <= 0)
+	{
+		Die();
 	}
 
 	for (auto& comp : components)
