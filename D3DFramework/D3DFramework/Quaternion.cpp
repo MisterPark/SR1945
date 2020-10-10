@@ -21,23 +21,42 @@ PKH::Quaternion::~Quaternion()
 {
 }
 
-Vector3 PKH::Quaternion::ToEulerAngles(const Quaternion& _quat)
+Vector3 PKH::Quaternion::ToEulerAngles(const Quaternion& q1)
 {
-    Vector3 euler;
-    float x, y, z, w;
-    x = _quat.x;
-    y = _quat.y;
-    z = _quat.z;
-    w = _quat.w;
+    float sqw = q1.w * q1.w;
+    float sqx = q1.x * q1.x;
+    float sqy = q1.y * q1.y;
+    float sqz = q1.z * q1.z;
+    float unit = sqx + sqy + sqz + sqw; // if normalised is one, otherwise is correction factor
+    float test = q1.x * q1.w - q1.y * q1.z;
+    Vector3 v;
 
-    float sqx = x * x;
-    float sqy = y * y;
-    float sqz = z * z;
-    float sqw = w * w;
+    if (test > 0.4995f * unit)  // singularity at north pole // 남반구
+    {
+        v.y = 2.f * atan2f(q1.y, q1.x);
+        v.x = D3DX_PI / 2;
+        v.z = 0;
+        return v;
+    }
 
-    euler.x = (atan2f(2.f * (y * z + x * w), (-sqx - sqy + sqz + sqw)) * D3DX_PI);
-    euler.y = (asinf(-2.f * (x * z - y * w)) * D3DX_PI);
-    euler.z = (atan2f(2.f * (x * y + z * w), (sqx - sqy - sqz + sqw)) * D3DX_PI);
+    if (test < -0.4995f * unit)  // singularity at south pole // 북반구
+    {
+        v.y = -2.f * atan2f(q1.y, q1.x);
+        v.x = -D3DX_PI / 2;
+        v.z = 0;
 
-    return euler;
+        return v;
+    }
+
+    Quaternion q(q1.w, q1.z, q1.x, q1.y);
+
+    v.y = atan2f(2.f * q.x * q.w + 2.f * q.y * q.z, 1 - 2.f * (q.z * q.z + q.w * q.w));     // Yaw
+    v.x = -asinf(2.f * (q.x * q.z - q.w * q.y));                             // Pitch
+    v.z = -atan2f(2.f * q.x * q.y + 2.f * q.z * q.w, 1 - 2.f * (q.y * q.y + q.z * q.z));      // Roll
+    
+    // 원본에서 수정한 것 (추후 문제시 원본으로 변경)
+    // pitch 에 마이너스 부호로 바꿈
+    // roll 에 마이너스 부호로 바꿈
+
+    return v;
 }

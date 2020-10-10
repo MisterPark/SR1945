@@ -13,7 +13,6 @@ namespace PKH
 		~Quaternion();
 
 		static Vector3 ToEulerAngles(const Quaternion& _quat);
-		static 
 
 	};
 

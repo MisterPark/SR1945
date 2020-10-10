@@ -13,30 +13,26 @@ PKH::Transform::~Transform()
 
 void PKH::Transform::Update()
 {
+
+	// 오일러 각 360도 보정
+	eulerAngles.x = fmodf(eulerAngles.x, D3DXToRadian(360.f));
+	eulerAngles.y = fmodf(eulerAngles.y, D3DXToRadian(360.f));
+	eulerAngles.z = fmodf(eulerAngles.z, D3DXToRadian(360.f));
+	
+	// 로컬 좌표 세팅
 	right = Vector3::RIGHT;
 	up = Vector3::UP;
 	look = Vector3::FORWARD;
 
-	//fmodf(rotation.x, D3DXToRadian(180.f));
-	//fmodf(rotation.y, D3DXToRadian(180.f));
-	//fmodf(rotation.z, D3DXToRadian(180.f));
+	Matrix matRot;
+	D3DXMatrixRotationQuaternion(&matRot, &rotation);
+	D3DXVec3TransformNormal(&right, &right, &matRot);
+	D3DXVec3TransformNormal(&up, &up, &matRot);
+	D3DXVec3TransformNormal(&look, &look, &matRot);
 
-	Matrix rotX, rotY, rotZ;
-	D3DXMatrixRotationX(&rotX, eulerAngles.x);
-	D3DXMatrixRotationY(&rotY, eulerAngles.y);
-	D3DXMatrixRotationZ(&rotZ, eulerAngles.z);
-
-	D3DXVec3TransformNormal(&right, &right, &rotX);
-	D3DXVec3TransformNormal(&right, &right, &rotY);
-	D3DXVec3TransformNormal(&right, &right, &rotZ);
-	D3DXVec3TransformNormal(&up, &up, &rotX);
-	D3DXVec3TransformNormal(&up, &up, &rotY);
-	D3DXVec3TransformNormal(&up, &up, &rotZ);
-	D3DXVec3TransformNormal(&look, &look, &rotX);
-	D3DXVec3TransformNormal(&look, &look, &rotY);
-	D3DXVec3TransformNormal(&look, &look, &rotZ);
-	
-
+	// 오일러각 -> 쿼터니언
+	D3DXQuaternionRotationYawPitchRoll(&rotation, eulerAngles.y, eulerAngles.x, eulerAngles.z);
+	D3DXQuaternionNormalize(&rotation, &rotation);
 }
 
 IComponent* PKH::Transform::Clone()
@@ -46,65 +42,34 @@ IComponent* PKH::Transform::Clone()
 
 void PKH::Transform::Rotate(Vector3 _axis, float _angle)
 {
-
-
-	Matrix matRot;
-	D3DXMatrixRotationAxis(&matRot, &_axis, _angle);
-
-
-	//if(_axis != right)
-	//	D3DXVec3TransformNormal(&right, &right, &matRot);
-	//if (_axis != up)
-	//	D3DXVec3TransformNormal(&up, &up, &matRot);
-	//if (_axis != look)
-	//	D3DXVec3TransformNormal(&look, &look, &matRot);
-
-	eulerAngles.x = atan2(matRot._23, matRot._33);
-	eulerAngles.y += atan2(-matRot._13, sqrt(pow(matRot._23, 2) + pow(matRot._33, 2)));
-	//rotation.y = asinf(matRot._13);
-	eulerAngles.z = atan2(matRot._12, matRot._11);
-	
-
+	Quaternion qRot;
+	D3DXQuaternionRotationAxis(&qRot, &_axis, _angle);
+	Vector3 euler = Quaternion::ToEulerAngles(qRot);
+	eulerAngles = euler;
 }
 
 void PKH::Transform::LookAt(Transform _target, Vector3 _worldUp)
 {
 	
 	Vector3 dir = _target.position - position;
+	Quaternion qRot;
+	Vector3 axis = Vector3::Cross(&dir, &_worldUp);
+	float angle = acosf(Vector3::Dot(&_worldUp, &dir.Normalized()));
+	D3DXQuaternionRotationAxis(&qRot, &axis, angle);
+	Vector3 euler = Quaternion::ToEulerAngles(qRot);
+	
+	eulerAngles = euler;
 
-	//Vector3 axis = Vector3::Cross(&up, &dir);
-
-	//float angle = acosf(Vector3::Dot(&up.Normalized(), &dir.Normalized()));
-
-	//Rotate(axis, angle);
-	//=================================
-	// 테스트
-	// Y축 회전
-	//Vector3 v1 = Vector3::FORWARD - dir;
-	//float rotY = atan2f(v1.x, v1.z) * 2.f;
-	//rotation.y = rotY;// *TimeManager::DeltaTime();
-
-	//// X축 회전
-	//Vector3 v2 = Vector3::FORWARD - dir;
-	//float rotX = ((atan2f(v2.z, v2.y)) * 2.f);
-	//rotation.x = rotX;
-	//================================
-
-
-	//=================================
-	// 쿼터니언
-
-
-	//=================================
 }
 
 void PKH::Transform::LookAt(Vector3 _target, Vector3 _worldUp)
 {
 	Vector3 dir = _target - position;
+	Quaternion qRot;
+	Vector3 axis = Vector3::Cross(&dir, &_worldUp);
+	float angle = acosf(Vector3::Dot(&_worldUp, &dir.Normalized()));
+	D3DXQuaternionRotationAxis(&qRot, &axis, angle);
+	Vector3 euler = Quaternion::ToEulerAngles(qRot);
 
-	Vector3 axis = Vector3::Cross(&look, &dir);
-
-	float angle = acosf(Vector3::Dot(&look.Normalized(), &dir.Normalized()));
-
-	Rotate(axis, angle);
+	eulerAngles = euler;
 }

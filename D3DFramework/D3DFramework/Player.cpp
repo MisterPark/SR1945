@@ -43,6 +43,31 @@ void PKH::Player::Update()
 		Move(transform->position + Vector3::BACK);
 	}
 
+	if (InputManager::GetKey(VK_NUMPAD7))
+	{
+		transform->eulerAngles.x += TimeManager::DeltaTime();
+	}
+	if (InputManager::GetKey(VK_NUMPAD4))
+	{
+		transform->eulerAngles.x -= TimeManager::DeltaTime();
+	}
+	if (InputManager::GetKey(VK_NUMPAD8))
+	{
+		transform->eulerAngles.y += TimeManager::DeltaTime();
+	}
+	if (InputManager::GetKey(VK_NUMPAD5))
+	{
+		transform->eulerAngles.y -= TimeManager::DeltaTime();
+	}
+	if (InputManager::GetKey(VK_NUMPAD9))
+	{
+		transform->eulerAngles.z += TimeManager::DeltaTime();
+	}
+	if (InputManager::GetKey(VK_NUMPAD6))
+	{
+		transform->eulerAngles.z -= TimeManager::DeltaTime();
+	}
+
 	for (auto& comp : components)
 	{
 		comp.second->Update();
