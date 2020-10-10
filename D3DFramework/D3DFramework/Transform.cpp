@@ -30,6 +30,10 @@ void PKH::Transform::Update()
 	D3DXVec3TransformNormal(&up, &up, &matRot);
 	D3DXVec3TransformNormal(&look, &look, &matRot);
 
+	Vector3::Normalize(&right);
+	Vector3::Normalize(&up);
+	Vector3::Normalize(&look);
+
 	// 오일러각 -> 쿼터니언
 	D3DXQuaternionRotationYawPitchRoll(&rotation, eulerAngles.y, eulerAngles.x, eulerAngles.z);
 	D3DXQuaternionNormalize(&rotation, &rotation);
