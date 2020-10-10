@@ -24,7 +24,7 @@ void PKH::Monster03::Update()
 		if (BossType)
 		{
 			delay = 0.5f;
-			hp = 20;
+			hp = 200;
 			transform->scale = { 3.f,3.f,3.f };
 			movePattern = 0.f;
 		}
@@ -33,15 +33,25 @@ void PKH::Monster03::Update()
 			transform->scale = { 1.f,1.f,1.f };
 			if (xType)
 			{
+				delay = 1.f;
 				moveSpeed = 10.f;
+				Target = (Vector3{ 0,transform->position.y,transform->position.z }) - transform->position;
 			}
-
+			if (yType)
+			{
+				moveSpeed = 5.f;
+				Target = (Vector3{transform->position.x,0.f,transform->position.z}) - transform->position;
+			}
+			if (!xType && !yType && !BossType)
+			{
+				Target = (Vector3{ transform->position.x,transform->position.y,0.f}) - transform->position;
+			}
 		}
 
 	}
 	if (!BossType)
 	{
-		if (!xType)
+		if (!xType&&!yType)
 		{
 			GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 			if (player != nullptr)
@@ -50,9 +60,9 @@ void PKH::Monster03::Update()
 				Vector3::Normalize(&dir);
 
 				if (transform->position.x < 0.f)
-					Move(Vector3{ -3,0,-3.f });
+					Move(Target);
 				else
-					Move(Vector3{ 3,0,-3.f });
+					Move(Target);
 
 				float rotX = atan2f(dir.z, dir.y);
 				float rotY = atan2f(dir.x, dir.z);
@@ -78,10 +88,11 @@ void PKH::Monster03::Update()
 				}
 			}
 
-			if (transform->position.z < -1.f)
+			if (transform->position.z < 1.f)
 			{
 				Die();
 			}
+
 		}
 
 		if (xType)
@@ -94,7 +105,7 @@ void PKH::Monster03::Update()
 				Vector3::Normalize(&dir);
 
 
-				Move(Vector3{ 20.f,0.f,5.f });
+				Move(Target);
 
 
 
@@ -122,11 +133,63 @@ void PKH::Monster03::Update()
 				}
 			}
 
-			if (transform->position.x > 18.f)
+			if (transform->position.x > 9.f|| transform->position.x < -11.f)
 			{
 				Die();
 			}
 		}
+
+		if (yType)
+		{
+			GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
+			if (player != nullptr)
+			{
+				Vector3 dir = player->transform->position - transform->position;
+				Vector3::Normalize(&dir);
+				
+
+				Vector3 dir2 = player->transform->position - transform->position;
+				Vector3::Normalize(&dir2);
+
+				if (transform->position.x < 0.f)
+					Move(Target);
+				else
+					Move(Target);
+
+				float rotX = atan2f(dir.z, dir.y);
+				float rotY = atan2f(dir.x, dir.z);
+				float rotZ = atan2f(dir.y, dir.x);
+
+				//if(transform->rotation.x < rotX)
+				transform->rotation.x += rotX * TimeManager::DeltaTime();
+				//if (transform->rotation.y < rotY)
+				transform->rotation.y += rotY * TimeManager::DeltaTime();
+				//if (transform->rotation.z < rotZ)
+				transform->rotation.z += rotZ * TimeManager::DeltaTime();
+
+				if (transform->position.z > 2)
+				{
+					tick += TimeManager::DeltaTime();
+					if (tick > delay)
+					{
+						Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
+						b->SetPosition(transform->position);
+						b->AddComponent<PKH::Cube>(L"Mesh");
+						tick = 0;
+					}
+				}
+			}
+
+			if (transform->position.y < -11.f|| transform->position.y > 11.f)
+			{
+				Die();
+			}
+		}
+
+
+
+
+
 	}
 
 	if (BossType)
@@ -151,8 +214,27 @@ void PKH::Monster03::Update()
 			b->SetPosition(transform->position);
 			b->AddComponent<PKH::Cube>(L"Mesh");
 			tick = 0;
+			
+			
+			if (BossSkill == 1)
+			{
+				Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+				m->SetPosition(Vector3{ transform->position });
+				m->AddComponent<PKH::Cube>(L"Mesh");
+				
+			}
+			if (BossSkill == 10)
+			{
+				Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+				m->SetPosition(Vector3{ transform->position - Vector3{1.f,0.f,0.f} });
+				m->AddComponent<PKH::Cube>(L"Mesh");
+				BossSkill = 0;
+			}
+			BossSkill++;
 		}
 	}
+
+
 		if (hp <= 0)
 		{
 			Die();

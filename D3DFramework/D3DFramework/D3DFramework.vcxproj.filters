@@ -246,6 +246,12 @@
     <ClInclude Include="Scene4.h">
       <Filter>차승현</Filter>
     </ClInclude>
+    <ClInclude Include="Effect03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Dust03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -391,6 +397,12 @@
     </ClCompile>
     <ClCompile Include="Scene4.cpp">
       <Filter>차승현</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect03.cpp">
+      <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Dust03.cpp">
+      <Filter>길문호\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
