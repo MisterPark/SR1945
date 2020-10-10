@@ -36,11 +36,11 @@ void PKH::Bullet::Update()
 					float rotZ = atan2f(dir.y, dir.x);
 
 					//if(transform->rotation.x < rotX)
-					transform->rotation.x += rotX * TimeManager::DeltaTime();
+					transform->eulerAngles.x += rotX * TimeManager::DeltaTime();
 					//if (transform->rotation.y < rotY)
-					transform->rotation.y += rotY * TimeManager::DeltaTime();
+					transform->eulerAngles.y += rotY * TimeManager::DeltaTime();
 					//if (transform->rotation.z < rotZ)
-					transform->rotation.z += rotZ * TimeManager::DeltaTime();
+					transform->eulerAngles.z += rotZ * TimeManager::DeltaTime();
 					TargetPos = dir;
 			}
 			else

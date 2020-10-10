@@ -77,27 +77,27 @@ void PKH::Player03::Update()
 
 	if (InputManager::GetKey(VK_NUMPAD7))
 	{
-		transform->rotation.x += TimeManager::DeltaTime();
+		transform->eulerAngles.x += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD4))
 	{
-		transform->rotation.x -= TimeManager::DeltaTime();
+		transform->eulerAngles.x -= TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD8))
 	{
-		transform->rotation.y += TimeManager::DeltaTime();
+		transform->eulerAngles.y += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD5))
 	{
-		transform->rotation.y -= TimeManager::DeltaTime();
+		transform->eulerAngles.y -= TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD9))
 	{
-		transform->rotation.z += TimeManager::DeltaTime();
+		transform->eulerAngles.z += TimeManager::DeltaTime();
 	}
 	if (InputManager::GetKey(VK_NUMPAD6))
 	{
-		transform->rotation.z -= TimeManager::DeltaTime();
+		transform->eulerAngles.z -= TimeManager::DeltaTime();
 	}
 
 	for (auto& comp : components)
