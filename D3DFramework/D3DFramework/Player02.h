@@ -13,6 +13,7 @@ public:
 	// GameObject을(를) 통해 상속됨
 	virtual void Update() override;
 	void Attack();
+	virtual void OnCollision(GameObject* from);
 
 private:
 	bool canAttack = true;

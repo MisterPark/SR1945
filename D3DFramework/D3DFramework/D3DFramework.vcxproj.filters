@@ -64,9 +64,6 @@
     <Filter Include="강희재\Mesh\Plane">
       <UniqueIdentifier>{38253c32-4e70-48df-821a-4dc622b7c3b7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="강희재\Header">
-      <UniqueIdentifier>{b8961e32-9f87-4a9f-8cc7-323351200ae2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="강희재\MyCollisionManager">
       <UniqueIdentifier>{5cff36d5-c296-48bb-8edc-50696d70241c}</UniqueIdentifier>
     </Filter>
@@ -209,9 +206,6 @@
     </ClInclude>
     <ClInclude Include="MyCollisionManager.h">
       <Filter>강희재\MyCollisionManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Enum02.h">
-      <Filter>강희재\Header</Filter>
     </ClInclude>
     <ClInclude Include="Bullet.h">
       <Filter>헤더 파일</Filter>

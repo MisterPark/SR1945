@@ -157,7 +157,6 @@
     <ClInclude Include="D3DFramework.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="Enemy02.h" />
-    <ClInclude Include="Enum02.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameObject.h" />

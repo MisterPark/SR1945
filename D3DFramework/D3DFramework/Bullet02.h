@@ -14,8 +14,11 @@ public:
 	// GameObject을(를) 통해 상속됨
 	void Ready();
 	virtual void Update() override;
+	bool Culling();
+	virtual void OnCollision(GameObject* from);
 
 private:
+	Vector3 dir;
 	bool isPlayerType;
 };
 
