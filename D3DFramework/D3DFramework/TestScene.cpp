@@ -10,11 +10,10 @@
 void TestScene::OnLoaded()
 {
 	SkyBox::Show();
-	Camera::GetInstance()->SetPosition(Vector3(0, 0, -3));
+	Camera::GetInstance()->SetPosition(Vector3(0, 1.f, -1.f));
 
-	Player*  p = (Player*)ObjectManager::GetInstance()->CreateObject<Player>();
-	Mesh* mesh = (Mesh*)p->AddComponent<PKH::Cube>(L"Mesh");
-	mesh->SetColor(D3DCOLOR_XRGB(100, 100, 100));
+	ObjectManager::GetInstance()->CreateObject<Player>();
+	
 
 	Monster* m = (Monster*)ObjectManager::GetInstance()->CreateObject<Monster>();
 	m->AddComponent<PKH::Cube>(L"Mesh");

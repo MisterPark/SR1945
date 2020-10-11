@@ -10,45 +10,45 @@ PKH::SkyBox::SkyBox()
 
 	Mesh* mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"F");
 	mesh->SetTexture(TextureKey::SKY_F);
-	mesh->SetVertexPos(0, Vector3(-20, -20, 20));
-	mesh->SetVertexPos(1, Vector3(-20, 20, 20));
-	mesh->SetVertexPos(2, Vector3(20, 20, 20));
-	mesh->SetVertexPos(3, Vector3(20, -20, 20));
+	mesh->SetVertexPos(0, Vector3(-500, -500, 500));
+	mesh->SetVertexPos(1, Vector3(-500, 500, 500));
+	mesh->SetVertexPos(2, Vector3(500, 500, 500));
+	mesh->SetVertexPos(3, Vector3(500, -500, 500));
 	
 	mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"B");
 	mesh->SetTexture(TextureKey::SKY_B);
-	mesh->SetVertexPos(0, Vector3(20, -20, -20));
-	mesh->SetVertexPos(1, Vector3(20, 20, -20));
-	mesh->SetVertexPos(2, Vector3(-20, 20, -20));
-	mesh->SetVertexPos(3, Vector3(-20, -20, -20));
+	mesh->SetVertexPos(0, Vector3(500, -500, -500));
+	mesh->SetVertexPos(1, Vector3(500, 500, -500));
+	mesh->SetVertexPos(2, Vector3(-500, 500, -500));
+	mesh->SetVertexPos(3, Vector3(-500, -500, -500));
 
 	mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"L");
 	mesh->SetTexture(TextureKey::SKY_L);
-	mesh->SetVertexPos(0, Vector3(-20, -20, -20));
-	mesh->SetVertexPos(1, Vector3(-20, 20, -20));
-	mesh->SetVertexPos(2, Vector3(-20, 20, 20));
-	mesh->SetVertexPos(3, Vector3(-20, -20, 20));
+	mesh->SetVertexPos(0, Vector3(-500, -500, -500));
+	mesh->SetVertexPos(1, Vector3(-500, 500, -500));
+	mesh->SetVertexPos(2, Vector3(-500, 500, 500));
+	mesh->SetVertexPos(3, Vector3(-500, -500, 500));
 
 	mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"R");
 	mesh->SetTexture(TextureKey::SKY_R);
-	mesh->SetVertexPos(0, Vector3(20, -20, 20));
-	mesh->SetVertexPos(1, Vector3(20, 20, 20));
-	mesh->SetVertexPos(2, Vector3(20, 20, -20));
-	mesh->SetVertexPos(3, Vector3(20, -20, -20));
+	mesh->SetVertexPos(0, Vector3(500, -500, 500));
+	mesh->SetVertexPos(1, Vector3(500, 500, 500));
+	mesh->SetVertexPos(2, Vector3(500, 500, -500));
+	mesh->SetVertexPos(3, Vector3(500, -500, -500));
 
 	mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"U");
 	mesh->SetTexture(TextureKey::SKY_U);
-	mesh->SetVertexPos(0, Vector3(-20, 20, 20));
-	mesh->SetVertexPos(1, Vector3(-20, 20, -20));
-	mesh->SetVertexPos(2, Vector3(20, 20, -20));
-	mesh->SetVertexPos(3, Vector3(20, 20, 20));
+	mesh->SetVertexPos(0, Vector3(-500, 500, 500));
+	mesh->SetVertexPos(1, Vector3(-500, 500, -500));
+	mesh->SetVertexPos(2, Vector3(500, 500, -500));
+	mesh->SetVertexPos(3, Vector3(500, 500, 500));
 
 	mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"D");
 	mesh->SetTexture(TextureKey::SKY_D);
-	mesh->SetVertexPos(0, Vector3(-20, -20, -20));
-	mesh->SetVertexPos(1, Vector3(-20, -20, 20));
-	mesh->SetVertexPos(2, Vector3(20, -20, 20));
-	mesh->SetVertexPos(3, Vector3(20, -20, -20));
+	mesh->SetVertexPos(0, Vector3(-500, -500, -500));
+	mesh->SetVertexPos(1, Vector3(-500, -500, 500));
+	mesh->SetVertexPos(2, Vector3(500, -500, 500));
+	mesh->SetVertexPos(3, Vector3(500, -500, -500));
 }
 
 PKH::SkyBox::~SkyBox()
@@ -85,4 +85,5 @@ void PKH::SkyBox::Hide()
 
 void PKH::SkyBox::Update()
 {
+	//transform->position = Camera::GetPosition();
 }

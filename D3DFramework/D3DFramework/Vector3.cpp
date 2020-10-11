@@ -95,7 +95,8 @@ Vector3 PKH::Vector3::Cross(const Vector3* lhs, const Vector3* rhs)
 float PKH::Vector3::Distance(const Vector3& a, const Vector3& b)
 {
 	Vector3 distance = a - b;
-	return distance.Magnitude();
+	float dist = distance.Magnitude();
+	return dist;
 }
 
 float PKH::Vector3::Dot(const Vector3* lhs, const Vector3* rhs)

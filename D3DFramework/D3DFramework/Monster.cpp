@@ -1,11 +1,14 @@
 #include "stdafx.h"
 #include "Monster.h"
 #include "Player.h"
+#include "Missile.h"
 
 
 PKH::Monster::Monster()
 {
-	//transform->scale = { 3,3,3 };
+	transform->position = { 0,0,2 };
+	transform->scale = { 5,5,15 };
+	CollisionManager::RegisterObject(this);
 }
 
 PKH::Monster::~Monster()
@@ -21,26 +24,37 @@ void PKH::Monster::Update()
 		Vector3 dir = player->transform->position - transform->position;
 		Vector3::Normalize(&dir);
 
-		MoveToTarget(player->transform->position);
+		//MoveToTarget(player->transform->position);
 
-		
-		//float rotX = atan2f(dir.z, dir.y);
-		//float rotY = atan2f(dir.x, dir.z);
-		//float rotZ = atan2f(dir.y, dir.x);
 
-		////if(transform->rotation.x < rotX)
-		//	transform->rotation.x += rotX * TimeManager::DeltaTime();
-		////if (transform->rotation.y < rotY)
-		//	transform->rotation.y += rotY * TimeManager::DeltaTime();
-		////if (transform->rotation.z < rotZ)
-		//	transform->rotation.z += rotZ * TimeManager::DeltaTime();
-
-		transform->LookAt(*player->transform);
+		//transform->LookAt(*player->transform);
 		
 
 	}
 	
 
 	GameObject::Update();
+}
+
+void PKH::Monster::OnCollision(GameObject* target)
+{
+	if (dynamic_cast<Player*>(target))
+	{
+
+	}
+	else if (dynamic_cast<Missile*>(target))
+	{
+		Missile* ms = (Missile*)target;
+		if (ms->isAlliance)
+		{
+			Die();
+		}
+	}
+}
+
+void PKH::Monster::Die()
+{
+	GameObject::Die();
+	CollisionManager::DisregisterObject(this);
 }
 

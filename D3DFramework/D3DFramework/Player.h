@@ -11,8 +11,11 @@ namespace PKH
 		virtual ~Player();
 
 		virtual void Update() override;
+		virtual void OnCollision(GameObject* target);
+		virtual void Die();
 
 		void Attack();
+		void RotateProcess();
 
 		float attackTick = 0.f;
 		float attackDelay = 0.2f;

@@ -29,7 +29,7 @@ void PKH::Cursor::Destroy()
     }
 }
 
-Vector3 PKH::Cursor::GetPosition()
+Vector3 PKH::Cursor::GetMousePos()
 {
     Vector3 pos;
     POINT pt;

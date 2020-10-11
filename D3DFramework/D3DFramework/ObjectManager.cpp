@@ -74,6 +74,8 @@ void PKH::ObjectManager::Update()
 		if (!iter->isEnable) continue;
 		iter->Update();
 	}
+
+	SkyBox::GetInstance()->Update();
 }
 
 void PKH::ObjectManager::PostUpdate()

@@ -106,7 +106,7 @@ Vector3 PKH::Camera::ScreenToWorldPoint(const Vector3& position)
 	Vector3 pos;
 	pos.x = (position.x * 2.f / dfCLIENT_WIDTH) - 1.f;
 	pos.y = -(position.y * 2.f / dfCLIENT_HEIGHT) + 1.f;
-	pos.z = pCamera->nearClipPlane;
+	pos.z =  pCamera->nearClipPlane;
 
 	// Projection To World
 	Matrix inverseMat = Matrix::Inverse(viewProj);

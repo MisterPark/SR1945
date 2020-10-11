@@ -12,7 +12,7 @@ namespace PKH
 		static Cursor* GetInstance();
 		static void Destroy();
 
-		static Vector3 GetPosition();
+		static Vector3 GetMousePos();
 		static void Show();
 		static void Hide();
 

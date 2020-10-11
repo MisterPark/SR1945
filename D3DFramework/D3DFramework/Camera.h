@@ -33,7 +33,7 @@ namespace PKH
 
 
 	private:
-		float nearClipPlane = 1.0f;
+		float nearClipPlane = 1.f;
 		float farClipPlane = 1000.f;
 		bool isProjection3D;
 		Matrix viewMatrix;
