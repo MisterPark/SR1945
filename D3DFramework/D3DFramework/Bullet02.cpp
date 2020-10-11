@@ -7,12 +7,13 @@ Bullet02::Bullet02()
 {
 }
 
-Bullet02::Bullet02(Vector3 pos, Vector3 scale, Vector3 look, bool isPlayer) :
+Bullet02::Bullet02(Vector3 pos, Vector3 scale, Vector3 look, bool isPlayer, float speed) :
 	isPlayerType(isPlayer)
 {
 	transform->position = pos;
 	transform->scale = scale;
 	dir = look;
+	moveSpeed = speed;
 
 	Ready();
 }
@@ -23,8 +24,6 @@ Bullet02::~Bullet02()
 
 void Bullet02::Ready()
 {
-	moveSpeed = 10.f;
-
 	if (isPlayerType)
 	{
 		IComponent* newCube = new Cube02(D3DCOLOR_XRGB(255, 255, 0));

@@ -14,7 +14,7 @@ MyCollisionManager::MyCollisionManager()
 
 MyCollisionManager::~MyCollisionManager()
 {
-	//Release();
+	Release();
 }
 
 MyCollisionManager * MyCollisionManager::GetInstance()
@@ -66,7 +66,7 @@ void MyCollisionManager::Collide(OBJTAG dst, OBJTAG src)
 			if (IsCollision((*dstIter)->transform, (*srcIter)->transform))
 			{
 				(*dstIter)->OnCollision(*srcIter);
-				(*srcIter)->OnCollision(*srcIter);
+				(*srcIter)->OnCollision(*dstIter);
 
 				dstIter = objList[dst].erase(dstIter);
 				srcIter = objList[src].erase(srcIter);
@@ -78,6 +78,34 @@ void MyCollisionManager::Collide(OBJTAG dst, OBJTAG src)
 			++srcIter;
 		}
 		if(!isCollide) ++dstIter;
+	}
+}
+
+void MyCollisionManager::Collide2(OBJTAG dst, OBJTAG src)
+{
+	auto srcIter = objList[src].begin();
+
+	for (; srcIter != objList[src].end();)
+	{
+		bool isCollide = false;
+		auto dstIter = objList[dst].begin();
+
+		for (; dstIter != objList[dst].end();)
+		{
+			if (IsCollision((*dstIter)->transform, (*srcIter)->transform))
+			{
+				(*srcIter)->OnCollision(*dstIter);
+				(*dstIter)->OnCollision(*srcIter);
+
+				srcIter = objList[src].erase(srcIter);
+
+				isCollide = true;
+
+				break;
+			}
+			if(!isCollide) ++dstIter;
+		}
+		if (!isCollide) ++srcIter;
 	}
 }
 
@@ -99,14 +127,6 @@ void MyCollisionManager::Release()
 {
 	for (int i = 0; i < OBJTAG::END; ++i)
 	{
-		for (auto& iter : objList[i])
-		{
-			if (nullptr != iter)
-			{
-				delete iter;
-				iter = nullptr;
-			}
-		}
 		objList[i].clear();
 	}
 	objList->clear();

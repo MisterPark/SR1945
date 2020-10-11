@@ -65,7 +65,7 @@ void Player02::Attack()
 {
 	if (canAttack)
 	{
-		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), transform->up);
+		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), transform->up, true, 10.f);
 		ObjectManager::AddObject(newBullet);
 
 		MyCollisionManager::GetInstance()->RegisterObject(MyCollisionManager::PLAYER_BULLET, newBullet);
@@ -77,4 +77,5 @@ void Player02::Attack()
 
 void Player02::OnCollision(GameObject * from)
 {
+	--hp;
 }

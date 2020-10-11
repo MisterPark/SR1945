@@ -252,6 +252,9 @@
     <ClInclude Include="Dust03.h">
       <Filter>길문호\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Boss02.h">
+      <Filter>강희재\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -409,6 +412,9 @@
     </ClCompile>
     <ClCompile Include="Dust03.cpp">
       <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss02.cpp">
+      <Filter>강희재\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
