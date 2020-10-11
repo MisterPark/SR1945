@@ -154,6 +154,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Cube02.h" />
+    <ClInclude Include="Cursor.h" />
     <ClInclude Include="D2DRenderManager.h" />
     <ClInclude Include="D3DFramework.h" />
     <ClInclude Include="Define.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="Monster.h" />
     <ClInclude Include="Monster4.h" />
     <ClInclude Include="MonsterBullet4.h" />
@@ -190,6 +192,7 @@
     <ClInclude Include="Scene02.h" />
     <ClInclude Include="Scene03.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -214,6 +217,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Cube.cpp" />
     <ClCompile Include="Cube02.cpp" />
+    <ClCompile Include="Cursor.cpp" />
     <ClCompile Include="D2DRenderManager.cpp" />
     <ClCompile Include="D3DFramework.cpp" />
     <ClCompile Include="Dust03.cpp" />
@@ -227,6 +231,7 @@
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="Monster03.cpp" />
     <ClCompile Include="MyCollisionManager.cpp" />
@@ -245,6 +250,7 @@
     <ClCompile Include="Scene03.cpp" />
     <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

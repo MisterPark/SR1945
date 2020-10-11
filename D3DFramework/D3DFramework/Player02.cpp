@@ -30,25 +30,25 @@ void Player02::Update()
 	{
 		float futureValue = transform->position.y + (moveSpeed * TimeManager::DeltaTime());
 
-		if (futureValue <= 2.9f) Move(transform->position + Vector3::UP);
+		if (futureValue <= 2.9f) MoveToTarget(transform->position + Vector3::UP);
 	}
 	if (InputManager::GetKey(VK_DOWN))
 	{
 		float futureValue = transform->position.y - (moveSpeed * TimeManager::DeltaTime());
 
-		if(futureValue >= -2.9f) Move(transform->position + Vector3::DOWN);
+		if(futureValue >= -2.9f) MoveToTarget(transform->position + Vector3::DOWN);
 	}
 	if (InputManager::GetKey(VK_LEFT))
 	{
 		float futureValue = transform->position.x - (moveSpeed * TimeManager::DeltaTime());
 
-		if(futureValue >= -3.9f) Move(transform->position + Vector3::LEFT);
+		if(futureValue >= -3.9f) MoveToTarget(transform->position + Vector3::LEFT);
 	}
 	if (InputManager::GetKey(VK_RIGHT))
 	{
 		float futureValue = transform->position.x + (moveSpeed * TimeManager::DeltaTime());
 
-		if(futureValue <= 3.9f) Move(transform->position + Vector3::RIGHT);
+		if(futureValue <= 3.9f) MoveToTarget(transform->position + Vector3::RIGHT);
 	}
 	if (InputManager::GetKey(VK_SPACE))
 	{

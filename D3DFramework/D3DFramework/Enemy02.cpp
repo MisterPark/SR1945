@@ -56,12 +56,12 @@ void Enemy02::Pattern01()
 		if (0.f > coolTime) canAttack = true;
 	}
 
-	Move(transform->position + transform->look);
+	MoveToTarget(transform->position + transform->look);
 }
 
 void Enemy02::Pattern02()
 {
-	Move(transform->position + Vector3::BACK);
+	MoveToTarget(transform->position + Vector3::BACK);
 
 	if (canAttack) Pattern02Bullet();
 	else
