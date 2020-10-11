@@ -29,10 +29,10 @@ namespace PKH
 
         bool BossType = false;
         float BossRotateSpeed = 1.f;
-
+        int MyColor = 0;
 
         bool isSetting = false;
-
+        int Maxhp = 1;
         int hp = 1;
     };
 }

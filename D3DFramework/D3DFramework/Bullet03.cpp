@@ -18,13 +18,31 @@ PKH::Bullet03::~Bullet03()
 
 void PKH::Bullet03::Update()
 {
+	GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 
 	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
-	
+	mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
 	if (!MyBullet03)
 	{
-		mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
-		
+
+		GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
+		if (monster != nullptr)
+		{
+				//색설정
+		//보스 탄환
+		if (isBossBullet)
+		{
+			int color = dynamic_cast<Monster03*>(monster)->MyColor;
+			mesh->SetColor(D3DCOLOR_XRGB(color, color, color));
+
+
+		}
+		//나머지 탄환
+		if (dynamic_cast<Monster03*>(monster)->BossType == false)
+		{
+			mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
+		}
+		}
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
 		{
@@ -68,9 +86,13 @@ void PKH::Bullet03::Update()
 					dynamic_cast<Player03*>(player)->transform->scale -= Vector3{ 0.1f,0.1f,0.1f };
 				}
 
-				Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
-				e->SetPosition(player->transform->position);
-
+				for (int i = 0; i < 4; i++)
+				{
+					Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
+					e->SetPosition(player->transform->position);
+					e->PlayerHit = true;
+					e->effectDir = i;
+				}
 				Die();
 			}
 			
@@ -84,8 +106,11 @@ void PKH::Bullet03::Update()
 	}
 	if(MyBullet03)
 	{
-		mesh->SetColor(D3DCOLOR_XRGB(250, 250, 250));
-
+		if (nullptr != player)
+		{
+			int color = dynamic_cast<Player03*>(player)->MyColor;
+			mesh->SetColor(D3DCOLOR_XRGB(0, color, color));
+		}
 			GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
 			if (monster != nullptr)
 			{
@@ -128,9 +153,22 @@ void PKH::Bullet03::Update()
 				if (fDist - fRadiusSum < 0)
 				{
 					dynamic_cast<Monster03*>(monster)->hp--;
-					if (dynamic_cast<Monster03*>(monster)->BossType = true)
+					for (int i = 0; i < 4; i++)
+					{
+						Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
+						e->SetPosition(monster->transform->position);
+						e->PlayerHit = false;
+						e->effectDir = i;
+					}
+					if (dynamic_cast<Monster03*>(monster)->BossType == true)
 					{
 						dynamic_cast<Monster03*>(monster)->BossRotateSpeed += 0.1f;
+						dynamic_cast<Monster03*>(monster)->MyColor += 250 / dynamic_cast<Monster03*>(monster)->Maxhp;
+						if (dynamic_cast<Monster03*>(monster)->transform->position.z > 5.f)
+						{
+							dynamic_cast<Monster03*>(monster)->transform->position.z -= 0.1f;
+							dynamic_cast<Monster03*>(monster)->transform->position.y -= 0.05f;
+						}
 					}
 					Die();
 				}

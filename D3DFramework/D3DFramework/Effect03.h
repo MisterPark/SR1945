@@ -16,5 +16,8 @@ namespace PKH
         
         float tick = 0.f;
         float delay = 1.f;
+
+        int effectDir = 0;
+        bool PlayerHit = false;
     };
 }
