@@ -29,42 +29,42 @@ void PKH::Player03::Update()
 		{
 			if (transform->position.y < 3)
 			{
-				Move(transform->position + Vector3::UP);
+				MoveToTarget(transform->position + Vector3::UP);
 			}
 		}
 		if (InputManager::GetKey(VK_DOWN))
 		{
 			if (transform->position.y > -3)
 			{
-				Move(transform->position + Vector3::DOWN);
+				MoveToTarget(transform->position + Vector3::DOWN);
 			}
 		}
 		if (InputManager::GetKey(VK_LEFT))
 		{
 			if (transform->position.x > -4)
 			{
-				Move(transform->position + Vector3::LEFT);
+				MoveToTarget(transform->position + Vector3::LEFT);
 			}
 		}
 		if (InputManager::GetKey(VK_RIGHT))
 		{
 			if (transform->position.x < 4)
 			{
-				Move(transform->position + Vector3::RIGHT);
+				MoveToTarget(transform->position + Vector3::RIGHT);
 			}
 		}
 		if (InputManager::GetKey('Z'))
 		{
 			if (transform->position.z < 1)
 			{
-				Move(transform->position + Vector3::FORWARD);
+				MoveToTarget(transform->position + Vector3::FORWARD);
 			}
 		}
 		if (InputManager::GetKey('X'))
 		{
 			if (transform->position.z > -1)
 			{
-				Move(transform->position + Vector3::BACK);
+				MoveToTarget(transform->position + Vector3::BACK);
 			}
 		}
 	
@@ -117,8 +117,5 @@ void PKH::Player03::Update()
 		Die();
 	}
 
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }

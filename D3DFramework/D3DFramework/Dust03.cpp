@@ -25,9 +25,6 @@ void PKH::Dust03::Update()
 		Die();
 
 
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 

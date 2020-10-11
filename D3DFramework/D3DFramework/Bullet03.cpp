@@ -32,7 +32,7 @@ void PKH::Bullet03::Update()
 			{
 				Vector3 dir = player->transform->position - transform->position;
 				Vector3::Normalize(&dir);
-					Move(dir);
+					MoveToTarget(dir);
 
 					float rotX = atan2f(dir.z, dir.y);
 					float rotY = atan2f(dir.x, dir.z);
@@ -49,9 +49,9 @@ void PKH::Bullet03::Update()
 			else
 			{
 				if (transform->position.x < 0.f)
-					Move(TargetPos - Vector3{0,0,3.f});
+					MoveToTarget(TargetPos - Vector3{0,0,3.f});
 				else
-					Move(TargetPos - Vector3{ 0,0,3.f });
+					MoveToTarget(TargetPos - Vector3{ 0,0,3.f });
 			}
 			float fRadiusSum = static_cast<float>((player->transform->scale.z) + (transform->scale.z));
 			float fX = player->transform->position.x - transform->position.x;
@@ -101,7 +101,7 @@ void PKH::Bullet03::Update()
 					if (monster != nullptr)
 					{
 						Vector3 mdir = monster->transform->position;
-						Move(mdir);
+						MoveToTarget(mdir);
 
 						TargetPos = mdir;
 					}
@@ -113,7 +113,7 @@ void PKH::Bullet03::Update()
 				else
 				{
 					if (transform->position.z < 10)
-						Move(Vector3{ 0.f,0.f,10.f });
+						MoveToTarget(Vector3{ 0.f,0.f,10.f });
 					else
 						Die();
 
@@ -142,7 +142,7 @@ void PKH::Bullet03::Update()
 
 				Vector3 dir = Vector3{0.f,0.f,15.f} - transform->position;
 				Vector3::Normalize(&dir);
-				Move(dir);
+				MoveToTarget(dir);
 			
 				++Extinction;
 				
@@ -153,9 +153,7 @@ void PKH::Bullet03::Update()
 			}
 
 	}
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	
+	GameObject::Update();
 }
 

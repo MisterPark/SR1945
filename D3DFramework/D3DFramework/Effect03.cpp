@@ -33,9 +33,6 @@ void PKH::Effect03::Update()
 
 
 	
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 

@@ -76,6 +76,9 @@
     <Filter Include="차승현">
       <UniqueIdentifier>{515dbe37-92c9-451e-979a-8ff1b0d0599d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cursor">
+      <UniqueIdentifier>{bda8052a-9916-4274-b18c-0a5a529b869a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -183,9 +186,6 @@
     <ClInclude Include="Matrix.h">
       <Filter>Lib</Filter>
     </ClInclude>
-    <ClInclude Include="AxisCube.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Player02.h">
       <Filter>강희재\Player</Filter>
     </ClInclude>
@@ -251,6 +251,18 @@
     </ClInclude>
     <ClInclude Include="Dust03.h">
       <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="AxisCube.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -341,9 +353,6 @@
     <ClCompile Include="Quaternion.cpp">
       <Filter>Lib</Filter>
     </ClCompile>
-    <ClCompile Include="AxisCube.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Player02.cpp">
       <Filter>강희재\Player</Filter>
     </ClCompile>
@@ -409,6 +418,18 @@
     </ClCompile>
     <ClCompile Include="Dust03.cpp">
       <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

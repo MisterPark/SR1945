@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ObjectManager.h"
+#include "SkyBox.h"
+#include "Cursor.h"
 
 using namespace PKH;
 
@@ -8,10 +10,14 @@ int lastUid = 0;
 
 PKH::ObjectManager::ObjectManager()
 {
+	SkyBox::GetInstance();
+	Cursor::GetInstance();
 }
 
 PKH::ObjectManager::~ObjectManager()
 {
+	SkyBox::Destroy();
+	Cursor::Destroy();
 }
 
 ObjectManager * PKH::ObjectManager::GetInstance()
@@ -134,13 +140,15 @@ void PKH::ObjectManager::Render()
 		obj->Render();
 	}
 	
-
+	SkyBox::GetInstance()->Render();
+	
 	// 디버그용
 	//TimeManager::RenderFPS();
 }
 
 void PKH::ObjectManager::PostRender()
 {
+	
 }
 
 bool PKH::ObjectManager::Compare(GameObject* a, GameObject* b)

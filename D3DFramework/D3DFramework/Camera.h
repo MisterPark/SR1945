@@ -19,16 +19,25 @@ namespace PKH
 		static Vector3 GetPosition();
 		static float GetX();
 		static float GetY();
-		static void GetViewMatrix(Matrix* outView);
+		static Matrix GetViewMatrix();
+		static Matrix GetProjectionMatrix();
 		static void SetProjection3D(bool ProjectionSet);
+
+		static Vector3 ScreenToWorldPoint(const Vector3& position);
+		static Vector3 WorldToScreenPoint(const Vector3& position);
+
 	private:
 		void PerspectiveProjection();
 		void OrthogonalProjection();
+		
+
+
+	private:
+		float nearClipPlane = 1.0f;
+		float farClipPlane = 1000.f;
 		bool isProjection3D;
-	public:
-		Vector3 look = Vector3(0, 0, 1);
-		Vector3 up = Vector3(0, 1, 0);
-		Vector3 right = Vector3(1, 0, 0);
+		Matrix viewMatrix;
+		Matrix projectionMatrix;
 	};
 }
 
