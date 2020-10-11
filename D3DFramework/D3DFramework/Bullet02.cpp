@@ -40,7 +40,7 @@ void Bullet02::Ready()
 
 void Bullet02::Update()
 {
-	Move(transform->position + dir);
+	MoveToTarget(transform->position + dir);
 
 	for (auto& iter : components)
 	{

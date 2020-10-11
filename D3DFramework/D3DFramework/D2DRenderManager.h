@@ -1,13 +1,8 @@
 #pragma once
+#include "Texture.h"
 
 namespace PKH
 {
-	class Texture;
-
-	enum class SpriteType
-	{
-		NONE,
-	};
 
 	class D2DRenderManager
 	{
@@ -27,17 +22,19 @@ namespace PKH
 
 		static LPDIRECT3DDEVICE9 GetDevice();
 		static LPD3DXSPRITE GetSprite();
-		static Texture* GetTexture(SpriteType _key);
+		static Texture* GetTexture(TextureKey _key);
 		static LPD3DXLINE GetLine();
 
-		static HRESULT LoadSprite(const wstring& filePath, SpriteType spriteKey, DWORD row, DWORD col);
-		static void DrawSprite(SpriteType spriteKey, Transform transform, int index);
-		static void DrawUI(SpriteType spriteKey, Transform transform, int index);
-		static void DrawUI(SpriteType spriteKey, Vector3 pos, int index);
-		static void DrawCharacter(SpriteType spriteKey, Transform transform, DWORD row = 0, DWORD col = 0);
 
-		static void DrawImage(SpriteType spriteKey, Transform transform);
-		static void DrawImage(SpriteType spriteKey, float x, float y, float verticalPer);
+		//================== 2D ======================
+		static HRESULT LoadSprite(TextureKey spriteKey, const wstring& filePath, DWORD row=1, DWORD col=1);
+		static void DrawSprite(TextureKey spriteKey, Transform transform, int index);
+		static void DrawUI(TextureKey spriteKey, Transform transform, int index);
+		static void DrawUI(TextureKey spriteKey, Vector3 pos, int index);
+		static void DrawCharacter(TextureKey spriteKey, Transform transform, DWORD row = 0, DWORD col = 0);
+
+		static void DrawImage(TextureKey spriteKey, Transform transform);
+		static void DrawImage(TextureKey spriteKey, float x, float y, float verticalPer);
 
 		static void DrawString(const string& text);
 		static void DrawString(const wstring& text);
@@ -48,7 +45,15 @@ namespace PKH
 
 		static void DrawLine(float sx, float sy, float ex, float ey);
 		static void DrawLine(float sx, float sy, float ex, float ey, D3DXCOLOR color);
+		//=========================================
 
+		//=================== SR ==================
+
+		static HRESULT LoadTexture(TextureKey key, const wstring& filePath);
+		static HRESULT LoadCubeTexture(TextureKey key, const wstring& filePath);
+		static void DrawTexture(TextureKey key);
+
+		//=========================================
 
 
 	private:
@@ -61,7 +66,7 @@ namespace PKH
 
 
 
-		map<SpriteType, Texture*> textureMap;
+		map<TextureKey, Texture*> textureMap;
 	};
 
 

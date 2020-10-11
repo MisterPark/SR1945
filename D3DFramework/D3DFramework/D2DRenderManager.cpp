@@ -161,7 +161,7 @@ LPD3DXSPRITE PKH::D2DRenderManager::GetSprite()
 	return pD2DRenderManager->pSprite;
 }
 
-Texture * PKH::D2DRenderManager::GetTexture(SpriteType _key)
+Texture * PKH::D2DRenderManager::GetTexture(TextureKey _key)
 {
 	auto find = pD2DRenderManager->textureMap.find(_key);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -178,7 +178,7 @@ LPD3DXLINE PKH::D2DRenderManager::GetLine()
 	return pD2DRenderManager->pLine;
 }
 
-HRESULT PKH::D2DRenderManager::LoadSprite(const wstring& filePath, SpriteType spriteKey, DWORD row, DWORD col)
+HRESULT PKH::D2DRenderManager::LoadSprite(TextureKey spriteKey, const wstring& filePath, DWORD row, DWORD col)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 
@@ -223,7 +223,7 @@ HRESULT PKH::D2DRenderManager::LoadSprite(const wstring& filePath, SpriteType sp
 	return S_OK;
 }
 
-void PKH::D2DRenderManager::DrawSprite(SpriteType spriteKey, Transform transform, int index)
+void PKH::D2DRenderManager::DrawSprite(TextureKey spriteKey, Transform transform, int index)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -263,7 +263,7 @@ void PKH::D2DRenderManager::DrawSprite(SpriteType spriteKey, Transform transform
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawUI(SpriteType spriteKey, Transform transform, int index)
+void PKH::D2DRenderManager::DrawUI(TextureKey spriteKey, Transform transform, int index)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -300,7 +300,7 @@ void PKH::D2DRenderManager::DrawUI(SpriteType spriteKey, Transform transform, in
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawUI(SpriteType spriteKey, Vector3 pos, int index)
+void PKH::D2DRenderManager::DrawUI(TextureKey spriteKey, Vector3 pos, int index)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -336,7 +336,7 @@ void PKH::D2DRenderManager::DrawUI(SpriteType spriteKey, Vector3 pos, int index)
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawCharacter(SpriteType spriteKey, Transform transform, DWORD row, DWORD col)
+void PKH::D2DRenderManager::DrawCharacter(TextureKey spriteKey, Transform transform, DWORD row, DWORD col)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -373,7 +373,7 @@ void PKH::D2DRenderManager::DrawCharacter(SpriteType spriteKey, Transform transf
 
 }
 
-void PKH::D2DRenderManager::DrawImage(SpriteType spriteKey, Transform transform)
+void PKH::D2DRenderManager::DrawImage(TextureKey spriteKey, Transform transform)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -399,7 +399,7 @@ void PKH::D2DRenderManager::DrawImage(SpriteType spriteKey, Transform transform)
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawImage(SpriteType spriteKey, float x, float y, float verticalPer)
+void PKH::D2DRenderManager::DrawImage(TextureKey spriteKey, float x, float y, float verticalPer)
 {
 	auto find = pD2DRenderManager->textureMap.find(spriteKey);
 	if (find == pD2DRenderManager->textureMap.end())
@@ -517,4 +517,56 @@ void PKH::D2DRenderManager::DrawLine(float sx, float sy, float ex, float ey, D3D
 	pD2DRenderManager->pLine->Begin();
 	pD2DRenderManager->pLine->Draw(point, 2, color);
 	pD2DRenderManager->pLine->End();
+}
+
+HRESULT PKH::D2DRenderManager::LoadTexture(TextureKey key, const wstring& filePath)
+{
+	auto find = pD2DRenderManager->textureMap.find(key);
+
+	if (find != pD2DRenderManager->textureMap.end()) return S_OK;
+
+	Texture* tex = new Texture;
+
+	if (FAILED(D3DXGetImageInfoFromFile(filePath.c_str(), &tex->imageInfo)))
+	{
+		MessageBox(g_hwnd, L"이미지 정보 불러오기 실패", nullptr, MB_OK);
+		delete tex;
+		return E_FAIL;
+	}
+
+	if (FAILED(D3DXCreateTextureFromFileW(pD2DRenderManager->pDevice, filePath.c_str(), &tex->pTexture)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+HRESULT PKH::D2DRenderManager::LoadCubeTexture(TextureKey key, const wstring& filePath)
+{
+	auto find = pD2DRenderManager->textureMap.find(key);
+
+	if (find != pD2DRenderManager->textureMap.end()) return S_OK;
+
+	Texture* tex = new Texture;
+
+	if (FAILED(D3DXGetImageInfoFromFile(filePath.c_str(), &tex->imageInfo)))
+	{
+		MessageBox(g_hwnd, L"이미지 정보 불러오기 실패", nullptr, MB_OK);
+		delete tex;
+		return E_FAIL;
+	}
+
+	// TODO : 큐브텍스쳐 로드하는거 마지막인자 수정해야할수도있음.
+	if (FAILED(D3DXCreateCubeTextureFromFileW(pD2DRenderManager->pDevice, filePath.c_str(), (LPDIRECT3DCUBETEXTURE9*)&tex->pTexture)))
+		return E_FAIL;
+
+	return S_OK;
+}
+
+void PKH::D2DRenderManager::DrawTexture(TextureKey key)
+{
+	auto find = pD2DRenderManager->textureMap.find(key);
+
+	if (find == pD2DRenderManager->textureMap.end()) return;
+
+	pD2DRenderManager->pDevice->SetTexture(0, find->second->pTexture);
 }

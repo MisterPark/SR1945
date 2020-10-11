@@ -77,3 +77,33 @@ void PKH::Transform::LookAt(Vector3 _target, Vector3 _worldUp)
 
 	eulerAngles = euler;
 }
+
+void PKH::Transform::RotatePitch(float _angle)
+{
+	Rotate(right, _angle);
+}
+
+void PKH::Transform::RotateYaw(float _angle)
+{
+	Rotate(up, _angle);
+}
+
+void PKH::Transform::RotateRoll(float _angle)
+{
+	Rotate(look, _angle);
+}
+
+void PKH::Transform::RotateX(float _angle)
+{
+	Rotate(Vector3::RIGHT, _angle);
+}
+
+void PKH::Transform::RotateY(float _angle)
+{
+	Rotate(Vector3::UP, _angle);
+}
+
+void PKH::Transform::RotateZ(float _angle)
+{
+	Rotate(Vector3::FORWARD, _angle);
+}

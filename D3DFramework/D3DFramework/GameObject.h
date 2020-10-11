@@ -21,8 +21,23 @@ namespace PKH
 		virtual void Die();
 		virtual void OnCollision(GameObject* target);
 
-		void Move(Vector3 _target);
+		// 방향으로 이동
+		// 내부에서 정규화 해줌.
+		void Move(Vector3 _direction);
+		// 위치로 이동
+		void MoveToTarget(Vector3 _target);
+		// 타겟 따라가기
+		void FollowTarget(const GameObject* _target);
+		void FollowTarget(const Transform& _targetTransform);
+		void FollowTarget(const Vector3& _targetPos);
+		// 타겟 오브젝트 방향으로 회전
+		void FaceTarget(const GameObject* _target);
+		void FaceTarget(const Transform& _targetTransform);
+		void FaceTarget(const Vector3& _targetPos);
+
+
 		void SetPosition(Vector3 _vPos);
+
 		template<class T>
 		IComponent* AddComponent(const wstring& _key);
 

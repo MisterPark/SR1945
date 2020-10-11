@@ -56,10 +56,7 @@ void PKH::Monster4::Update()
 
 	MonsterPattern();
 
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 
 

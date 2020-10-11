@@ -60,9 +60,9 @@ void PKH::Monster03::Update()
 				Vector3::Normalize(&dir);
 
 				if (transform->position.x < 0.f)
-					Move(Target);
+					MoveToTarget(Target);
 				else
-					Move(Target);
+					MoveToTarget(Target);
 
 				float rotX = atan2f(dir.z, dir.y);
 				float rotY = atan2f(dir.x, dir.z);
@@ -105,7 +105,7 @@ void PKH::Monster03::Update()
 				Vector3::Normalize(&dir);
 
 
-				Move(Target);
+				MoveToTarget(Target);
 
 
 
@@ -152,9 +152,9 @@ void PKH::Monster03::Update()
 				Vector3::Normalize(&dir2);
 
 				if (transform->position.x < 0.f)
-					Move(Target);
+					MoveToTarget(Target);
 				else
-					Move(Target);
+					MoveToTarget(Target);
 
 				float rotX = atan2f(dir.z, dir.y);
 				float rotY = atan2f(dir.x, dir.z);
@@ -240,9 +240,6 @@ void PKH::Monster03::Update()
 			Die();
 		}
 	
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 
