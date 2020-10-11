@@ -15,6 +15,8 @@ namespace PKH
         virtual void Update() override;
         Vector3 TargetPos;
         bool MyBullet03 = false;
+        bool isBossBullet = false;
+        int BossBullet1 = 0;
         int Extinction = 0;
     };
 }

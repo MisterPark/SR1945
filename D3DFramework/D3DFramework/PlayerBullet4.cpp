@@ -121,10 +121,7 @@ void PKH::PlayerBullet4::Update()
 	}
 
 
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 
 void PKH::PlayerBullet4::OnCollision(GameObject* target)

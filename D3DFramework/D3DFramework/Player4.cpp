@@ -26,19 +26,19 @@ void PKH::Player4::Update()
 {
 	if (InputManager::GetKey(VK_UP))
 	{
-		Move(transform->position + Vector3::UP);
+		MoveToTarget(transform->position + Vector3::UP);
 	}
 	if (InputManager::GetKey(VK_DOWN))
 	{
-		Move(transform->position + Vector3::DOWN);
+		MoveToTarget(transform->position + Vector3::DOWN);
 	}
 	if (InputManager::GetKey(VK_LEFT))
 	{
-		Move(transform->position + Vector3::LEFT);
+		MoveToTarget(transform->position + Vector3::LEFT);
 	}
 	if (InputManager::GetKey(VK_RIGHT))
 	{
-		Move(transform->position + Vector3::RIGHT);
+		MoveToTarget(transform->position + Vector3::RIGHT);
 	}
 	//if (InputManager::GetKey('C'))
 	//{
@@ -111,10 +111,7 @@ void PKH::Player4::Update()
 		transform->eulerAngles.z -= TimeManager::DeltaTime();
 	}
 
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	GameObject::Update();
 }
 
 void PKH::Player4::CreateBullet(int Code) {

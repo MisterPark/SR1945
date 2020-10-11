@@ -23,6 +23,7 @@ public:
 	void RegisterObject(OBJTAG tag, GameObject* obj);
 	void UnListObject(OBJTAG tag, GameObject* obj);
 	void Collide(OBJTAG dst, OBJTAG src);
+	void Collide2(OBJTAG dst, OBJTAG src);
 	void CullingBullet(OBJTAG tag);
 	bool IsCollision(Transform* dst, Transform* src);
 

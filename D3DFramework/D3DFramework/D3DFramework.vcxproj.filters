@@ -82,6 +82,9 @@
     <Filter Include="차승현\Manager">
       <UniqueIdentifier>{3357994d-cb46-4c4f-b9f6-04a385a9035d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cursor">
+      <UniqueIdentifier>{bda8052a-9916-4274-b18c-0a5a529b869a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -189,9 +192,6 @@
     <ClInclude Include="Matrix.h">
       <Filter>Lib</Filter>
     </ClInclude>
-    <ClInclude Include="AxisCube.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="Player02.h">
       <Filter>강희재\Player</Filter>
     </ClInclude>
@@ -263,6 +263,21 @@
     </ClInclude>
     <ClInclude Include="QuakeManager4.h">
       <Filter>차승현\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Cursor.h">
+      <Filter>Cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="AxisCube.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Missile.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss02.h">
+      <Filter>강희재\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -353,9 +368,6 @@
     <ClCompile Include="Quaternion.cpp">
       <Filter>Lib</Filter>
     </ClCompile>
-    <ClCompile Include="AxisCube.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Player02.cpp">
       <Filter>강희재\Player</Filter>
     </ClCompile>
@@ -427,6 +439,21 @@
     </ClCompile>
     <ClCompile Include="Random_Manager4.cpp">
       <Filter>차승현\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss02.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

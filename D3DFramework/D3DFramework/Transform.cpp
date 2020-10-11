@@ -19,6 +19,12 @@ void PKH::Transform::Update()
 	eulerAngles.y = fmodf(eulerAngles.y, D3DXToRadian(360.f));
 	eulerAngles.z = fmodf(eulerAngles.z, D3DXToRadian(360.f));
 	
+	
+
+	// 오일러각 -> 쿼터니언
+	D3DXQuaternionRotationYawPitchRoll(&rotation, eulerAngles.y, eulerAngles.x, eulerAngles.z);
+	D3DXQuaternionNormalize(&rotation, &rotation);
+
 	// 로컬 좌표 세팅
 	right = Vector3::RIGHT;
 	up = Vector3::UP;
@@ -33,10 +39,6 @@ void PKH::Transform::Update()
 	Vector3::Normalize(&right);
 	Vector3::Normalize(&up);
 	Vector3::Normalize(&look);
-
-	// 오일러각 -> 쿼터니언
-	D3DXQuaternionRotationYawPitchRoll(&rotation, eulerAngles.y, eulerAngles.x, eulerAngles.z);
-	D3DXQuaternionNormalize(&rotation, &rotation);
 }
 
 IComponent* PKH::Transform::Clone()
@@ -76,4 +78,34 @@ void PKH::Transform::LookAt(Vector3 _target, Vector3 _worldUp)
 	Vector3 euler = Quaternion::ToEulerAngles(qRot);
 
 	eulerAngles = euler;
+}
+
+void PKH::Transform::RotatePitch(float _angle)
+{
+	Rotate(right, _angle);
+}
+
+void PKH::Transform::RotateYaw(float _angle)
+{
+	Rotate(up, _angle);
+}
+
+void PKH::Transform::RotateRoll(float _angle)
+{
+	Rotate(look, _angle);
+}
+
+void PKH::Transform::RotateX(float _angle)
+{
+	Rotate(Vector3::RIGHT, _angle);
+}
+
+void PKH::Transform::RotateY(float _angle)
+{
+	Rotate(Vector3::UP, _angle);
+}
+
+void PKH::Transform::RotateZ(float _angle)
+{
+	Rotate(Vector3::FORWARD, _angle);
 }

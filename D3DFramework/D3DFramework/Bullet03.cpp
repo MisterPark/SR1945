@@ -18,10 +18,31 @@ PKH::Bullet03::~Bullet03()
 
 void PKH::Bullet03::Update()
 {
+	GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 
-
+	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+	mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
 	if (!MyBullet03)
 	{
+
+		GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
+		if (monster != nullptr)
+		{
+				//색설정
+		//보스 탄환
+		if (isBossBullet)
+		{
+			int color = dynamic_cast<Monster03*>(monster)->MyColor;
+			mesh->SetColor(D3DCOLOR_XRGB(color, color, color));
+
+
+		}
+		//나머지 탄환
+		if (dynamic_cast<Monster03*>(monster)->BossType == false)
+		{
+			mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
+		}
+		}
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
 		{
@@ -29,7 +50,7 @@ void PKH::Bullet03::Update()
 			{
 				Vector3 dir = player->transform->position - transform->position;
 				Vector3::Normalize(&dir);
-					Move(dir);
+					MoveToTarget(dir);
 
 					float rotX = atan2f(dir.z, dir.y);
 					float rotY = atan2f(dir.x, dir.z);
@@ -46,9 +67,9 @@ void PKH::Bullet03::Update()
 			else
 			{
 				if (transform->position.x < 0.f)
-					Move(TargetPos - Vector3{0,0,3.f});
+					MoveToTarget(TargetPos - Vector3{0,0,3.f});
 				else
-					Move(TargetPos - Vector3{ 0,0,3.f });
+					MoveToTarget(TargetPos - Vector3{ 0,0,3.f });
 			}
 			float fRadiusSum = static_cast<float>((player->transform->scale.z) + (transform->scale.z));
 			float fX = player->transform->position.x - transform->position.x;
@@ -59,12 +80,22 @@ void PKH::Bullet03::Update()
 			if (fDist - fRadiusSum < 0)
 			{
 				dynamic_cast<Player03*>(player)->hp--;
-				dynamic_cast<Player03*>(player)->transform->scale -=Vector3{0.1f,0.1f,0.1f};
-				Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
-				e->SetPosition(player->transform->position);		
-				e->AddComponent<PKH::Cube>(L"Mesh");
+				dynamic_cast<Player03*>(player)->MyColor -= 25;
+				if (player->transform->scale.x > 0.5f)
+				{
+					dynamic_cast<Player03*>(player)->transform->scale -= Vector3{ 0.1f,0.1f,0.1f };
+				}
+
+				for (int i = 0; i < 4; i++)
+				{
+					Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
+					e->SetPosition(player->transform->position);
+					e->PlayerHit = true;
+					e->effectDir = i;
+				}
 				Die();
 			}
+			
 		}
 
 		if (transform->position.z < -2.f)
@@ -75,8 +106,11 @@ void PKH::Bullet03::Update()
 	}
 	if(MyBullet03)
 	{
-
-
+		if (nullptr != player)
+		{
+			int color = dynamic_cast<Player03*>(player)->MyColor;
+			mesh->SetColor(D3DCOLOR_XRGB(0, color, color));
+		}
 			GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
 			if (monster != nullptr)
 			{
@@ -92,7 +126,7 @@ void PKH::Bullet03::Update()
 					if (monster != nullptr)
 					{
 						Vector3 mdir = monster->transform->position;
-						Move(mdir);
+						MoveToTarget(mdir);
 
 						TargetPos = mdir;
 					}
@@ -104,7 +138,7 @@ void PKH::Bullet03::Update()
 				else
 				{
 					if (transform->position.z < 10)
-						Move(Vector3{ 0.f,0.f,10.f });
+						MoveToTarget(Vector3{ 0.f,0.f,10.f });
 					else
 						Die();
 
@@ -119,6 +153,23 @@ void PKH::Bullet03::Update()
 				if (fDist - fRadiusSum < 0)
 				{
 					dynamic_cast<Monster03*>(monster)->hp--;
+					for (int i = 0; i < 4; i++)
+					{
+						Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
+						e->SetPosition(monster->transform->position);
+						e->PlayerHit = false;
+						e->effectDir = i;
+					}
+					if (dynamic_cast<Monster03*>(monster)->BossType == true)
+					{
+						dynamic_cast<Monster03*>(monster)->BossRotateSpeed += 0.1f;
+						dynamic_cast<Monster03*>(monster)->MyColor += 250 / dynamic_cast<Monster03*>(monster)->Maxhp;
+						if (dynamic_cast<Monster03*>(monster)->transform->position.z > 5.f)
+						{
+							dynamic_cast<Monster03*>(monster)->transform->position.z -= 0.1f;
+							dynamic_cast<Monster03*>(monster)->transform->position.y -= 0.05f;
+						}
+					}
 					Die();
 				}
 
@@ -129,7 +180,7 @@ void PKH::Bullet03::Update()
 
 				Vector3 dir = Vector3{0.f,0.f,15.f} - transform->position;
 				Vector3::Normalize(&dir);
-				Move(dir);
+				MoveToTarget(dir);
 			
 				++Extinction;
 				
@@ -140,9 +191,7 @@ void PKH::Bullet03::Update()
 			}
 
 	}
-	for (auto& comp : components)
-	{
-		comp.second->Update();
-	}
+	
+	GameObject::Update();
 }
 

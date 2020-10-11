@@ -24,10 +24,15 @@ namespace PKH
 
         float DieTime = 0.f;
         Vector3 Target = { 0.f,0.f,0.f };
+
+        
+
         bool BossType = false;
+        float BossRotateSpeed = 1.f;
+        int MyColor = 0;
 
         bool isSetting = false;
-
+        int Maxhp = 1;
         int hp = 1;
     };
 }
