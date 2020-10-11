@@ -5,9 +5,11 @@
 #include "Rectangle.h"
 #include "Cube.h"
 #include "Monster.h"
+#include "SkyBox.h"
 
 void TestScene::OnLoaded()
 {
+	SkyBox::Show();
 	Camera::GetInstance()->SetPosition(Vector3(0, 0, -3));
 
 	Player*  p = (Player*)ObjectManager::GetInstance()->CreateObject<Player>();
@@ -22,6 +24,7 @@ void TestScene::OnLoaded()
 
 void TestScene::OnUnloaded()
 {
+	SkyBox::Hide();
 	ObjectManager::DestroyAll();
 }
 

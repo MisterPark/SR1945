@@ -24,11 +24,13 @@ void PKH::GameObject::Update()
 
 void PKH::GameObject::Render()
 {
-	
+	if (isVisible == false) return;
+
 	for (auto& comp : components)
 	{
 		Mesh* mesh = dynamic_cast<Mesh*>(comp.second);
 		if (mesh == nullptr) continue;
+
 
 		mesh->Render();
 	}
