@@ -19,9 +19,12 @@ PKH::Bullet03::~Bullet03()
 void PKH::Bullet03::Update()
 {
 
-
+	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+	
 	if (!MyBullet03)
 	{
+		mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
+		
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
 		{
@@ -59,12 +62,18 @@ void PKH::Bullet03::Update()
 			if (fDist - fRadiusSum < 0)
 			{
 				dynamic_cast<Player03*>(player)->hp--;
-				dynamic_cast<Player03*>(player)->transform->scale -=Vector3{0.1f,0.1f,0.1f};
+				dynamic_cast<Player03*>(player)->MyColor -= 25;
+				if (player->transform->scale.x > 0.5f)
+				{
+					dynamic_cast<Player03*>(player)->transform->scale -= Vector3{ 0.1f,0.1f,0.1f };
+				}
+
 				Effect03* e = (Effect03*)ObjectManager::GetInstance()->CreateObject<Effect03>();
-				e->SetPosition(player->transform->position);		
-				e->AddComponent<PKH::Cube>(L"Mesh");
+				e->SetPosition(player->transform->position);
+
 				Die();
 			}
+			
 		}
 
 		if (transform->position.z < -2.f)
@@ -75,7 +84,7 @@ void PKH::Bullet03::Update()
 	}
 	if(MyBullet03)
 	{
-
+		mesh->SetColor(D3DCOLOR_XRGB(250, 250, 250));
 
 			GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
 			if (monster != nullptr)
@@ -119,6 +128,10 @@ void PKH::Bullet03::Update()
 				if (fDist - fRadiusSum < 0)
 				{
 					dynamic_cast<Monster03*>(monster)->hp--;
+					if (dynamic_cast<Monster03*>(monster)->BossType = true)
+					{
+						dynamic_cast<Monster03*>(monster)->BossRotateSpeed += 0.1f;
+					}
 					Die();
 				}
 

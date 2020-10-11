@@ -11,7 +11,7 @@
 void Scene03::OnLoaded()
 {
 	Player03* p = (Player03*)ObjectManager::GetInstance()->CreateObject<Player03>();
-	p->AddComponent<PKH::Cube>(L"Mesh");
+	/*p->AddComponent<PKH::Cube>(L"Mesh");*/
 
 
 	// xtype
@@ -112,7 +112,7 @@ void Scene03::Update()
 		if (player == nullptr)
 		{
 			Player03* p = (Player03*)ObjectManager::GetInstance()->CreateObject<Player03>();
-			p->AddComponent<PKH::Cube>(L"Mesh");
+			/*p->AddComponent<PKH::Cube>(L"Mesh");*/
 		}
 		
 	/*}*/
@@ -302,6 +302,7 @@ void Scene03::Update()
 		MonsterMakeCount = 0;
 		tick = 0;
 	}
+
 	//if (tick > 10.f && MonsterMakeCount == 2)
 	//{
 	//	tick = 0;

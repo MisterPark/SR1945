@@ -12,6 +12,8 @@ PKH::Player03::Player03()
 	transform->scale = { 1.f,1.f,1.f };
 	moveSpeed = 3.f;
 	hp = 10;
+	
+
 }
 
 PKH::Player03::~Player03()
@@ -21,6 +23,8 @@ PKH::Player03::~Player03()
 void PKH::Player03::Update()
 {
 	
+	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+	mesh->SetColor(D3DCOLOR_XRGB(0, MyColor, MyColor));
 		if (InputManager::GetKey(VK_UP))
 		{
 			if (transform->position.y < 3)
@@ -76,7 +80,7 @@ void PKH::Player03::Update()
 				Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 				b->SetPosition(transform->position);
 				b->MyBullet03 = true;
-				b->AddComponent<PKH::Cube>(L"Mesh");
+				
 				tick = 0;
 			}
 		}

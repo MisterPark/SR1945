@@ -24,7 +24,12 @@ namespace PKH
 
         float DieTime = 0.f;
         Vector3 Target = { 0.f,0.f,0.f };
+
+        
+
         bool BossType = false;
+        float BossRotateSpeed = 1.f;
+
 
         bool isSetting = false;
 

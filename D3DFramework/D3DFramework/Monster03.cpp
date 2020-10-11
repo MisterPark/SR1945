@@ -82,7 +82,7 @@ void PKH::Monster03::Update()
 					{
 						Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 						b->SetPosition(transform->position);
-						b->AddComponent<PKH::Cube>(L"Mesh");
+						
 						tick = 0;
 					}
 				}
@@ -127,7 +127,7 @@ void PKH::Monster03::Update()
 					{
 						Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 						b->SetPosition(transform->position);
-						b->AddComponent<PKH::Cube>(L"Mesh");
+						
 						tick = 0;
 					}
 				}
@@ -174,7 +174,7 @@ void PKH::Monster03::Update()
 					{
 						Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 						b->SetPosition(transform->position);
-						b->AddComponent<PKH::Cube>(L"Mesh");
+						
 						tick = 0;
 					}
 				}
@@ -186,15 +186,17 @@ void PKH::Monster03::Update()
 			}
 		}
 
-
-
-
+		DieTime += TimeManager::DeltaTime();
+		if (DieTime > 15)
+		{
+			Die();
+		}
 
 	}
 
 	if (BossType)
 	{
-		transform->eulerAngles.z += TimeManager::DeltaTime();
+		transform->eulerAngles.z += BossRotateSpeed*TimeManager::DeltaTime();
 
 
 		if (movePattern)
@@ -212,7 +214,7 @@ void PKH::Monster03::Update()
 		{
 			Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 			b->SetPosition(transform->position);
-			b->AddComponent<PKH::Cube>(L"Mesh");
+			
 			tick = 0;
 			
 			
@@ -220,14 +222,14 @@ void PKH::Monster03::Update()
 			{
 				Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 				m->SetPosition(Vector3{ transform->position });
-				m->AddComponent<PKH::Cube>(L"Mesh");
+				
 				
 			}
 			if (BossSkill == 10)
 			{
 				Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 				m->SetPosition(Vector3{ transform->position - Vector3{1.f,0.f,0.f} });
-				m->AddComponent<PKH::Cube>(L"Mesh");
+				
 				BossSkill = 0;
 			}
 			BossSkill++;

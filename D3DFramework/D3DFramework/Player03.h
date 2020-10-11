@@ -16,6 +16,7 @@ namespace PKH
 		float tick = 0.f;
 		float delay = 1.f;
 		int hp = 1;
+		int MyColor = 250;
 	};
 
 
