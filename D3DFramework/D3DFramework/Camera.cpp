@@ -118,6 +118,11 @@ void PKH::Camera::GetViewMatrix(Matrix* outView)
 	outView->_44 = 1.f;
 }
 
+bool PKH::Camera::GetProjection3D()
+{
+	return pCamera->isProjection3D;
+}
+
 void PKH::Camera::SetProjection3D(bool ProjectionSet)
 {
 	pCamera->isProjection3D = ProjectionSet;

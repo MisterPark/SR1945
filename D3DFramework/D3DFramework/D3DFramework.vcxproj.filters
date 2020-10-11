@@ -76,6 +76,12 @@
     <Filter Include="차승현">
       <UniqueIdentifier>{515dbe37-92c9-451e-979a-8ff1b0d0599d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="차승현\GameObject">
+      <UniqueIdentifier>{2a677289-2e01-48e4-b633-63d9d21f8086}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="차승현\Manager">
+      <UniqueIdentifier>{3357994d-cb46-4c4f-b9f6-04a385a9035d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -225,25 +231,7 @@
     <ClInclude Include="Scene03.h">
       <Filter>길문호</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerBullet4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
-    <ClInclude Include="Player4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterBullet4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
     <ClInclude Include="Scene4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionManager4.h">
-      <Filter>차승현</Filter>
-    </ClInclude>
-    <ClInclude Include="Random_Manager4.h">
       <Filter>차승현</Filter>
     </ClInclude>
     <ClInclude Include="Effect03.h">
@@ -251,6 +239,30 @@
     </ClInclude>
     <ClInclude Include="Dust03.h">
       <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Effect4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Player4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerBullet4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterBullet4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Random_Manager4.h">
+      <Filter>차승현\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionManager4.h">
+      <Filter>차승현\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="QuakeManager4.h">
+      <Filter>차승현\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -383,25 +395,7 @@
     <ClCompile Include="Scene03.cpp">
       <Filter>길문호</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerBullet4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
-    <ClCompile Include="Player4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterBullet4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
     <ClCompile Include="Scene4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionManager4.cpp">
-      <Filter>차승현</Filter>
-    </ClCompile>
-    <ClCompile Include="Random_Manager4.cpp">
       <Filter>차승현</Filter>
     </ClCompile>
     <ClCompile Include="Effect03.cpp">
@@ -409,6 +403,30 @@
     </ClCompile>
     <ClCompile Include="Dust03.cpp">
       <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster4.cpp">
+      <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Effect4.cpp">
+      <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Player4.cpp">
+      <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerBullet4.cpp">
+      <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="MonsterBullet4.cpp">
+      <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionManager4.cpp">
+      <Filter>차승현\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="QuakeManager4.cpp">
+      <Filter>차승현\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Random_Manager4.cpp">
+      <Filter>차승현\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

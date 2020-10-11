@@ -5,6 +5,7 @@
 #include "Cube.h"
 #include "CollisionManager4.h"
 #include "Random_Manager4.h"
+#include "QuakeManager4.h"
 
 
 void Scene4::OnLoaded()
@@ -14,8 +15,10 @@ void Scene4::OnLoaded()
 	MonsterRegenTime2 = 0.f;
 	Player4* p = (Player4*)ObjectManager::GetInstance()->CreateObject<Player4>();
 	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::PLAYER, p);
-	p->AddComponent<PKH::Cube>(L"Mesh");
+	Cube* Comp = dynamic_cast<Cube*>(p->AddComponent<PKH::Cube>(L"Mesh"));
+	Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
 	Random_Manager::Get_Instance()->Ready_Random();
+	QuakeManager4::GetInstance();
 	//Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
 	//m->AddComponent<PKH::Cube>(L"Mesh");
 
@@ -24,6 +27,9 @@ void Scene4::OnLoaded()
 void Scene4::OnUnloaded()
 {
 	ObjectManager::DestroyAll();
+	CollisionManager4::Destroy();
+	QuakeManager4::Destroy();
+	Random_Manager::Destroy_Instance();
 }
 
 void Scene4::Update()
@@ -35,23 +41,35 @@ void Scene4::Update()
 	QueryPerformanceFrequency(&PerCount);
 	PerCount.QuadPart *= 0.1f;
 	QueryPerformanceCounter(&AccCount);
-	if (MonsterRegenTime1 > 2.f) {
+	if (MonsterRegenTime1 > 1.5f) {
 		MonsterRegenTime1 = 0.f;
-		Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
-		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, m);
+		GameObject* g = ObjectManager::GetInstance()->CreateObject<Monster4>();
+		Monster4* m = dynamic_cast<Monster4*>(g);
+		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, g);
 		Cube* Comp = dynamic_cast<Cube*>(m->AddComponent<PKH::Cube>(L"Mesh"));
+		int RandomNumber = Random_Manager::Random() % 3;
+		if(RandomNumber == 0)
+			Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
+		else if (RandomNumber == 1)
+			Comp->SetColor(D3DCOLOR_XRGB(241, 95, 95));
+		else
+			Comp->SetColor(D3DCOLOR_XRGB(134, 229, 127));
+		m->SetPosZ(RandomNumber);
 		//Monster4* m = (Monster4*)ObjectManager::GetInstance()->FindObject<Monster4>();
-		m->SetCode(1);
+		m->SetCode(3);
 		m->Ready();
 	}
 	if (MonsterRegenTime2 > 3.f) {
 		MonsterRegenTime2 = 0.f;
-		Monster4* m = (Monster4*)ObjectManager::GetInstance()->CreateObject<Monster4>();
-		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, m);
+		GameObject* g = ObjectManager::GetInstance()->CreateObject<Monster4>();
+		Monster4* m = dynamic_cast<Monster4*>(g);
+		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, g);
 		Cube* Comp = dynamic_cast<Cube*>(m->AddComponent<PKH::Cube>(L"Mesh"));
+		Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
 		//Monster4* m = (Monster4*)ObjectManager::GetInstance()->FindObject<Monster4>();
 		m->SetCode(2);
 		m->Ready();
 	}
 	CollisionManager4::GetInstance()->Update();
+	QuakeManager4::Update();
 }

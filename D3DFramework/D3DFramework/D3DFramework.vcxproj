@@ -159,6 +159,7 @@
     <ClInclude Include="Define.h" />
     <ClInclude Include="Dust03.h" />
     <ClInclude Include="Effect03.h" />
+    <ClInclude Include="Effect4.h" />
     <ClInclude Include="Enemy02.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Player4.h" />
     <ClInclude Include="PlayerBullet4.h" />
     <ClInclude Include="Point.h" />
+    <ClInclude Include="QuakeManager4.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="Random_Manager4.h" />
     <ClInclude Include="Rectangle.h" />
@@ -218,6 +220,7 @@
     <ClCompile Include="D3DFramework.cpp" />
     <ClCompile Include="Dust03.cpp" />
     <ClCompile Include="Effect03.cpp" />
+    <ClCompile Include="Effect4.cpp" />
     <ClCompile Include="Enemy02.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -238,6 +241,7 @@
     <ClCompile Include="Player03.cpp" />
     <ClCompile Include="Player4.cpp" />
     <ClCompile Include="PlayerBullet4.cpp" />
+    <ClCompile Include="QuakeManager4.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="Random_Manager4.cpp" />
     <ClCompile Include="Rectangle.cpp" />

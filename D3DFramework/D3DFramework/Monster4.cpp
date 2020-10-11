@@ -5,9 +5,16 @@
 #include "Cube.h"
 #include "Monster.h"
 #include "CollisionManager4.h"
+#include "Random_Manager4.h"
+#include "Effect4.h"
 
 PKH::Monster4::Monster4()
 {
+	TargetPlayer = nullptr;
+	MonsterCode = 0;
+	MonsterBulletRegenTime = 0.f;
+	MonsterPatternTime = 0.f;
+	MonsterPosZ = 0;
 }
 
 PKH::Monster4::~Monster4()
@@ -16,7 +23,8 @@ PKH::Monster4::~Monster4()
 
 void PKH::Monster4::Ready()
 {
-	
+	transform->position.z = (float)MonsterPosZ * 0.5f;
+
 	switch (MonsterCode)
 	{
 	case 1:
@@ -39,6 +47,12 @@ void PKH::Monster4::Ready()
 		moveSpeed = 7.5f;
 		MonsterPatternTime = 0.f;
 		break;
+	case 3:
+		transform->scale = { 3.f, 3.f, 3.f };
+		transform->position.x = 4.f;
+		transform->position.y = -3.f + (Random_Manager::Random() % 60 * 0.1f);
+		moveSpeed = 1.5f;
+		break;
 	default:
 		break;
 	}
@@ -48,8 +62,7 @@ void PKH::Monster4::Ready()
 void PKH::Monster4::Update()
 {
 	if (transform->position.x < -5 || transform->position.x > 5
-		|| transform->position.y < -5 || transform->position.y > 5
-		|| transform->position.z < -5 || transform->position.z > 5){
+		|| transform->position.y < -5 || transform->position.y > 5){
 		CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
 		isDead = true;
 	}
@@ -71,11 +84,10 @@ void PKH::Monster4::MonsterPattern() {
 
 			transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
 			transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
-			//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
-			transform->position.z = 0.f;
+			//transform->position.z = 0.f;
 
-			float rotX = atan2f(dir.z, dir.y);
-			float rotY = atan2f(dir.x, dir.z);
+			//float rotX = atan2f(dir.z, dir.y);
+			//float rotY = atan2f(dir.x, dir.z);
 			//float rotZ = atan2f(dir.y, dir.x);
 
 			//if(transform->rotation.x < rotX)
@@ -110,13 +122,39 @@ void PKH::Monster4::MonsterPattern() {
 			transform->position.y += moveSpeed * TimeManager::DeltaTime();
 		}
 	}
+	else if (3 == MonsterCode) {		
+		transform->position.x -= moveSpeed * TimeManager::DeltaTime();
+
+		MonsterBulletRegenTime += TimeManager::DeltaTime();
+		if (MonsterBulletRegenTime > 1.f) {
+			MonsterBulletRegenTime = 0.f;
+			CreateBullet(1);
+		}
+	}
 }
 
 void PKH::Monster4::CreateBullet(int Code) {
 	MonsterBullet4* b = (MonsterBullet4*)ObjectManager::GetInstance()->CreateObject<MonsterBullet4>();
 	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER_BULLET, b);
 	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
+	if (MonsterPosZ == 0)
+		Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
+	else if (MonsterPosZ == 1)
+		Comp->SetColor(D3DCOLOR_XRGB(241, 95, 95));
+	else
+		Comp->SetColor(D3DCOLOR_XRGB(134, 229, 127));
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();
+}
+
+void PKH::Monster4::OnCollision(GameObject* target)
+{
+	for (int i = 0; i < 4; i++)
+	{
+		Effect4* e = (Effect4*)ObjectManager::GetInstance()->CreateObject<Effect4>();
+		*(e->GetTransform()->Get_Pos()) = transform->position;
+		e->Ready();
+	}
+	isDead = true;
 }

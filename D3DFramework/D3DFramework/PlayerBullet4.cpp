@@ -4,10 +4,15 @@
 #include "Player4.h"
 #include "Cube.h"
 #include "Random_Manager4.h"
+#include "CollisionManager4.h"
 
 PKH::PlayerBullet4::PlayerBullet4()
 {
 	BulletPatternTime = 0.f;
+	BulletCode = 0;
+	BulletPattern = 0;
+	TargetMonster = nullptr;
+	transform->position.z = 0.f;
 }
 PKH::PlayerBullet4::~PlayerBullet4()
 {
@@ -42,10 +47,9 @@ void PKH::PlayerBullet4::Ready()
 void PKH::PlayerBullet4::Update()
 {
 	if (transform->position.x < -4.5f || transform->position.x > 4.5f
-		|| transform->position.y < -4.5f || transform->position.y > 4.5f
-		|| transform->position.z < -4.5f || transform->position.z > 4.5f) {
-		//isDead = true;
-		//CollisionManager4::FindObjectDelete4(dynamic_cast<GameObject*>(this));
+		|| transform->position.y < -4.5f || transform->position.y > 4.5f) {
+		isDead = true;
+		CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
 	}
 
 	if (1 == BulletCode) {
@@ -64,7 +68,7 @@ void PKH::PlayerBullet4::Update()
 			transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
 			transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
 			//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
-			transform->position.z = 0.f;
+			//transform->position.z = 0.f;
 			
 		}
 		else {
@@ -121,5 +125,10 @@ void PKH::PlayerBullet4::Update()
 	{
 		comp.second->Update();
 	}
+}
+
+void PKH::PlayerBullet4::OnCollision(GameObject* target)
+{
+	isDead = true;
 }
 

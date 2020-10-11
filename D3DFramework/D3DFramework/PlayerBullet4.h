@@ -12,6 +12,7 @@ namespace PKH
         ~PlayerBullet4();
         virtual void Update() override;
         void Ready();
+        void OnCollision(GameObject* target);
     public:
         void SetCode(int CodeSet) { BulletCode = CodeSet; }
 

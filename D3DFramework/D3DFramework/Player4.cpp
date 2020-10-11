@@ -5,7 +5,7 @@
 #include "Mesh.h"
 #include "Cube.h"
 #include "CollisionManager4.h"
-
+#include "QuakeManager4.h"
 using namespace PKH;
 
 PKH::Player4::Player4()
@@ -72,6 +72,7 @@ void PKH::Player4::Update()
 	{
 		if (!Key_T) {
 			Key_T = true;
+			QuakeManager4::SetQuakeStart();
 			if (Dimension3D) {
 				Dimension3D = false;
 				Camera::SetProjection3D(false);
@@ -118,8 +119,9 @@ void PKH::Player4::Update()
 
 void PKH::Player4::CreateBullet(int Code) {
 	PlayerBullet4* b = (PlayerBullet4*)ObjectManager::GetInstance()->CreateObject<PlayerBullet4>();
-	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
 	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::PLAYER_BULLET, b);
+	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
+	Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();

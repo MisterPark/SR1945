@@ -2,6 +2,7 @@
 #include "MonsterBullet4.h"
 #include "Player4.h"
 #include "Cube.h"
+#include "CollisionManager4.h"
 PKH::MonsterBullet4::MonsterBullet4()
 {
 }
@@ -35,7 +36,7 @@ void PKH::MonsterBullet4::Update()
 		|| transform->position.y < -5 || transform->position.y > 5
 		|| transform->position.z < -5 || transform->position.z > 5) {
 		isDead = true;
-		//CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
+		CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
 	}
 
 	if (1 == BulletCode) {
