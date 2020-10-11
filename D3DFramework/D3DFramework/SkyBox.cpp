@@ -6,6 +6,7 @@ SkyBox* pSkyBox = nullptr;
 
 PKH::SkyBox::SkyBox()
 {
+	isVisible = false;
 
 	Mesh* mesh = (Mesh*)AddComponent<PKH::Rectangle>(L"F");
 	mesh->SetTexture(TextureKey::SKY_F);
@@ -70,6 +71,16 @@ void PKH::SkyBox::Destroy()
 		delete pSkyBox;
 		pSkyBox = nullptr;
 	}
+}
+
+void PKH::SkyBox::Show()
+{
+	pSkyBox->isVisible = true;
+}
+
+void PKH::SkyBox::Hide()
+{
+	pSkyBox->isVisible = false;
 }
 
 void PKH::SkyBox::Update()
