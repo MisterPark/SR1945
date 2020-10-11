@@ -264,6 +264,9 @@
     <ClInclude Include="SkyBox.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="Boss02.h">
+      <Filter>강희재\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -418,18 +421,6 @@
     </ClCompile>
     <ClCompile Include="Dust03.cpp">
       <Filter>길문호\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>Cursor</Filter>
-    </ClCompile>
-    <ClCompile Include="AxisCube.cpp">
-      <Filter>Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Missile.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="SkyBox.cpp">
-      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

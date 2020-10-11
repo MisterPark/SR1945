@@ -18,5 +18,6 @@ public:
 private:
 	bool canAttack = true;
 	float coolTime = 0.f;
+	int hp = 10;
 };
 
