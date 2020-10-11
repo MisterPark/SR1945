@@ -184,11 +184,11 @@ void Boss02::Chase()
 
 	if (targetPos.x > transform->position.x)
 	{
-		Move(transform->position + Vector3::RIGHT);
+		MoveToTarget(transform->position + Vector3::RIGHT);
 	}
 	else
 	{
-		Move(transform->position + Vector3::LEFT);
+		MoveToTarget(transform->position + Vector3::LEFT);
 	}
 }
 
