@@ -119,7 +119,6 @@ bool PKH::Camera::GetProjection3D()
 	return pCamera->isProjection3D;
 }
 
-void PKH::Camera::SetProjection3D(bool ProjectionSet)
 Vector3 PKH::Camera::WorldToScreenPoint(const Vector3& position)
 {
 	return Vector3();
