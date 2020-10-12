@@ -12,11 +12,12 @@ namespace PKH
 
 		virtual void Update() override;
 
-
+		virtual void PostRender()override;
 		float tick = 0.f;
 		float delay = 1.f;
 		int hp = 1;
 		int MyColor = 250;
+		int SceneChange = 0;
 	};
 
 

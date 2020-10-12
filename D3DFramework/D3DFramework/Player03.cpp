@@ -13,7 +13,8 @@ PKH::Player03::Player03()
 	moveSpeed = 3.f;
 	hp = 10;
 	
-
+	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+	mesh->SetColor(D3DCOLOR_RGBA(0, MyColor, MyColor, 0));
 }
 
 PKH::Player03::~Player03()
@@ -23,8 +24,7 @@ PKH::Player03::~Player03()
 void PKH::Player03::Update()
 {
 	
-	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
-	mesh->SetColor(D3DCOLOR_XRGB(0, MyColor, MyColor));
+	
 		if (InputManager::GetKey(VK_UP))
 		{
 			if (transform->position.y < 3)
@@ -80,7 +80,6 @@ void PKH::Player03::Update()
 				Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 				b->SetPosition(transform->position);
 				b->MyBullet03 = true;
-				
 				tick = 0;
 			}
 		}
@@ -117,5 +116,19 @@ void PKH::Player03::Update()
 		Die();
 	}
 
-	GameObject::Update();
+	/*GameObject::Update();*/
+}
+
+void PKH::Player03::PostRender()
+{
+	Vector3 hpBar = {-4.f,-2.8f,0.f};
+
+
+	Vector3 winPos = Camera::WorldToScreenPoint(hpBar);
+
+	TCHAR buffer[32] = L"";
+
+	wsprintf(buffer, L"HP : %d", hp);
+
+	D2DRenderManager::DrawFont(buffer, winPos.x, winPos.y, D3DCOLOR_ARGB(MyColor, 0, MyColor, MyColor));
 }

@@ -29,28 +29,28 @@ void Scene03::Update()
 	{
 		tick += TimeManager::DeltaTime();
 		fdust += 2.f * TimeManager::DeltaTime();
-		GameObject* dust = ObjectManager::GetInstance()->FindObject<Dust03>();
-		if (fdust > 1.f)
-		{
-			Dust03* p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
-			p->SetPosition(Vector3{ -3.f,3.f,5.f });
-			p->AddComponent<PKH::Triangle>(L"Mesh");
+		//GameObject* dust = ObjectManager::GetInstance()->FindObject<Dust03>();
+		//if (fdust > 1.f)
+		//{
+		//	Dust03* p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
+		//	p->SetPosition(Vector3{ -3.f,3.f,5.f });
+		//	p->AddComponent<PKH::Triangle>(L"Mesh");
+		//	
+
+		//	p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
+		//	p->SetPosition(Vector3{ 3.f,3.f,6.f });
+		//	p->AddComponent<PKH::Triangle>(L"Mesh");
+
+		//	p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
+		//	p->SetPosition(Vector3{ -3.f,-3.f,7.f });
+		//	p->AddComponent<PKH::Triangle>(L"Mesh");
 
 
-			p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
-			p->SetPosition(Vector3{ 3.f,3.f,6.f });
-			p->AddComponent<PKH::Triangle>(L"Mesh");
-
-			p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
-			p->SetPosition(Vector3{ -3.f,-3.f,7.f });
-			p->AddComponent<PKH::Triangle>(L"Mesh");
-
-
-			p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
-			p->SetPosition(Vector3{ 3.f,-3.f,8.f });
-			p->AddComponent<PKH::Triangle>(L"Mesh");
-			fdust = 0;
-		}
+		//	p = (Dust03*)ObjectManager::GetInstance()->CreateObject<Dust03>();
+		//	p->SetPosition(Vector3{ 3.f,-3.f,8.f });
+		//	p->AddComponent<PKH::Triangle>(L"Mesh");
+		//	fdust = 0;
+		//}
 	}
 	//playercheck
 	if (InputManager::GetKey(VK_NUMPAD1))
@@ -59,7 +59,7 @@ void Scene03::Update()
 		if (player == nullptr)
 		{
 			Player03* p = (Player03*)ObjectManager::GetInstance()->CreateObject<Player03>();
-	
+			p->transform->position = { 0.f,-2.5f,0.f };
 		}
 		
 	}
@@ -110,11 +110,10 @@ void Scene03::Update()
 	{
 
 		//ytype
-
-		Monster03*  m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-		m->SetPosition(Vector3{ 2.f,10.f,5.f });
+		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -5.f,10.f,5.f });
 		m->yType = true;
-		m->yTypex = 2.f;
+		m->yTypex = -5.f;
 
 		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 		m->SetPosition(Vector3{ -2.f,-10.f,5.f });
@@ -122,7 +121,12 @@ void Scene03::Update()
 		m->yTypex = -2.f;
 
 		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-		m->SetPosition(Vector3{ 5.f,10.f,5.f });
+		m->SetPosition(Vector3{ 2.f,10.f,5.f });
+		m->yType = true;
+		m->yTypex = 2.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 5.f,-10.f,5.f });
 		m->yType = true;
 		m->yTypex = 5.f;
 		MonsterMakeCount++;
@@ -157,7 +161,7 @@ void Scene03::Update()
 		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 		m->SetPosition(Vector3{ -10.f,0.f,5.f });
 		m->xType = true;
-
+		
 		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 		m->SetPosition(Vector3{ -10.f,5.f,5.f });
 		m->xType = true;
@@ -219,36 +223,26 @@ void Scene03::Update()
 
 		BossmakeCount = 0;
 		MonsterMakeCount = 10;
-	}
-
-	if (MonsterMakeCount == 10&&!monstercheck)
-	{
-
-		MonsterMakeCount = 0;
-		tick = 0;
 		
 	}
+	if (player != nullptr)
+	{
+		if (dynamic_cast<Player03*>(player)->SceneChange == 1)
+		{
+			GameEnd = true;
+		}
+	}
 
-	
-	//if (tick > 10.f && MonsterMakeCount == 2)
-	//{
-	//	tick = 0;
-	//	MonsterMakeCount = 0;
-	//}
-
-
-
-
-
-
-
-
-
-
-
-
-
+	if (GameEnd)
+	{
+		EndCount += TimeManager::DeltaTime();
+		if (EndCount > 5)
+		{
+			SceneManager::LoadScene<Scene4>();
+		}
+	}
 
 
 
 }
+

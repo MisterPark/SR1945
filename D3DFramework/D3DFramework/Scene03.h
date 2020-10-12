@@ -12,5 +12,11 @@ class Scene03 :
     float fdust = 0.f;
     int MonsterMakeCount = 0;
     int BossmakeCount = 0;
+
+
+
+    float EndCount = 0;
+
+    bool GameEnd = false;
 };
 
