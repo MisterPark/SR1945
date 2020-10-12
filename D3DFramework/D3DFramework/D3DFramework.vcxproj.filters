@@ -452,7 +452,10 @@
     <ClCompile Include="Random_Manager4.cpp">
       <Filter>차승현\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Boss02.cpp">
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SkyBox.cpp">
@@ -461,8 +464,8 @@
     <ClCompile Include="Missile.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>Cursor</Filter>
+    <ClCompile Include="Boss02.cpp">
+      <Filter>강희재\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="AirPlaneWingMesh.cpp">
       <Filter>Mesh</Filter>

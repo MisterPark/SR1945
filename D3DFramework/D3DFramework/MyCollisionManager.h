@@ -25,6 +25,7 @@ public:
 	void Collide(OBJTAG dst, OBJTAG src);
 	void Collide2(OBJTAG dst, OBJTAG src);
 	void CullingBullet(OBJTAG tag);
+	void CullingEnemy();
 	bool IsCollision(Transform* dst, Transform* src);
 
 private:
