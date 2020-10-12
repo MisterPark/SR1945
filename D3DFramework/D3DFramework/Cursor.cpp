@@ -57,4 +57,10 @@ void PKH::Cursor::Hide()
 
 void PKH::Cursor::Update()
 {
+    transform->position = GetMousePos();
+}
+
+void PKH::Cursor::Render()
+{
+    D2DRenderManager::DrawSprite(TextureKey::CURSOR_TARGET, *transform, 0);
 }

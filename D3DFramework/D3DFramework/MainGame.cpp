@@ -65,6 +65,8 @@ void PKH::MainGame::Initialize()
 	D2DRenderManager::LoadSprite(TextureKey::SKY_F, L"Texture\\SKYBOX_F.png");
 	D2DRenderManager::LoadSprite(TextureKey::SKY_B, L"Texture\\SKYBOX_B.png");
 
+	D2DRenderManager::LoadSprite(TextureKey::CURSOR_TARGET, L"Texture\\HUD_TARGET.png");
+
 	ObjectManager::GetInstance();
 
 	// ¾À·Îµå

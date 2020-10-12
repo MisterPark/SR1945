@@ -446,14 +446,14 @@
     <ClCompile Include="AxisCube.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Cursor.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Missile.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Cursor.cpp">
+      <Filter>Cursor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

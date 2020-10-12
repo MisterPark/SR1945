@@ -76,6 +76,7 @@ void PKH::ObjectManager::Update()
 	}
 
 	SkyBox::GetInstance()->Update();
+	Cursor::GetInstance()->Update();
 }
 
 void PKH::ObjectManager::PostUpdate()
@@ -150,7 +151,7 @@ void PKH::ObjectManager::Render()
 
 void PKH::ObjectManager::PostRender()
 {
-	
+	Cursor::GetInstance()->Render();
 }
 
 bool PKH::ObjectManager::Compare(GameObject* a, GameObject* b)

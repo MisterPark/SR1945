@@ -428,7 +428,7 @@ void PKH::D2DRenderManager::DrawImage(TextureKey spriteKey, float x, float y, fl
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawString(const string & text)
+void PKH::D2DRenderManager::DrawText(const string & text)
 {
 	Matrix world;
 	D3DXMatrixIdentity(&world);
@@ -440,7 +440,7 @@ void PKH::D2DRenderManager::DrawString(const string & text)
 
 }
 
-void PKH::D2DRenderManager::DrawString(const wstring & text)
+void PKH::D2DRenderManager::DrawText(const wstring & text)
 {
 	Matrix world;
 	D3DXMatrixIdentity(&world);
@@ -450,7 +450,7 @@ void PKH::D2DRenderManager::DrawString(const wstring & text)
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawString(const wstring & text, float x, float y, D3DXCOLOR color)
+void PKH::D2DRenderManager::DrawText(const wstring & text, float x, float y, D3DXCOLOR color)
 {
 	Matrix world;
 	D3DXMatrixTranslation(&world, x, y, 0.f);
@@ -460,7 +460,7 @@ void PKH::D2DRenderManager::DrawString(const wstring & text, float x, float y, D
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawString(const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect)
+void PKH::D2DRenderManager::DrawText(const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect)
 {
 	Matrix world;
 	D3DXMatrixTranslation(&world, x, y, 0.f);
@@ -470,7 +470,7 @@ void PKH::D2DRenderManager::DrawString(const wstring& text, float x, float y, D3
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawString(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color)
+void PKH::D2DRenderManager::DrawText(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color)
 {
 	if (font == nullptr) return;
 	Matrix world;
@@ -481,7 +481,7 @@ void PKH::D2DRenderManager::DrawString(LPD3DXFONT font, const wstring& text, flo
 	pD2DRenderManager->pSprite->End();
 }
 
-void PKH::D2DRenderManager::DrawString(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect)
+void PKH::D2DRenderManager::DrawText(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect)
 {
 	if (font == nullptr) return;
 	Matrix world;
