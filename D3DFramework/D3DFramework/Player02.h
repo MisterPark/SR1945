@@ -14,9 +14,11 @@ public:
 	virtual void Update() override;
 	void Attack();
 	virtual void OnCollision(GameObject* from);
+	virtual void PostRender()override;
 
 private:
 	bool canAttack = true;
+	bool isInvincible = false;
 	float coolTime = 0.f;
 	int hp = 10;
 };
