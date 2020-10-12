@@ -36,12 +36,12 @@ namespace PKH
 		static void DrawImage(TextureKey spriteKey, Transform transform);
 		static void DrawImage(TextureKey spriteKey, float x, float y, float verticalPer);
 
-		static void DrawText(const string& text);
-		static void DrawText(const wstring& text);
-		static void DrawText(const wstring& text, float x, float y, D3DXCOLOR color);
-		static void DrawText(const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect);
-		static void DrawText(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color);
-		static void DrawText(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect);
+		static void DrawFont(const string& text);
+		static void DrawFont(const wstring& text);
+		static void DrawFont(const wstring& text, float x, float y, D3DXCOLOR color);
+		static void DrawFont(const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect);
+		static void DrawFont(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color);
+		static void DrawFont(LPD3DXFONT font, const wstring& text, float x, float y, D3DXCOLOR color, RECT* outRect);
 
 		static void DrawLine(float sx, float sy, float ex, float ey);
 		static void DrawLine(float sx, float sy, float ex, float ey, D3DXCOLOR color);
