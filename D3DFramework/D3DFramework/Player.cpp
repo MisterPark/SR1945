@@ -123,6 +123,11 @@ void PKH::Player::Die()
 	CollisionManager::DisregisterObject(this);
 }
 
+void PKH::Player::PostRender()
+{
+	
+}
+
 void PKH::Player::Attack()
 {
 	if (attackFlag)

@@ -58,3 +58,9 @@ void PKH::Monster::Die()
 	CollisionManager::DisregisterObject(this);
 }
 
+void PKH::Monster::PostRender()
+{
+	Vector3 pos = Camera::WorldToScreenPoint(transform->position);
+	D2DRenderManager::DrawFont(L"∏ÛΩ∫≈Õ", pos.x, pos.y, Color::Red);
+}
+

@@ -13,6 +13,7 @@ namespace PKH
 		virtual void Update() override;
 		virtual void OnCollision(GameObject* target);
 		virtual void Die();
+		virtual void PostRender() override;
 
 		void Attack();
 		void RotateProcess();

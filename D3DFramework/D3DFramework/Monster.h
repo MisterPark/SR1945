@@ -14,6 +14,7 @@ namespace PKH
         virtual void Update() override;
         virtual void OnCollision(GameObject* target);
         virtual void Die();
+        virtual void PostRender() override;
 
     public:
         int hp = 3;

@@ -126,6 +126,9 @@ Vector3 PKH::Camera::WorldToScreenPoint(const Vector3& position)
 	Vector3 pos; 
 	D3DXVec3TransformCoord(&pos, &position, &viewProj);
 
+	pos.x = (pos.x + 1.f) * 0.5f * dfCLIENT_WIDTH;
+	pos.y = (pos.y - 1.f) * -0.5f * dfCLIENT_HEIGHT;
+
 	return pos;
 }
 
