@@ -36,16 +36,38 @@ void Boss02::Update()
 {
 	if (hp > 40)
 	{
-		Phase01();
+		ChangePhase(1);
 	}
 	else if (hp > 20)
 	{
-		Phase02();
+		ChangePhase(2);
 	}
 	else
 	{
-		Phase03();
+		ChangePhase(3);
 	}
+
+	switch (phase)
+	{
+	case 1: Phase01(); break;
+	case 2: Phase02(); break;
+	case 3: Phase03(); break;
+	}
+}
+
+void Boss02::PostRender()
+{
+	Vector3 hpPos = transform->position;
+	hpPos.x -= 0.1f;
+	hpPos.y -= 0.4f;
+
+	Vector3 winPos = Camera::WorldToScreenPoint(hpPos);
+
+	TCHAR buffer[5] = L"";
+
+	wsprintf(buffer, L"%d", hp);
+
+	D2DRenderManager::DrawFont(buffer, winPos.x, winPos.y, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 }
 
 void Boss02::Phase01()
@@ -180,7 +202,14 @@ void Boss02::Chase()
 {
 	if (nullptr == target) return;
 
+	if (target->isDead) return;
+
 	Vector3 targetPos = target->transform->position;
+
+	float xDist = targetPos.x - transform->position.x;
+	xDist = fabsf(xDist);
+
+	if (xDist < 0.05f) return;
 
 	if (targetPos.x > transform->position.x)
 	{
@@ -189,6 +218,16 @@ void Boss02::Chase()
 	else
 	{
 		MoveToTarget(transform->position + Vector3::LEFT);
+	}
+}
+
+void Boss02::ChangePhase(int input)
+{
+	if (input != phase)
+	{
+		phase = input;
+		canAttack = false;
+		coolTime = 2.f;
 	}
 }
 

@@ -11,6 +11,8 @@ namespace PKH
 		SKY_R,
 		SKY_F,
 		SKY_B,
+		CURSOR_TARGET,
+
 	};
 
 	enum class TextureType

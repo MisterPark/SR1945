@@ -20,6 +20,7 @@ namespace PKH
 		virtual void Render();
 		virtual void Die();
 		virtual void OnCollision(GameObject* target);
+		virtual void PostRender() {};
 
 		// 방향으로 이동
 		// 내부에서 정규화 해줌.

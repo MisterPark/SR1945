@@ -10,6 +10,7 @@
 void TestScene::OnLoaded()
 {
 	SkyBox::Show();
+	Cursor::Hide();
 	Camera::GetInstance()->SetPosition(Vector3(0, 1.f, -1.f));
 
 	ObjectManager::GetInstance()->CreateObject<Player>();
@@ -23,6 +24,7 @@ void TestScene::OnLoaded()
 
 void TestScene::OnUnloaded()
 {
+	Cursor::Show();
 	SkyBox::Hide();
 	ObjectManager::DestroyAll();
 }
