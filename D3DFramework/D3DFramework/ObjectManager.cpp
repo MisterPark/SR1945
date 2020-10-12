@@ -151,6 +151,14 @@ void PKH::ObjectManager::Render()
 
 void PKH::ObjectManager::PostRender()
 {
+	auto& objList = pObjectManager->objectList;
+	for (auto& iter : objList)
+	{
+		if (!iter->isEnable) continue;
+		iter->PostRender();
+	}
+
+
 	Cursor::GetInstance()->Render();
 }
 
