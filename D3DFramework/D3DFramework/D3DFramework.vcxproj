@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Boss02.h" />
+    <ClInclude Include="Boss4.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="AxisCube.h" />
     <ClInclude Include="Bullet02.h" />
@@ -210,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Boss02.cpp" />
+    <ClCompile Include="Boss4.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="AxisCube.cpp" />
     <ClCompile Include="Bullet02.cpp" />

@@ -279,6 +279,9 @@
     <ClInclude Include="SkyBox.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Boss4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -454,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="Missile.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss4.cpp">
+      <Filter>차승현\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

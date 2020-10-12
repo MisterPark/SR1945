@@ -15,6 +15,7 @@ PKH::Monster4::Monster4()
 	MonsterBulletRegenTime = 0.f;
 	MonsterPatternTime = 0.f;
 	MonsterPosZ = 0;
+	MonsterHp = 5;
 }
 
 PKH::Monster4::~Monster4()
@@ -50,7 +51,7 @@ void PKH::Monster4::Ready()
 	case 3:
 		transform->scale = { 3.f, 3.f, 3.f };
 		transform->position.x = 4.f;
-		transform->position.y = -3.f + (Random_Manager::Random() % 60 * 0.1f);
+		transform->position.y = -3.f + (Random_Manager::Random4() % 60 * 0.1f);
 		moveSpeed = 1.5f;
 		break;
 	default:
@@ -133,13 +134,8 @@ void PKH::Monster4::MonsterPattern() {
 void PKH::Monster4::CreateBullet(int Code) {
 	MonsterBullet4* b = (MonsterBullet4*)ObjectManager::GetInstance()->CreateObject<MonsterBullet4>();
 	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER_BULLET, b);
-	Cube* Comp = dynamic_cast<Cube*>(b->AddComponent<PKH::Cube>(L"Mesh"));
-	if (MonsterPosZ == 0)
-		Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
-	else if (MonsterPosZ == 1)
-		Comp->SetColor(D3DCOLOR_XRGB(241, 95, 95));
-	else
-		Comp->SetColor(D3DCOLOR_XRGB(134, 229, 127));
+	b->SetPosZ(MonsterPosZ);
+	b->transform->position.z = (float)MonsterPosZ;
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();
@@ -147,11 +143,12 @@ void PKH::Monster4::CreateBullet(int Code) {
 
 void PKH::Monster4::OnCollision(GameObject* target)
 {
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		Effect4* e = (Effect4*)ObjectManager::GetInstance()->CreateObject<Effect4>();
 		*(e->GetTransform()->Get_Pos()) = transform->position;
 		e->Ready();
 	}
+	
 	isDead = true;
 }

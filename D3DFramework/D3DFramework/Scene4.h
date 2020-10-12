@@ -14,5 +14,6 @@ class Scene4 :
     float SceneStartTime;
     float MonsterRegenTime1;
     float MonsterRegenTime2;
+    bool BossGen;
 };
 

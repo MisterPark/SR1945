@@ -5,6 +5,8 @@
 #include "Cube.h"
 #include "Random_Manager4.h"
 #include "CollisionManager4.h"
+#include "ObjectManager.h"
+#include "Effect4.h"
 
 PKH::PlayerBullet4::PlayerBullet4()
 {
@@ -31,7 +33,7 @@ void PKH::PlayerBullet4::Ready()
 		break;
 	case 2:
 		transform->scale = { 1,1,1 };
-		TargetMonster = ObjectManager::GetInstance()->FindObject<Monster4>();
+		TargetMonster = CollisionManager4::FindMonster2D();
 		if (TargetMonster == nullptr) {
 			BulletCode = 1;
 			moveSpeed = 4.f;
@@ -51,7 +53,8 @@ void PKH::PlayerBullet4::Update()
 		isDead = true;
 		CollisionManager4::FindObjectDelete(dynamic_cast<GameObject*>(this));
 	}
-
+	if (isDead)
+		return;
 	if (1 == BulletCode) {
 		//Move(TargetPos);
 
@@ -72,6 +75,13 @@ void PKH::PlayerBullet4::Update()
 			
 		}
 		else {
+			if (Camera::GetInstance()->GetProjection3D() && dynamic_cast<Monster4*>(TargetMonster)->GetPosZ() != 0) {
+				TargetMonster = CollisionManager4::FindMonster2D();
+			}
+			if (TargetMonster == nullptr) {
+				transform->position.x += moveSpeed * TimeManager::DeltaTime();
+				return;
+			}
 			TargetPos = TargetMonster->transform->position;
 			//Move(TargetPos);
 			Vector3 dir = TargetPos - transform->position;
@@ -93,7 +103,7 @@ void PKH::PlayerBullet4::Update()
 				BulletPatternTime -= TimeManager::DeltaTime();
 				if (BulletPatternTime < 0) {
 					BulletPatternTime = 0.1f;
-					if (Random_Manager::Random() % 2 == 0) {
+					if (Random_Manager::Random4() % 2 == 0) {
 						if(abs(dir.x) > 0.5f)
 							BulletPattern = 0;
 						else
@@ -126,6 +136,11 @@ void PKH::PlayerBullet4::Update()
 
 void PKH::PlayerBullet4::OnCollision(GameObject* target)
 {
+	
+		Effect4* e = (Effect4*)ObjectManager::GetInstance()->CreateObject<Effect4>();
+		*(e->GetTransform()->Get_Pos()) = transform->position;
+		e->Ready();
+	
 	isDead = true;
 }
 
