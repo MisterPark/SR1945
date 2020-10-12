@@ -121,7 +121,12 @@ bool PKH::Camera::GetProjection3D()
 
 Vector3 PKH::Camera::WorldToScreenPoint(const Vector3& position)
 {
-	return Vector3();
+	Matrix viewProj = pCamera->viewMatrix * pCamera->projectionMatrix;
+
+	Vector3 pos; 
+	D3DXVec3TransformCoord(&pos, &position, &viewProj);
+
+	return pos;
 }
 
 void PKH::Camera::PerspectiveProjection() 
