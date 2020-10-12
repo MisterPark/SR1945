@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Scene03.h"
+#include "Scene4.h"
 #include "Player03.h"
 #include "Monster03.h"
 #include "Dust03.h"
@@ -222,10 +223,13 @@ void Scene03::Update()
 
 	if (MonsterMakeCount == 10&&!monstercheck)
 	{
+
 		MonsterMakeCount = 0;
 		tick = 0;
+		
 	}
 
+	
 	//if (tick > 10.f && MonsterMakeCount == 2)
 	//{
 	//	tick = 0;
