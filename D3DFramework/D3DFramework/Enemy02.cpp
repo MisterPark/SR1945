@@ -25,7 +25,11 @@ Enemy02::~Enemy02()
 
 void Enemy02::Ready()
 {
-	IComponent* mesh = new Cube02(D3DCOLOR_XRGB(0, 255, 0));
+	D3DCOLOR color;
+	if (1 == type) color = D3DCOLOR_XRGB(0, 120, 0);
+	else color = D3DCOLOR_XRGB(0, 146, 255);
+
+	IComponent* mesh = new Cube02(color);
 	mesh->gameObject = this;
 	components.emplace(L"Mesh", mesh);
 }
@@ -92,7 +96,7 @@ void Enemy02::Pattern03()
 
 void Enemy02::Pattern01Bullet()
 {
-	Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), Vector3(0.f, -1.f, 0.f), false, 10.f);
+	Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), Vector3(0.f, -1.f, 0.f), false, 6.f);
 
 	ObjectManager::AddObject(newBullet);
 
@@ -100,18 +104,20 @@ void Enemy02::Pattern01Bullet()
 
 	canAttack = false;
 
-	coolTime = 1.f;
+	coolTime = 2.f;
 }
 
 void Enemy02::Pattern02Bullet()
 {
 	if (nullptr == target) return;
 
+	if (target->isDead) return;
+
 	Vector3 dir = target->transform->position - transform->position;
 
 	Vector3::Normalize(&dir);
 
-	Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), dir, false, 10.f);
+	Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), dir, false, 6.f);
 
 	ObjectManager::AddObject(newBullet);
 
@@ -119,7 +125,7 @@ void Enemy02::Pattern02Bullet()
 
 	canAttack = false;
 
-	coolTime = 1.f;
+	coolTime = 2.f;
 }
 
 void Enemy02::Pattern03Bullet()
@@ -134,7 +140,7 @@ void Enemy02::Pattern03Bullet()
 		if (2 == spawnPattern)
 			D3DXVec3TransformNormal(&dir[i], &dir[i], &rot);
 
-		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), dir[i], false, 10.f);
+		Bullet02* newBullet = new Bullet02(transform->position, Vector3(0.4f, 0.4f, 0.4f), dir[i], false, 6.f);
 
 		ObjectManager::AddObject(newBullet);
 
@@ -151,11 +157,23 @@ void Enemy02::Pattern03Bullet()
 	{
 		spawnPattern = 1;
 		canAttack = false;
-		coolTime = 2.f;
+		coolTime = 3.f;
 	}
 }
 
 void Enemy02::OnCollision(GameObject * from)
 {
 	Die();
+}
+
+bool Enemy02::Culling()
+{
+	if (1 == type)
+	{
+		Vector3 pos = transform->position;
+
+		if (-5.f > pos.x || pos.x > 5.f || -4.f > pos.y) return true;
+	}
+
+	return false;
 }

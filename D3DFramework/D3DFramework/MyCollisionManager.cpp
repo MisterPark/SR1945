@@ -2,6 +2,7 @@
 #include "MyCollisionManager.h"
 #include "GameObject.h"
 #include "Bullet02.h"
+#include "Enemy02.h"
 #include <algorithm>
 
 MyCollisionManager* MyCollisionManager::instance = nullptr;
@@ -118,6 +119,20 @@ void MyCollisionManager::CullingBullet(OBJTAG tag)
 		if (bullet->Culling())
 		{
 			iter = objList[tag].erase(iter);
+		}
+		else ++iter;
+	}
+}
+
+void MyCollisionManager::CullingEnemy()
+{
+	for (auto iter = objList[ENEMY].begin(); iter != objList[ENEMY].end();)
+	{
+		Enemy02* enemy = dynamic_cast<Enemy02*>(*iter);
+
+		if (enemy->Culling())
+		{
+			iter = objList[ENEMY].erase(iter);
 		}
 		else ++iter;
 	}

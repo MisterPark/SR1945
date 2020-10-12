@@ -26,6 +26,11 @@ void Player02::Update()
 		if (0.f > coolTime) canAttack = true;
 	}
 
+	if (InputManager::GetKeyDown('Z'))
+	{
+		isInvincible ^= true;
+	}
+
 	if (InputManager::GetKey(VK_UP))
 	{
 		float futureValue = transform->position.y + (moveSpeed * TimeManager::DeltaTime());
@@ -77,5 +82,29 @@ void Player02::Attack()
 
 void Player02::OnCollision(GameObject * from)
 {
-	--hp;
+	if (!isInvincible)
+	{
+		--hp;
+
+		if (hp <= 0)
+		{
+			MyCollisionManager::GetInstance()->UnListObject(MyCollisionManager::PLAYER, this);
+			Die();
+		}
+	}
+}
+
+void Player02::PostRender()
+{
+	Vector3 hpPos = transform->position;
+	hpPos.x -= 0.1f;
+	hpPos.y -= 0.2f;
+	
+	Vector3 winPos = Camera::WorldToScreenPoint(hpPos);
+
+	TCHAR buffer[5] = L"";
+
+	wsprintf(buffer, L"%d", hp);
+
+	D2DRenderManager::DrawFont(buffer, winPos.x, winPos.y, D3DXCOLOR(1.f, 1.f, 1.f, 1.f));
 }

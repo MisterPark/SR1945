@@ -10,6 +10,8 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+	vb->Release();
+	triangles->Release();
 }
 
 void PKH::Mesh::Render()
@@ -21,6 +23,7 @@ void PKH::Mesh::Render()
 	LPDIRECT3DDEVICE9 device = D2DRenderManager::GetDevice();
 	if (device)
 	{
+		Texture* texture = D2DRenderManager::GetTexture(textureKey);
 		if (texture != nullptr)
 		{
 			device->SetTexture(0, texture->pTexture);
@@ -78,7 +81,7 @@ void PKH::Mesh::SetTexture(PKH::TextureKey key)
 	Texture* tx = D2DRenderManager::GetTexture(key);
 	if (tx == nullptr) return;
 
-	texture = tx;
+	textureKey = key;
 }
 
 void PKH::Mesh::SetVertexPos(UINT index, const Vector3& pos)

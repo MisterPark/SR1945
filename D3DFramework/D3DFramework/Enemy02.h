@@ -20,6 +20,8 @@ public:
 	void Pattern03Bullet();
 	virtual void OnCollision(GameObject* from);
 
+	bool Culling();
+
 private:
 	bool canAttack = true;
 	float coolTime = 0.f;

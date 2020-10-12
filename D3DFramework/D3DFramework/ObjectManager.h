@@ -47,7 +47,7 @@ namespace PKH
 	template<class T>
 	inline GameObject * ObjectManager::CreateObject()
 	{
-		T* pObj = new T;
+		T* pObj = new T();
 		if (dynamic_cast<GameObject*>(pObj) == nullptr)
 		{
 			return nullptr;

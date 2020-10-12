@@ -19,5 +19,7 @@ namespace PKH
 
         int effectDir = 0;
         bool PlayerHit = false;
+
+        bool isSetting = false;
     };
 }

@@ -19,29 +19,54 @@ PKH::Bullet03::~Bullet03()
 void PKH::Bullet03::Update()
 {
 	GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
+	
+	DieTime += TimeManager::DeltaTime();
+	if (DieTime > 5)
+	{
+		Die();
+	}
+	
 
-	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
-	mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
 	if (!MyBullet03)
 	{
-
+		
 		GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
-		if (monster != nullptr)
+		if (!isSetting)
 		{
-				//색설정
-		//보스 탄환
-		if (isBossBullet)
-		{
-			int color = dynamic_cast<Monster03*>(monster)->MyColor;
-			mesh->SetColor(D3DCOLOR_XRGB(color, color, color));
+			Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+			//색설정
+			if (monster != nullptr)
+			{
+				
+				//보스 탄환
+				if (isBossBullet)
+				{
+					int color = dynamic_cast<Monster03*>(monster)->MyColor;
+					mesh->SetColor(D3DCOLOR_XRGB(255, color, color));
+				}
 
+				//나머지 탄환
+				if (dynamic_cast<Monster03*>(monster)->BossType == false)
+				{
+					Monster03* mon = dynamic_cast<Monster03*>(monster);
+					if (mon->xType == true)
+					{
 
-		}
-		//나머지 탄환
-		if (dynamic_cast<Monster03*>(monster)->BossType == false)
-		{
-			mesh->SetColor(D3DCOLOR_XRGB(0, 0, 0));
-		}
+						mesh->SetColor(D3DCOLOR_XRGB(mon->xTypeColor[0], mon->xTypeColor[1], mon->xTypeColor[2]));
+					}
+					if (mon->yType == true)
+					{
+
+						mesh->SetColor(D3DCOLOR_XRGB(mon->yTypeColor[0], mon->yTypeColor[1], mon->yTypeColor[2]));
+					}
+					if (mon->xType == false && mon->yType == false)
+					{
+
+						mesh->SetColor(D3DCOLOR_XRGB(mon->zTypeColor[0], mon->zTypeColor[1], mon->zTypeColor[2]));
+					}
+				}
+				isSetting = true;
+			}
 		}
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
@@ -106,10 +131,16 @@ void PKH::Bullet03::Update()
 	}
 	if(MyBullet03)
 	{
+		moveSpeed = 15.f;
 		if (nullptr != player)
 		{
-			int color = dynamic_cast<Player03*>(player)->MyColor;
-			mesh->SetColor(D3DCOLOR_XRGB(0, color, color));
+			if (!isSetting)
+			{
+				Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+				int color = dynamic_cast<Player03*>(player)->MyColor;
+				mesh->SetColor(D3DCOLOR_XRGB(0, color, color));
+				isSetting = true;
+			}
 		}
 			GameObject* monster = ObjectManager::GetInstance()->FindObject<Monster03>();
 			if (monster != nullptr)

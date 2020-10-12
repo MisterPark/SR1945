@@ -5,6 +5,7 @@ PKH::Cursor* pCursor = nullptr;
 
 PKH::Cursor::Cursor()
 {
+    isVisible = false;
 }
 
 PKH::Cursor::~Cursor()
@@ -35,7 +36,6 @@ Vector3 PKH::Cursor::GetMousePos()
     POINT pt;
     GetCursorPos(&pt);
     ScreenToClient(g_hwnd, &pt);
-
     pos.x = pt.x;
     pos.y = pt.y;
     return pos;
@@ -57,4 +57,12 @@ void PKH::Cursor::Hide()
 
 void PKH::Cursor::Update()
 {
+    if (isEnable == false)return;
+    transform->position = GetMousePos();
+}
+
+void PKH::Cursor::Render()
+{
+    if (isVisible == false)return;
+    D2DRenderManager::DrawSprite(TextureKey::CURSOR_TARGET, *transform, 0);
 }

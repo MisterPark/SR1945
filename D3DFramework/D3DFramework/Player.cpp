@@ -5,17 +5,25 @@
 #include "Missile.h"
 #include "Monster.h"
 #include "Cube.h"
+#include "AirPlaneBodyMesh.h"
+#include "AirPlaneWingMesh.h"
+#include "AirPlaneTailMesh.h"
 
 using namespace PKH;
 
 PKH::Player::Player()
 {
 	transform->position = { 0,0,0 };
-	transform->scale = { 8.f,8.f,24.f };
-	moveSpeed = 30.f;
+	transform->scale = { 0.5f,0.5f,0.5f };
+	moveSpeed = 50.f;
+	transform->eulerAngles.x = D3DXToRadian(90.f);
 
-	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+	Mesh* mesh = (Mesh*)AddComponent<PKH::AirPlaneBodyMesh>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(50, 50, 50));
+	mesh = (Mesh*)AddComponent<PKH::AirPlaneWingMesh>(L"Mesh2");
+	mesh->SetColor(D3DCOLOR_XRGB(100, 100, 100));
+	mesh = (Mesh*)AddComponent<PKH::AirPlaneTailMesh>(L"Mesh3");
+	mesh->SetColor(D3DCOLOR_XRGB(100, 100, 100));
 
 
 	CollisionManager::RegisterObject(this);
@@ -30,11 +38,21 @@ void PKH::Player::Update()
 
 	if (InputManager::GetKey('W'))
 	{
+		float angleX = transform->eulerAngles.x;
 		transform->eulerAngles.x -= D3DXToRadian(20.f)* TimeManager::DeltaTime();
+		if (transform->eulerAngles.x < D3DXToRadian(10.f))
+		{
+			transform->eulerAngles.x = angleX;
+		}
 	}
 	if (InputManager::GetKey('S'))
 	{
+		float angleX = transform->eulerAngles.x;
 		transform->eulerAngles.x += D3DXToRadian(20.f) * TimeManager::DeltaTime();
+		if (transform->eulerAngles.x > D3DXToRadian(170.f))
+		{
+			transform->eulerAngles.x = angleX;
+		}
 	}
 	if (InputManager::GetKey('A'))
 	{
@@ -85,11 +103,11 @@ void PKH::Player::Update()
 	}
 	if (InputManager::GetKey(VK_SPACE))
 	{
-		Attack();
+		Move(transform->up);
 	}
 
 	// 계속 앞으로
-	Move(transform->look);
+	//Move(transform->up);
 	// 회전
 	RotateProcess();
 
@@ -123,6 +141,11 @@ void PKH::Player::Die()
 	CollisionManager::DisregisterObject(this);
 }
 
+void PKH::Player::PostRender()
+{
+	
+}
+
 void PKH::Player::Attack()
 {
 	if (attackFlag)
@@ -152,6 +175,8 @@ void PKH::Player::Attack()
 
 void PKH::Player::RotateProcess()
 {
+
+	
 	// Y축 회전
 	Vector3 mousePos = Cursor::GetMousePos();
 	float half = (dfCLIENT_WIDTH / 2.f);
@@ -172,9 +197,9 @@ void PKH::Player::RotateProcess()
 
 
 	//카메라 회전
-	Vector3 pos = transform->position - (transform->look * 8.f);
+	Vector3 pos = transform->position - (transform->up * 8.f);
 	pos.y -= 5.f;
-	Vector3 camLook = transform->position + (transform->look * 10.0f);
+	Vector3 camLook = transform->position + (transform->up * 10.0f);
 	pos.y += 10.f;
 	
 	

@@ -20,6 +20,7 @@
 #include "transform.h"
 #include "Color.h"
 #include "Texture.h"
+#include "Random.h"
 
 #include "Vertex.h"
 #include "Mesh.h"

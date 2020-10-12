@@ -18,5 +18,7 @@ namespace PKH
         bool isBossBullet = false;
         int BossBullet1 = 0;
         int Extinction = 0;
+        float DieTime = 0.f;
+        bool isSetting = false;
     };
 }
