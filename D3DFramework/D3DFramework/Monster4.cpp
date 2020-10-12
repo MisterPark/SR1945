@@ -50,7 +50,7 @@ void PKH::Monster4::Ready()
 	case 3:
 		transform->scale = { 3.f, 3.f, 3.f };
 		transform->position.x = 4.f;
-		transform->position.y = -3.f + (Random_Manager::Random() % 60 * 0.1f);
+		transform->position.y = -3.f + (Random_Manager::Random4() % 60 * 0.1f);
 		moveSpeed = 1.5f;
 		break;
 	default:

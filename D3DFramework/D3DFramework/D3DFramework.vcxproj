@@ -143,6 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AirPlaneBodyMesh.h" />
+    <ClInclude Include="AirPlaneTailMesh.h" />
+    <ClInclude Include="AirPlaneWingMesh.h" />
     <ClInclude Include="Boss02.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="AxisCube.h" />
@@ -188,6 +191,7 @@
     <ClInclude Include="Point.h" />
     <ClInclude Include="QuakeManager4.h" />
     <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Random.h" />
     <ClInclude Include="Random_Manager4.h" />
     <ClInclude Include="Rectangle.h" />
     <ClInclude Include="Resource.h" />
@@ -209,6 +213,9 @@
     <ClInclude Include="Vertex.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AirPlaneBodyMesh.cpp" />
+    <ClCompile Include="AirPlaneTailMesh.cpp" />
+    <ClCompile Include="AirPlaneWingMesh.cpp" />
     <ClCompile Include="Boss02.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="AxisCube.cpp" />
@@ -250,6 +257,7 @@
     <ClCompile Include="PlayerBullet4.cpp" />
     <ClCompile Include="QuakeManager4.cpp" />
     <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Random.cpp" />
     <ClCompile Include="Random_Manager4.cpp" />
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Scene02.cpp" />

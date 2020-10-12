@@ -16,9 +16,6 @@
     <Filter Include="Manager">
       <UniqueIdentifier>{ed27685c-7f77-443b-85ef-797bca8acdf2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Lib">
-      <UniqueIdentifier>{9e576362-dfec-47dc-a23e-edae3800e429}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Texture">
       <UniqueIdentifier>{c82e7fb9-29f7-4d45-bbd3-4f9e4e711bf6}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="Cursor">
       <UniqueIdentifier>{bda8052a-9916-4274-b18c-0a5a529b869a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{9e576362-dfec-47dc-a23e-edae3800e429}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +279,18 @@
     <ClInclude Include="SkyBox.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="AirPlaneWingMesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="AirPlaneTailMesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="AirPlaneBodyMesh.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Lib</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -443,9 +455,6 @@
     <ClCompile Include="Boss02.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="AxisCube.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -454,6 +463,21 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPlaneWingMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPlaneTailMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="AirPlaneBodyMesh.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>Lib</Filter>
+    </ClCompile>
+    <ClCompile Include="AxisCube.cpp">
+      <Filter>Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

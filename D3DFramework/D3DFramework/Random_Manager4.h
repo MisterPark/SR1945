@@ -24,7 +24,7 @@ private:
 
 public:
 	void Ready_Random() { srand(unsigned(time(nullptr))); }
-	static int Random() {
+	static int Random4() {
 		int iTemp;
 		iTemp = rand();
 		return iTemp;

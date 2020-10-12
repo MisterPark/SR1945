@@ -93,7 +93,7 @@ void PKH::PlayerBullet4::Update()
 				BulletPatternTime -= TimeManager::DeltaTime();
 				if (BulletPatternTime < 0) {
 					BulletPatternTime = 0.1f;
-					if (Random_Manager::Random() % 2 == 0) {
+					if (Random_Manager::Random4() % 2 == 0) {
 						if(abs(dir.x) > 0.5f)
 							BulletPattern = 0;
 						else

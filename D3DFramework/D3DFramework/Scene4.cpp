@@ -47,7 +47,7 @@ void Scene4::Update()
 		Monster4* m = dynamic_cast<Monster4*>(g);
 		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::MONSTER, g);
 		Cube* Comp = dynamic_cast<Cube*>(m->AddComponent<PKH::Cube>(L"Mesh"));
-		int RandomNumber = Random_Manager::Random() % 3;
+		int RandomNumber = Random_Manager::Random4() % 3;
 		if(RandomNumber == 0)
 			Comp->SetColor(D3DCOLOR_XRGB(103, 153, 255));
 		else if (RandomNumber == 1)
