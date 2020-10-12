@@ -159,7 +159,6 @@ void PKH::Player::Attack()
 		missile->transform->position.y -= 0.3f;
 		Vector3 mousePos = Cursor::GetMousePos();
 		Vector3 mouseWorld = Camera::ScreenToWorldPoint(mousePos);
-		mouseWorld = mouseWorld - (transform->up * 0.5);
 		missile->targetPos = mouseWorld;
 		missile->moveSpeed = 200.f;
 

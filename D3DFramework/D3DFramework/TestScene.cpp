@@ -6,6 +6,7 @@
 #include "Cube.h"
 #include "Monster.h"
 #include "SkyBox.h"
+#include "ExplosionEffect.h"
 
 void TestScene::OnLoaded()
 {
@@ -35,7 +36,8 @@ void TestScene::OnLoaded()
 		//m->SetAirWay();
 	}
 	
-	
+	GameObject* effect = ObjectManager::GetInstance()->CreateObject<ExplosionEffect>();
+	effect->transform->position = { 0,0,2 };
 
 
 }

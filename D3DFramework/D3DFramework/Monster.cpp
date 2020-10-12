@@ -11,7 +11,7 @@
 PKH::Monster::Monster()
 {
 	transform->position = dest1;
-	transform->scale = { 0.5f,0.5f,0.5f };
+	transform->scale = { 0.8f,0.8f,0.8f };
 	moveSpeed = 50.f;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
 	
@@ -47,7 +47,7 @@ void PKH::Monster::Update()
 		break;
 	}
 
-
+	Attack();
 	
 
 	GameObject::Update();
@@ -157,6 +157,28 @@ void PKH::Monster::MoveToPlayer()
 		transform->LookAt(*player->transform);
 
 
+	}
+}
+
+void PKH::Monster::Attack()
+{
+	attackTick += TimeManager::DeltaTime();
+	if (attackTick > attackDelay)
+	{
+		attackTick = 0.f;
+
+		GameObject* player = ObjectManager::GetInstance()->FindObject<Player>();
+		if (player == nullptr) return;
+
+		Missile* missile = (Missile*)ObjectManager::GetInstance()->CreateObject<Missile>();
+		missile->transform->position = transform->position;
+		missile->transform->position.y -= 0.3f;
+
+		Vector3 dir = player->transform->position - transform->position;
+
+		missile->targetPos = dir.Normalized();
+		missile->moveSpeed = 200.f;
+		missile->isAlliance = false;
 	}
 }
 

@@ -254,7 +254,7 @@ void PKH::D2DRenderManager::DrawSprite(TextureKey spriteKey, Transform transform
 
 	Matrix world, trans, rot, scale, parent;
 	D3DXMatrixScaling(&scale, transform.scale.x, transform.scale.y, 0.f);
-	D3DXMatrixTranslation(&trans, transform.position.x - Camera::GetX(), transform.position.y - Camera::GetY(), 0.f);
+	D3DXMatrixTranslation(&trans, transform.position.x, transform.position.y, 0.f);
 	world = scale * trans;
 
 	pD2DRenderManager->pSprite->Begin(D3DXSPRITE_ALPHABLEND);

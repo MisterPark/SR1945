@@ -28,8 +28,8 @@ namespace PKH
 		IDirect3DIndexBuffer9* triangles = nullptr;
 		UINT vertexCount;
 		UINT triangleCount;
-
-		Texture* texture = nullptr;
+	public:
+		TextureKey textureKey = TextureKey::NONE;
 
 		
 	};
