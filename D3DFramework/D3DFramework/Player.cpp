@@ -12,7 +12,7 @@ PKH::Player::Player()
 {
 	transform->position = { 0,0,0 };
 	transform->scale = { 8.f,8.f,24.f };
-	moveSpeed = 30.f;
+	moveSpeed = 50.f;
 
 	Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(50, 50, 50));
@@ -85,11 +85,11 @@ void PKH::Player::Update()
 	}
 	if (InputManager::GetKey(VK_SPACE))
 	{
-		Attack();
+		Move(transform->look);
 	}
 
 	// 계속 앞으로
-	Move(transform->look);
+	//Move(transform->look);
 	// 회전
 	RotateProcess();
 
