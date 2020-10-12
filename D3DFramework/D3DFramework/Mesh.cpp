@@ -10,6 +10,8 @@ Mesh::Mesh()
 
 Mesh::~Mesh()
 {
+	vb->Release();
+	triangles->Release();
 }
 
 void PKH::Mesh::Render()

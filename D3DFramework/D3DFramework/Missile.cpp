@@ -23,8 +23,16 @@ void PKH::Missile::Update()
 	}
 	else
 	{
-		MoveToTarget(targetPos);
+		
 	}
+
+	Vector3 dir = targetPos - transform->position;
+	Vector3::Normalize(&dir);
+	//transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
+	//transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
+	//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
+	MoveToTarget(targetPos);
+	transform->LookAt(transform->position+dir);
 
 	// 범위 삭제
 	//if (fabs(transform->position.x) < 10.f) return;
@@ -36,6 +44,8 @@ void PKH::Missile::Update()
 		Die();
 	}
 	lifeTick += TimeManager::DeltaTime();
+
+	GameObject::Update();
 }
 
 void PKH::Missile::Die()

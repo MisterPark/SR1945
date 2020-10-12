@@ -5,6 +5,7 @@ PKH::Cursor* pCursor = nullptr;
 
 PKH::Cursor::Cursor()
 {
+    isVisible = false;
 }
 
 PKH::Cursor::~Cursor()

@@ -9,7 +9,7 @@ PKH::Effect4::Effect4()
 	moveSpeed = 2.5f;
 	Frame = 0.f;
 	Cube* Comp = dynamic_cast<Cube*>(AddComponent<PKH::Cube>(L"Mesh"));
-	Comp->SetColor(D3DCOLOR_XRGB(Random_Manager::Random() % 255, Random_Manager::Random() % 255, Random_Manager::Random() % 255));
+	Comp->SetColor(D3DCOLOR_XRGB(Random_Manager::Random4() % 255, Random_Manager::Random4() % 255, Random_Manager::Random4() % 255));
 }
 
 PKH::Effect4::~Effect4()
@@ -19,8 +19,8 @@ PKH::Effect4::~Effect4()
 void PKH::Effect4::Ready()
 {
 	transform->scale = { 0.5f, 0.5f, 0.5f };
-	dir.x = -0.8f + 0.1f * (Random_Manager::Random() % 16);
-	dir.y = -0.8f + 0.1f * (Random_Manager::Random() % 16);
+	dir.x = -0.8f + 0.1f * (Random_Manager::Random4() % 16);
+	dir.y = -0.8f + 0.1f * (Random_Manager::Random4() % 16);
 
 }
 
