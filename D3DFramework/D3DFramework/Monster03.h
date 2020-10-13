@@ -35,7 +35,7 @@ namespace PKH
         int yTypeColor[3] = { 255,148,155 };
         int zTypeColor[3] = { 142,210,173 };
         int MyColor = 0;
-
+        Mesh* mesh = nullptr;
         bool isSetting = false;
         int Maxhp = 1;
         int hp = 1;

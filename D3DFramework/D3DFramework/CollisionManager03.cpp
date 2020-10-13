@@ -11,6 +11,7 @@ PKH::CollisionManager03::CollisionManager03()
 
 PKH::CollisionManager03::~CollisionManager03()
 {
+	
 }
 
 PKH::CollisionManager03* CollisionManager03::GetInstance()
@@ -76,6 +77,23 @@ void PKH::CollisionManager03::RegisterObject(GameObject* _pObj)
 	}
 
 	pCollisionManager03->objectList.push_back(_pObj);
+}
+
+void PKH::CollisionManager03::RegisterObject(OBJ03 _eobj, GameObject* _pObj)
+{
+	
+	if (nullptr == _pObj) return;
+
+	auto iter = find_if(pCollisionManager03->objList[_eobj].begin(), pCollisionManager03->objList[_eobj].end(),
+		[_pObj](GameObject* elem)
+		{
+			return elem == _pObj;
+		}
+	);
+
+	if (pCollisionManager03->objList[_eobj].end() == iter) return;
+
+	pCollisionManager03->objList[_eobj].erase(iter);
 }
 
 void PKH::CollisionManager03::DisregisterObject(GameObject* _pObj)

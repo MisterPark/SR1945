@@ -147,6 +147,7 @@
     <ClInclude Include="AirPlaneTailMesh.h" />
     <ClInclude Include="AirPlaneWingMesh.h" />
     <ClInclude Include="Boss02.h" />
+    <ClInclude Include="Boss1.h" />
     <ClInclude Include="Boss4.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="AxisCube.h" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Scene02.h" />
     <ClInclude Include="Scene03.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Shield03.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="stdafx.h" />
@@ -220,6 +222,7 @@
     <ClCompile Include="AirPlaneTailMesh.cpp" />
     <ClCompile Include="AirPlaneWingMesh.cpp" />
     <ClCompile Include="Boss02.cpp" />
+    <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Boss4.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="AxisCube.cpp" />
@@ -270,6 +273,7 @@
     <ClCompile Include="Scene03.cpp" />
     <ClCompile Include="Scene4.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Shield03.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="stdafx.cpp">

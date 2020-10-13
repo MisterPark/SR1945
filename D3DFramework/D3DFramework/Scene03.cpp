@@ -4,7 +4,7 @@
 #include "Player03.h"
 #include "Monster03.h"
 #include "Dust03.h"
-
+#include "CollisionManager03.h"
 #include "Triangle.h"
 #include "Rectangle.h"
 #include "Cube.h"
@@ -23,6 +23,8 @@ void Scene03::OnUnloaded()
 
 void Scene03::Update()
 {
+
+	/*CollisionManager03::GetInstance()->IsCollided(CollisionManager03::MONSTER_BULLET, CollisionManager03::PLAYER);*/
 
 	GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 	if (player != nullptr)
@@ -53,7 +55,7 @@ void Scene03::Update()
 		//}
 	}
 	//playercheck
-	if (InputManager::GetKey(VK_NUMPAD1))
+	if (InputManager::GetKey(VK_RETURN))
 	{
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player == nullptr)
@@ -63,7 +65,17 @@ void Scene03::Update()
 		}
 		
 	}
-
+	
+	//if (MonsterMakeCount == 0)
+	//{//test
+	////bosstype
+	//	Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+	//	m->SetPosition(Vector3{ 0.f,5.f,11.f });
+	//	m->BossType = true;
+	//	m->transform->scale = { 10.f,10.f,10.f };
+	//	MonsterMakeCount++;
+	//}
+	////////////////////////////////////////
 
 
 	//monster check

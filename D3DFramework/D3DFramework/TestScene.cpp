@@ -7,6 +7,7 @@
 #include "Monster.h"
 #include "SkyBox.h"
 #include "ExplosionEffect.h"
+#include "Boss1.h"
 
 void TestScene::OnLoaded()
 {
@@ -39,7 +40,8 @@ void TestScene::OnLoaded()
 	GameObject* effect = ObjectManager::GetInstance()->CreateObject<ExplosionEffect>();
 	effect->transform->position = { 0,0,2 };
 
-
+	
+	Boss1* boss = (Boss1*)ObjectManager::GetInstance()->CreateObject<Boss1>();
 }
 
 void TestScene::OnUnloaded()

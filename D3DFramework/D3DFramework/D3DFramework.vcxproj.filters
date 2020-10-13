@@ -207,9 +207,6 @@
     <ClInclude Include="Enemy02.h">
       <Filter>강희재\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle02.h">
-      <Filter>강희재\Mesh\Plane</Filter>
-    </ClInclude>
     <ClInclude Include="MyCollisionManager.h">
       <Filter>강희재\MyCollisionManager</Filter>
     </ClInclude>
@@ -299,6 +296,15 @@
     </ClInclude>
     <ClInclude Include="Boss4.h">
       <Filter>차승현\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle02.h">
+      <Filter>강희재\Mesh\PlayerBullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,12 @@
     </ClCompile>
     <ClCompile Include="Boss4.cpp">
       <Filter>차승현\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield03.cpp">
+      <Filter>길문호\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include "Bullet03.h"
 #include "Cube.h"
 #include "ObjectManager.h"
+#include "CollisionManager03.h"
 PKH::Monster03::Monster03()
 {
 	transform->scale = { 1.f,1.f,1.f};
@@ -33,6 +34,9 @@ void PKH::Monster03::Update()
 				hp = Maxhp;
 				transform->scale = { 3.f,3.f,3.f };
 				movePattern = 0.f;
+				mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
+				mesh->SetColor(D3DCOLOR_XRGB(255, MyColor, MyColor));
+				
 			}
 			if (!BossType)
 			{
@@ -95,7 +99,7 @@ void PKH::Monster03::Update()
 						{
 							Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 							b->SetPosition(transform->position);
-
+							CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							tick = 0;
 						}
 					}
@@ -189,7 +193,7 @@ void PKH::Monster03::Update()
 						{
 							Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 							b->SetPosition(transform->position);
-
+							CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							tick = 0;
 						}
 					}
@@ -212,8 +216,8 @@ void PKH::Monster03::Update()
 		if (BossType)
 		{
 			transform->eulerAngles.z += BossRotateSpeed * TimeManager::DeltaTime();
-			Mesh* mesh = (Mesh*)AddComponent<PKH::Cube>(L"Mesh");
-			mesh->SetColor(D3DCOLOR_XRGB(255, MyColor, MyColor));
+			
+			
 
 
 
@@ -236,6 +240,7 @@ void PKH::Monster03::Update()
 					b->SetPosition(transform->position);
 					b->isBossBullet = true;
 					b->BossBullet1 = 1;
+					CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 				}
 				tick = 0;
 
@@ -261,6 +266,7 @@ void PKH::Monster03::Update()
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
 								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -274,6 +280,7 @@ void PKH::Monster03::Update()
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
 								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -289,6 +296,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 							BossSkill = 10;
@@ -304,7 +312,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								b->SetPosition(Vector3{ float(i), transform->position.y-4 ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 						}
 
@@ -316,7 +325,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								b->SetPosition(Vector3{ float(i), transform->position.y-2 ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 						}
 
@@ -329,6 +339,7 @@ void PKH::Monster03::Update()
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
 								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 						}
 
@@ -340,7 +351,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								b->SetPosition(Vector3{ float(i), transform->position.y+2 ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 						}
 
@@ -352,7 +364,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ float(i), transform->position.y ,transform->position.z });
+								b->SetPosition(Vector3{ float(i), transform->position.y +4,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 						}
 						if (BossSkill == 26)
@@ -363,7 +376,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								b->SetPosition(Vector3{ transform->position.x+4, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -375,7 +389,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								b->SetPosition(Vector3{ transform->position.x+2, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -388,6 +403,7 @@ void PKH::Monster03::Update()
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
 								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -399,7 +415,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								b->SetPosition(Vector3{ transform->position.x-2, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -411,7 +428,8 @@ void PKH::Monster03::Update()
 								Bullet03* b = (Bullet03*)ObjectManager::GetInstance()->CreateObject<Bullet03>();
 								b->BossBullet1 = i;
 								b->isBossBullet = true;
-								b->SetPosition(Vector3{ transform->position.x, float(i) ,transform->position.z });
+								b->SetPosition(Vector3{ transform->position.x-4, float(i) ,transform->position.z });
+								CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 							}
 
 						}
@@ -427,6 +445,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 						}
@@ -441,6 +460,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 						}
@@ -455,6 +475,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 						}
@@ -469,6 +490,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 						}
@@ -483,6 +505,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 						}
@@ -500,6 +523,7 @@ void PKH::Monster03::Update()
 									b->BossBullet1 = i;
 									b->isBossBullet = true;
 									b->SetPosition(Vector3{ float(i), float(j) ,transform->position.z });
+									CollisionManager03::GetInstance()->RegisterObject(CollisionManager03::MONSTER_BULLET, b);
 								}
 							}
 							BossSkill = 20;
