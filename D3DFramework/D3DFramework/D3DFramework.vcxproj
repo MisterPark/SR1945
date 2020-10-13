@@ -35,7 +35,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -77,6 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>FMOD;$(DXSDK_DIR)include;$(IncludePath)</IncludePath>
+    <LibraryPath>FMOD;$(DXSDK_DIR)lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -112,6 +114,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>d3d9.lib;d3dx9.lib;dxguid.lib;winmm.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -172,9 +175,12 @@
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GameOverScene.h" />
+    <ClInclude Include="GameOverTitle.h" />
     <ClInclude Include="IComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="IScene.h" />
+    <ClInclude Include="Kamikaze.h" />
     <ClInclude Include="MainGame.h" />
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="MemoryPool.h" />
@@ -245,9 +251,12 @@
     <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
+    <ClCompile Include="GameOverTitle.cpp" />
     <ClCompile Include="IComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="IScene.cpp" />
+    <ClCompile Include="Kamikaze.cpp" />
     <ClCompile Include="MainGame.cpp" />
     <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Mesh.cpp" />

@@ -20,6 +20,7 @@ namespace PKH
 
         float lifeTick = 0.f;
         float lifeTime = 5.f;
+
     };
 
 }

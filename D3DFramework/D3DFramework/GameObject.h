@@ -44,6 +44,8 @@ namespace PKH
 
 		IComponent* GetComponent(const wstring& _key);
 		Transform* GetTransform() { return transform; } //¼öÁ¤
+
+
 	public:
 		Transform* transform = nullptr;
 

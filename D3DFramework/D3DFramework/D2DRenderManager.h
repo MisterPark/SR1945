@@ -28,6 +28,7 @@ namespace PKH
 
 		//================== 2D ======================
 		static HRESULT LoadSprite(TextureKey spriteKey, const wstring& filePath, DWORD row=1, DWORD col=1);
+		static void DrawSprite(TextureKey spriteKey, Vector3 pos, int index);
 		static void DrawSprite(TextureKey spriteKey, Transform transform, int index);
 		static void DrawUI(TextureKey spriteKey, Transform transform, int index);
 		static void DrawUI(TextureKey spriteKey, Vector3 pos, int index);

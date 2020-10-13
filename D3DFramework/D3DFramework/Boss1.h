@@ -5,6 +5,7 @@ namespace PKH
 {
 	enum class BossPatternType
 	{
+		PATTERN_00,
 		PATTERN_01,
 		PATTERN_02,
 		PATTERN_03,
@@ -22,18 +23,28 @@ namespace PKH
 		virtual void Die();
 		virtual void PostRender() override;
 
+		void Pattern0();
 		void Pattern1();
 		void Pattern2();
 		void Pattern3();
 
-		void Attack();
+		void PhaseUpdate();
 
 	public:
-		int hp = 100;
+		int hp = 300;
 		float attackTick = 0.f;
 		float attackDelay = 1.0f;
+		bool attackFlag = true;
 
-		BossPatternType type = BossPatternType::PATTERN_01;
+		float attack2Tick = 0.f;
+		float attack2Delay = 1.0f;
+		bool attack2Flag = true;
+
+		float attack3Tick = 0.f;
+		float attack3Delay = 5.0;
+		bool attack3Flag = true;
+
+		BossPatternType type = BossPatternType::PATTERN_00;
 	};
 }
 

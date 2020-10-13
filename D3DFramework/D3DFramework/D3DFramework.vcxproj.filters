@@ -306,6 +306,15 @@
     <ClInclude Include="Triangle02.h">
       <Filter>강희재\Mesh\PlayerBullet</Filter>
     </ClInclude>
+    <ClInclude Include="Kamikaze.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverScene.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverTitle.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3DFramework.cpp">
@@ -511,6 +520,15 @@
     </ClCompile>
     <ClCompile Include="Shield03.cpp">
       <Filter>길문호\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Kamikaze.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverScene.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverTitle.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

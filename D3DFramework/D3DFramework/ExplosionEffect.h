@@ -13,6 +13,12 @@ namespace PKH
 
 		virtual void Update() override;
 
+		float lifeTick = 0.f;
+		float lifeTime = 1.f;
+
+		int colorR = 255;
+		int colorG = 0;
+		int colorB = 0;
 	};
 
 

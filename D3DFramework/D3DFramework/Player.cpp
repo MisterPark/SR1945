@@ -8,13 +8,14 @@
 #include "AirPlaneBodyMesh.h"
 #include "AirPlaneWingMesh.h"
 #include "AirPlaneTailMesh.h"
+#include "Boss1.h"
 
 using namespace PKH;
 
 PKH::Player::Player()
 {
 	// TODO : À¯µµÅº
-	transform->position = { 0,0,0 };
+	transform->position = { 0,100,-100 };
 	transform->scale = { 0.5f,0.5f,0.5f };
 	moveSpeed = 50.f;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
@@ -38,6 +39,7 @@ PKH::Player::~Player()
 
 void PKH::Player::Update()
 {
+	SetLockOnList();
 
 	if (InputManager::GetKey('W'))
 	{
@@ -104,6 +106,10 @@ void PKH::Player::Update()
 	{
 		Attack();
 	}
+	if (InputManager::GetMouseRButton())
+	{
+		GuidedMissileAttack();
+	}
 	if (InputManager::GetKey(VK_SPACE))
 	{
 		Move(transform->up);
@@ -120,6 +126,13 @@ void PKH::Player::Update()
 	{
 		attackTick = 0.f;
 		attackFlag = true;
+	}
+
+	attack2Tick += TimeManager::DeltaTime();
+	if (attack2Tick > attack2Delay)
+	{
+		attack2Tick = 0.f;
+		attack2Flag = true;
 	}
 		
 
@@ -153,9 +166,20 @@ void PKH::Player::Die()
 
 void PKH::Player::PostRender()
 {
+	// HP UI
 	WCHAR wstr[64] = {};
 	wsprintf(wstr, L"HP : %d / 100", hp);
 	D2DRenderManager::DrawFont(wstr);
+
+	for (auto& iter : lockOnList)
+	{
+		Vector3 pos = Camera::WorldToScreenPoint(iter->transform->position);
+
+		D2DRenderManager::DrawSprite(TextureKey::LOCK_ON, pos, 0);
+	}
+
+	
+
 }
 
 void PKH::Player::Attack()
@@ -182,6 +206,41 @@ void PKH::Player::Attack()
 		missile->moveSpeed = 200.f;
 
 		
+	}
+}
+
+void PKH::Player::GuidedMissileAttack()
+{
+	if (attack2Flag)
+	{
+		attack2Tick = 0.f;
+		attack2Flag = false;
+
+		for (auto& iter : lockOnList)
+		{
+			//ÁÂ
+			Missile* missile = (Missile*)ObjectManager::GetInstance()->CreateObject<Missile>();
+			missile->transform->position = transform->position - (transform->right * 3.f);
+			missile->transform->position.y -= 5.0f;
+			missile->transform->eulerAngles = transform->eulerAngles;
+			missile->target = iter;
+			missile->moveSpeed = 200.f;
+			missile->transform->scale = { 5,8,5 };
+
+			// ¿ì
+			missile = (Missile*)ObjectManager::GetInstance()->CreateObject<Missile>();
+			missile->transform->position = transform->position + (transform->right * 3.f);
+			missile->transform->position.y -= 5.0f;
+			missile->transform->eulerAngles = transform->eulerAngles;
+			missile->target = iter;
+			missile->moveSpeed = 200.f;
+			missile->transform->scale = { 5,8,5 };
+
+			
+		}
+		
+
+
 	}
 }
 
@@ -217,4 +276,31 @@ void PKH::Player::RotateProcess()
 	
 	Camera::GetInstance()->SetPosition(pos);
 	Camera::GetInstance()->transform->look = camLook;
+}
+
+void PKH::Player::SetLockOnList()
+{
+	lockOnList.clear();
+	ObjectManager::GetInstance()->FindObjectList<Monster>(lockOnList);
+	ObjectManager::GetInstance()->FindObjectList<Boss1>(lockOnList);
+
+	Matrix view = Camera::GetViewMatrix();
+	Vector3 viewPos;
+
+	list<GameObject*>::iterator iter = lockOnList.begin();
+	list<GameObject*>::iterator end = lockOnList.end();
+	for (;iter != end;)
+	{
+		
+		D3DXVec3TransformCoord(&viewPos, &(*iter)->transform->position, &view);
+		if (viewPos.z < 50.f)
+		{
+			iter = lockOnList.erase(iter);
+		}
+		else
+		{
+			++iter;
+		}
+	}
+	
 }

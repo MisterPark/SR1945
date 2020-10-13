@@ -12,7 +12,7 @@ namespace PKH
 		SKY_F,
 		SKY_B,
 		CURSOR_TARGET,
-
+		LOCK_ON,
 
 	};
 

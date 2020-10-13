@@ -8,6 +8,8 @@
 #include "SkyBox.h"
 #include "ExplosionEffect.h"
 #include "Boss1.h"
+#include "GameOverScene.h"
+
 
 void TestScene::OnLoaded()
 {
@@ -16,7 +18,7 @@ void TestScene::OnLoaded()
 	Cursor::GetInstance()->isVisible = true;
 	Camera::GetInstance()->SetPosition(Vector3(0, 1.f, -1.f));
 
-	ObjectManager::GetInstance()->CreateObject<Player>();
+	p = (Player*)ObjectManager::GetInstance()->CreateObject<Player>();
 	
 	for (int i = 0; i < 10; i++)
 	{
@@ -34,14 +36,9 @@ void TestScene::OnLoaded()
 		m->dest3.z = Random::Range(-100.f, 300.f);
 		
 		m->transform->position = m->dest1;
-		//m->SetAirWay();
 	}
 	
-	GameObject* effect = ObjectManager::GetInstance()->CreateObject<ExplosionEffect>();
-	effect->transform->position = { 0,0,2 };
 
-	
-	Boss1* boss = (Boss1*)ObjectManager::GetInstance()->CreateObject<Boss1>();
 }
 
 void TestScene::OnUnloaded()
@@ -54,20 +51,25 @@ void TestScene::OnUnloaded()
 
 void TestScene::Update()
 {
-	if (InputManager::GetKey(VK_UP))
+	if (p != nullptr)
 	{
-		Camera::GetInstance()->transform->position.x += 5.f * TimeManager::DeltaTime();
+		if (p->isGameOver)
+		{
+			SceneManager::LoadScene<GameOverScene>();
+		}
 	}
-	if (InputManager::GetKey(VK_DOWN))
-	{
-		Camera::GetInstance()->transform->position.x -= 5.f *TimeManager::DeltaTime();
-	}
-	if (InputManager::GetKey(VK_LEFT))
-	{
 
-	}
-	if (InputManager::GetKey(VK_RIGHT))
-	{
 
+	time += TimeManager::DeltaTime();
+	if (time > bossTime)
+	{
+		if (bossFlag)
+		{
+			return;
+		}
+		Boss1* boss = (Boss1*)ObjectManager::GetInstance()->CreateObject<Boss1>();
+		bossFlag = true;
 	}
+
+	
 }

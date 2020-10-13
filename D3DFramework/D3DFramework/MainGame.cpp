@@ -5,6 +5,7 @@
 #include "Scene03.h"
 #include "Scene02.h"
 #include "Scene4.h"
+#include "GameOverScene.h"
 
 using namespace PKH;
 
@@ -68,13 +69,13 @@ void PKH::MainGame::Initialize()
 	D2DRenderManager::LoadSprite(TextureKey::SKY_B, L"Texture\\SKYBOX_B.png");
 
 
-
 	D2DRenderManager::LoadSprite(TextureKey::CURSOR_TARGET, L"Texture\\HUD_TARGET.png");
+	D2DRenderManager::LoadSprite(TextureKey::LOCK_ON, L"Texture\\LOCK_ON.png");
 
 	ObjectManager::GetInstance();
 
 	// ¾À·Îµå
-	SceneManager::LoadScene<TestScene>();
+	SceneManager::LoadScene<Scene02>();
 
 }
 
@@ -131,4 +132,5 @@ void PKH::MainGame::Resume()
 
 void PKH::MainGame::Shutdown()
 {
+	PostQuitMessage(0);
 }
