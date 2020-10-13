@@ -28,10 +28,8 @@ void PKH::Missile::Update()
 
 	Vector3 dir = targetPos - transform->position;
 	Vector3::Normalize(&dir);
-	//transform->position.x += dir.x * moveSpeed * TimeManager::DeltaTime();
-	//transform->position.y += dir.y * moveSpeed * TimeManager::DeltaTime();
-	//transform->position.z += dir.z * moveSpeed * TimeManager::DeltaTime();
-	MoveToTarget(targetPos);
+
+	Move(targetPos);
 	transform->LookAt(transform->position+dir);
 
 	// 범위 삭제

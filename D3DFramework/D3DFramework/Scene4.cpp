@@ -2,6 +2,7 @@
 #include "Scene4.h"
 #include "Player4.h"
 #include "Monster4.h"
+#include "Boss4.h"
 #include "Cube.h"
 #include "CollisionManager4.h"
 #include "Random_Manager4.h"
@@ -13,6 +14,7 @@ void Scene4::OnLoaded()
 	SceneStartTime = 0.f;
 	MonsterRegenTime1 = 0.f;
 	MonsterRegenTime2 = 0.f;
+	BossGen = false;
 	Player4* p = (Player4*)ObjectManager::GetInstance()->CreateObject<Player4>();
 	CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::PLAYER, p);
 	Cube* Comp = dynamic_cast<Cube*>(p->AddComponent<PKH::Cube>(L"Mesh"));
@@ -41,7 +43,7 @@ void Scene4::Update()
 	QueryPerformanceFrequency(&PerCount);
 	PerCount.QuadPart *= 0.1f;
 	QueryPerformanceCounter(&AccCount);
-	if (MonsterRegenTime1 > 1.5f) {
+	if (MonsterRegenTime1 > 1.5f && !BossGen) {
 		MonsterRegenTime1 = 0.f;
 		GameObject* g = ObjectManager::GetInstance()->CreateObject<Monster4>();
 		Monster4* m = dynamic_cast<Monster4*>(g);
@@ -69,6 +71,13 @@ void Scene4::Update()
 		//Monster4* m = (Monster4*)ObjectManager::GetInstance()->FindObject<Monster4>();
 		m->SetCode(2);
 		m->Ready();
+	}
+	if (!BossGen && SceneStartTime >= 30.f) {
+		BossGen = true;
+		GameObject* g = ObjectManager::GetInstance()->CreateObject<Boss4>();
+		Boss4* b = dynamic_cast<Boss4*>(g);
+		CollisionManager4::GetInstance()->RegisterObject(CollisionManager4::BOSS, g);
+		b->Ready();
 	}
 	CollisionManager4::GetInstance()->Update();
 	QuakeManager4::Update();

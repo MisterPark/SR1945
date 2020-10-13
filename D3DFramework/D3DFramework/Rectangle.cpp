@@ -58,11 +58,12 @@ void PKH::Rectangle::Render()
 	LPDIRECT3DDEVICE9 device = D2DRenderManager::GetDevice();
 	if (device)
 	{
+		Texture* texture = D2DRenderManager::GetTexture(textureKey);
 		if (texture != nullptr)
 		{
 			device->SetTexture(0, texture->pTexture);
 		}
-
+		
 		device->SetStreamSource(0, vb, 0, sizeof(VertexUV));
 		device->SetFVF(VertexUV::FVF);
 		device->SetIndices(triangles);

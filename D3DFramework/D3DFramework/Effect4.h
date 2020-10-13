@@ -10,9 +10,11 @@ namespace PKH {
 		~Effect4();
 		void Ready();
 		virtual void Update() override;
+		void SetCode(int _Code) { EffectCode = _Code; }
 	public:
 		Vector3 dir;
 		float Frame;
+		int EffectCode;
 	};
 }
 

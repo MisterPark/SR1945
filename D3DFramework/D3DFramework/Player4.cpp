@@ -14,8 +14,15 @@ PKH::Player4::Player4()
 	Key_Z = false;
 	Key_X = false;
 	Key_T = false;
-	Dimension3D = true;
+	Dimension3D = false;
+	Camera::SetProjection3D(false);
+	PlayerHp = 1000;
 	//transform->position.z = 0.1f;
+	SkillCoolTime = 0.f;
+	SkillCool = false;
+	transform->scale = Vector3{ 1.5f, 1.5f, 1.5f };
+	InvinTime = 0.f;
+	InvinEffect = 0.f;
 }
 
 PKH::Player4::~Player4()
@@ -24,6 +31,20 @@ PKH::Player4::~Player4()
 
 void PKH::Player4::Update()
 {
+	if(InvinTime > 0.f) {
+		InvinTime -= TimeManager::DeltaTime();
+		InvinEffect += TimeManager::DeltaTime();
+		if (InvinEffect >= 0.07f) {
+			if (isVisible)
+				isVisible = false;
+			else
+				isVisible = true;
+			InvinEffect = 0.f;
+		}
+	}
+	else {
+		isVisible = true;
+	}
 	if (InputManager::GetKey(VK_UP))
 	{
 		MoveToTarget(transform->position + Vector3::UP);
@@ -70,12 +91,15 @@ void PKH::Player4::Update()
 	}
 	if (InputManager::GetKey('T'))
 	{
-		if (!Key_T) {
+		if (!Key_T && !SkillCool) {
 			Key_T = true;
 			QuakeManager4::SetQuakeStart();
 			if (Dimension3D) {
 				Dimension3D = false;
+				SkillCool = true;
 				Camera::SetProjection3D(false);
+				if (SkillCoolTime < 2.5f)
+					SkillCoolTime = 2.5f;
 			}
 			else {
 				Dimension3D = true;
@@ -85,6 +109,28 @@ void PKH::Player4::Update()
 	}
 	else {
 		Key_T = false;
+	}
+	if (Dimension3D) {
+		SkillCoolTime += TimeManager::DeltaTime();
+		if (SkillCoolTime >= 5.f) {
+			Dimension3D = false;
+			Camera::SetProjection3D(false);
+			SkillCool = true;
+			SkillCoolTime = 5.f;
+			QuakeManager4::SetQuakeStart();
+		}
+	}
+	else if (SkillCool) {
+		SkillCoolTime -= TimeManager::DeltaTime();
+		if (SkillCoolTime < 0) {
+			SkillCool = false;
+		}
+	}
+	if (SkillCool) {
+		dynamic_cast<Cube*>(GetComponent(L"Mesh"))->SetColor(D3DCOLOR_XRGB(70, 65, 217));
+	}
+	else {
+		dynamic_cast<Cube*>(GetComponent(L"Mesh"))->SetColor(D3DCOLOR_XRGB(103, 153, 255));
 	}
 	if (InputManager::GetKey(VK_NUMPAD7))
 	{
@@ -122,4 +168,9 @@ void PKH::Player4::CreateBullet(int Code) {
 	b->SetCode(Code);
 	*(b->GetTransform()->Get_Pos()) = transform->position;
 	b->Ready();
+}
+
+void PKH::Player4::OnCollision(GameObject* target)
+{
+	InvinTime = 2.f;
 }

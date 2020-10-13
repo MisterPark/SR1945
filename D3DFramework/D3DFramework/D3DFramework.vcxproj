@@ -35,20 +35,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -147,6 +147,7 @@
     <ClInclude Include="AirPlaneTailMesh.h" />
     <ClInclude Include="AirPlaneWingMesh.h" />
     <ClInclude Include="Boss02.h" />
+    <ClInclude Include="Boss4.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="AxisCube.h" />
     <ClInclude Include="Bullet02.h" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Effect03.h" />
     <ClInclude Include="Effect4.h" />
     <ClInclude Include="Enemy02.h" />
+    <ClInclude Include="ExplosionEffect.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GameObject.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="Monster03.h" />
     <ClInclude Include="MyCollisionManager.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="Plane.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Player02.h" />
     <ClInclude Include="Player03.h" />
@@ -218,6 +221,7 @@
     <ClCompile Include="AirPlaneTailMesh.cpp" />
     <ClCompile Include="AirPlaneWingMesh.cpp" />
     <ClCompile Include="Boss02.cpp" />
+    <ClCompile Include="Boss4.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="AxisCube.cpp" />
     <ClCompile Include="Bullet02.cpp" />
@@ -236,6 +240,7 @@
     <ClCompile Include="Effect03.cpp" />
     <ClCompile Include="Effect4.cpp" />
     <ClCompile Include="Enemy02.cpp" />
+    <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="IComponent.cpp" />
@@ -251,6 +256,7 @@
     <ClCompile Include="Monster4.cpp" />
     <ClCompile Include="MonsterBullet4.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Player02.cpp" />
     <ClCompile Include="Player03.cpp" />

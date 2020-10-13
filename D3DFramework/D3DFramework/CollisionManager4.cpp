@@ -5,6 +5,7 @@
 #include "Monster4.h"
 #include "MonsterBullet4.h"
 #include "Camera.h"
+#include "Boss4.h"
 
 using namespace PKH;
 
@@ -55,14 +56,14 @@ void PKH::CollisionManager4::CollisionSphere(GameObject* rDstObj, GameObject* rS
 	}
 }
 
-bool PKH::CollisionManager4::CheckSphereDemension(GameObject* rDstObj, GameObject* rSrcObj)
+bool PKH::CollisionManager4::CheckSphereDemensionM(GameObject* rDstObj, GameObject* rSrcObj)
 {
 	// 3D 상태일때 && Monster 의 z 값이 플레이어와 다르면 -> 충돌이 아님
 	// 2D 상태에서는 z축과 상관없이 모두다 충돌
 	if (Camera::GetInstance()->GetProjection3D() && dynamic_cast<Monster4*>(rDstObj)->GetPosZ() != 0)
 		return false;
 
-	float fRadiusSum = (rDstObj->transform->scale.x * 0.15f) + (rSrcObj->transform->scale.x * 0.15f);
+	float fRadiusSum = (rDstObj->transform->scale.x * 0.1f) + (rSrcObj->transform->scale.x * 0.1f);
 	float fX = rDstObj->transform->position.x - rSrcObj->transform->position.x;
 	float fY = rDstObj->transform->position.y - rSrcObj->transform->position.y;
 	float fDist = sqrtf(fX * fX + fY * fY);
@@ -71,26 +72,61 @@ bool PKH::CollisionManager4::CheckSphereDemension(GameObject* rDstObj, GameObjec
 	return false;
 }
 
-bool PKH::CollisionManager4::CheckSphere(GameObject* rDstObj, GameObject* rSrcObj)
+bool PKH::CollisionManager4::CheckSphereDemensionPM(GameObject* rDstObj, GameObject* rSrcObj)
 {
-	//float fRadiusSum = (rDstObj->transform->scale.x * 0.25f) + (rSrcObj->transform->scale.x * 0.25f);
-	//float fX = rDstObj->transform->position.x - rSrcObj->transform->position.x;
-	//float fY = rDstObj->transform->position.y - rSrcObj->transform->position.y;
-	//float fZ = rDstObj->transform->position.z - rSrcObj->transform->position.z;
-	//float fDist = sqrtf(fX * fX + fY * fY + fZ * fZ);
-	//return fDist < fRadiusSum;
+	// 3D 상태일때 && Monster 의 z 값이 플레이어와 다르면 -> 충돌이 아님
+	// 2D 상태에서는 z축과 상관없이 모두다 충돌
+	if (Camera::GetInstance()->GetProjection3D() && dynamic_cast<Monster4*>(rSrcObj)->GetPosZ() != 0)
+		return false;
 
-	Vector3 target = rDstObj->transform->position - rSrcObj->transform->position;
-
-	float dstRadius = rDstObj->transform->scale.z * 0.1f;
-	float srcRadius = rSrcObj->transform->scale.z * 0.1f;
-
-	float distance = D3DXVec3LengthSq(&target);
-
-	if (distance <= dstRadius + srcRadius)
-		return true;
+	float fRadiusSum = (rDstObj->transform->scale.x * 0.1f) + (rSrcObj->transform->scale.x * 0.1f);
+	float fX = rDstObj->transform->position.x - rSrcObj->transform->position.x;
+	float fY = rDstObj->transform->position.y - rSrcObj->transform->position.y;
+	float fDist = sqrtf(fX * fX + fY * fY);
+	return fDist <= fRadiusSum;
 
 	return false;
+}
+
+bool PKH::CollisionManager4::CheckSphereDemensionMB(GameObject* rDstObj, GameObject* rSrcObj)
+{
+	// 3D 상태일때 && Monster 의 z 값이 플레이어와 다르면 -> 충돌이 아님
+	// 2D 상태에서는 z축과 상관없이 모두다 충돌
+	if (Camera::GetInstance()->GetProjection3D() && dynamic_cast<MonsterBullet4*>(rSrcObj)->GetPosZ() != 0)
+		return false;
+
+	float fRadiusSum = (rDstObj->transform->scale.x * 0.1f) + (rSrcObj->transform->scale.x * 0.1f);
+	float fX = rDstObj->transform->position.x - rSrcObj->transform->position.x;
+	float fY = rDstObj->transform->position.y - rSrcObj->transform->position.y;
+	float fDist = sqrtf(fX * fX + fY * fY);
+	return fDist <= fRadiusSum;
+
+	return false;
+}
+
+
+
+bool PKH::CollisionManager4::CheckSphere(GameObject* rDstObj, GameObject* rSrcObj)
+{
+	float fRadiusSum = (rDstObj->transform->scale.x * 0.1f) + (rSrcObj->transform->scale.x * 0.1f);
+	float fX = rDstObj->transform->position.x - rSrcObj->transform->position.x;
+	float fY = rDstObj->transform->position.y - rSrcObj->transform->position.y;
+	float fDist = sqrtf(fX * fX + fY * fY);
+	return fDist <= fRadiusSum;
+
+	return false;
+
+	//Vector3 target = rDstObj->transform->position - rSrcObj->transform->position;
+
+	//float dstRadius = rDstObj->transform->scale.z * 0.1f;
+	//float srcRadius = rSrcObj->transform->scale.z * 0.1f;
+
+	//float distance = D3DXVec3LengthSq(&target);
+
+	//if (distance <= dstRadius + srcRadius)
+	//	return true;
+
+	//return false;
 }
 
 void PKH::CollisionManager4::Update()
@@ -110,6 +146,9 @@ void PKH::CollisionManager4::Update()
 	//	}
 	//}
 	MonsterToPBulletCollision();
+	BossToPBulletCollision();
+	PlayerToMBulletCollision();
+	PlayerToMonsterCollision();
 }
 
 void PKH::CollisionManager4::RegisterObject(OBJTAG _ObjTag, GameObject* _pObj)
@@ -154,6 +193,20 @@ bool PKH::CollisionManager4::FindObject(GameObject* _pObj)
 	return false;
 }
 
+GameObject* PKH::CollisionManager4::FindMonster2D()
+{
+
+	
+	for (auto& iter : pInstance->objectList[MONSTER])
+	{
+		if (Camera::GetInstance()->GetProjection3D() && dynamic_cast<Monster4*>(iter)->GetPosZ() != 0)
+			continue;
+
+		return iter;
+	}
+	return nullptr;
+}
+
 bool PKH::CollisionManager4::FindObjectDelete(GameObject* _pObj)
 {
 	if (_pObj == nullptr)
@@ -189,15 +242,23 @@ void PKH::CollisionManager4::MonsterToPBulletCollision()
 		{
 			//if (src == dest)
 			//	continue;
-			if (CheckSphereDemension(*srciter, *dstiter))
+			if (CheckSphereDemensionM(*srciter, *dstiter))
 			{
-				(*srciter)->OnCollision(*dstiter);
-				(*dstiter)->OnCollision(*srciter);
+	
 				
-				srciter = pInstance->objectList[MONSTER].erase(srciter);
-				dstiter = pInstance->objectList[PLAYER_BULLET].erase(dstiter);
 				//srciter = pInstance->objectList[MONSTER].erase(dstiter);
-				CollisionCheck = true;
+				dynamic_cast<Monster4*>(*srciter)->DecHp(1);
+				if (dynamic_cast<Monster4*>(*srciter)->GetHp() <= 0) {
+					(*dstiter)->OnCollision(*srciter);
+					(*srciter)->OnCollision(*dstiter);
+					dstiter = pInstance->objectList[PLAYER_BULLET].erase(dstiter);
+					srciter = pInstance->objectList[MONSTER].erase(srciter);
+					CollisionCheck = true;
+				}
+				else {
+					(*dstiter)->OnCollision(*srciter);
+					dstiter = pInstance->objectList[PLAYER_BULLET].erase(dstiter);
+				}
 				break;
 			}
 			else {
@@ -207,6 +268,106 @@ void PKH::CollisionManager4::MonsterToPBulletCollision()
 		if (!CollisionCheck) {
 			++srciter;
 		}
+	}
+}
+
+void PKH::CollisionManager4::BossToPBulletCollision()
+{
+	auto srciter = pInstance->objectList[BOSS].begin();
+	for (; srciter != pInstance->objectList[BOSS].end();) // 몹
+	{
+		bool CollisionCheck = false;
+		auto dstiter = pInstance->objectList[PLAYER_BULLET].begin();
+
+		for (; dstiter != pInstance->objectList[PLAYER_BULLET].end();) // 총알
+		{
+			//if (src == dest)
+			//	continue;
+			if (CheckSphere(*srciter, *dstiter))
+			{
+				dynamic_cast<Boss4*>(*srciter)->DecHp(1);
+				if (dynamic_cast<Boss4*>(*srciter)->GetHp() <= 0) {
+					(*dstiter)->OnCollision(*srciter);
+					(*srciter)->OnCollision(*dstiter);
+					dstiter = pInstance->objectList[PLAYER_BULLET].erase(dstiter);
+					srciter = pInstance->objectList[BOSS].erase(srciter);
+					CollisionCheck = true;
+				}
+				else {
+					(*dstiter)->OnCollision(*srciter);
+					dstiter = pInstance->objectList[PLAYER_BULLET].erase(dstiter);
+				}
+				break;
+			}
+			else {
+				++dstiter;
+			}
+		}
+		if (!CollisionCheck) {
+			++srciter;
+		}
+	}
+}
+
+void PKH::CollisionManager4::PlayerToMBulletCollision()
+{
+	auto srciter = pInstance->objectList[PLAYER].begin();
+	for (; srciter != pInstance->objectList[PLAYER].end();) // 플레이어
+	{
+		bool CollisionCheck = false;
+		auto dstiter = pInstance->objectList[MONSTER_BULLET].begin();
+
+		for (; dstiter != pInstance->objectList[MONSTER_BULLET].end();) // 몬스터총알
+		{
+			if (dynamic_cast<Player4*>(*srciter)->GetInvinTime() > 0.f)
+				return;
+			if (CheckSphereDemensionMB(*srciter, *dstiter))
+			{
+				dynamic_cast<Player4*>(*srciter)->DecHp(1);
+				if (dynamic_cast<Player4*>(*srciter)->GetHp() <= 0) {
+					(*dstiter)->OnCollision(*srciter);
+					(*srciter)->OnCollision(*dstiter);
+					dstiter = pInstance->objectList[MONSTER_BULLET].erase(dstiter);
+					srciter = pInstance->objectList[PLAYER].erase(srciter);
+					CollisionCheck = true;
+				}
+				else {
+					(*dstiter)->OnCollision(*srciter);
+					(*srciter)->OnCollision(*dstiter);
+					dstiter = pInstance->objectList[MONSTER_BULLET].erase(dstiter);
+				}
+				break;
+			}
+			else {
+				++dstiter;
+			}
+		}
+		if (!CollisionCheck) {
+			++srciter;
+		}
+	}
+}
+
+void PKH::CollisionManager4::PlayerToMonsterCollision()
+{
+	auto srciter = pInstance->objectList[PLAYER].begin();
+	for (; srciter != pInstance->objectList[PLAYER].end();) // 플레이어
+	{
+		auto dstiter = pInstance->objectList[MONSTER].begin();
+
+		for (; dstiter != pInstance->objectList[MONSTER].end();) // 몬스터
+		{
+			if (dynamic_cast<Player4*>(*srciter)->GetInvinTime() > 0.f)
+				return;
+			if (CheckSphereDemensionPM(*srciter, *dstiter))
+			{
+				dynamic_cast<Player4*>(*srciter)->DecHp(1);
+				(*srciter)->OnCollision(*dstiter);
+				break;
+			}
+			++dstiter;
+		}
+		++srciter;
 	}
 }
 

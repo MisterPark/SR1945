@@ -36,7 +36,6 @@ Vector3 PKH::Cursor::GetMousePos()
     POINT pt;
     GetCursorPos(&pt);
     ScreenToClient(g_hwnd, &pt);
-
     pos.x = pt.x;
     pos.y = pt.y;
     return pos;

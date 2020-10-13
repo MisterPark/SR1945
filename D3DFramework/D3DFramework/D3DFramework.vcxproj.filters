@@ -288,6 +288,15 @@
     <ClInclude Include="Random.h">
       <Filter>Lib</Filter>
     </ClInclude>
+    <ClInclude Include="ExplosionEffect.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane.h">
+      <Filter>Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss4.h">
+      <Filter>차승현\GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="Shield03.h">
       <Filter>길문호\GameObject</Filter>
     </ClInclude>
@@ -484,6 +493,15 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="ExplosionEffect.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane.cpp">
+      <Filter>Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Boss4.cpp">
+      <Filter>차승현\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Shield03.cpp">
       <Filter>길문호\GameObject</Filter>

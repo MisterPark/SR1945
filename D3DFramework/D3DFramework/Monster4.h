@@ -11,8 +11,10 @@ namespace PKH
         virtual ~Monster4();
         // GameObject을(를) 통해 상속됨
         virtual void Update() override;
-        void SetCode(int CodeSet) { MonsterCode = CodeSet; }
         int GetPosZ() { return MonsterPosZ; }
+        int GetHp() { return MonsterHp; }
+        void DecHp(int Att) { MonsterHp -= Att; }
+        void SetCode(int CodeSet) { MonsterCode = CodeSet; }
         void SetPosZ(int PosZ) { MonsterPosZ = PosZ; }
         void Ready();
     private:
@@ -29,5 +31,6 @@ namespace PKH
         float MonsterBulletRegenTime;
         float MonsterPatternTime;
         int MonsterPosZ;
+        int MonsterHp;
     };
 }

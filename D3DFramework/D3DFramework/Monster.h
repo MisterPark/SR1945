@@ -30,8 +30,12 @@ namespace PKH
 
         void MoveToPlayer();
 
+        void Attack();
+
     public:
         int hp = 3;
+        float attackTick = 0.f;
+        float attackDelay = 1.0f;
         MonsterPatternType type = MonsterPatternType::PATTERN_01;
 
         Vector3 dest1 = { 100,0,100 };
