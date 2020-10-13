@@ -72,7 +72,7 @@ void PKH::MainGame::Initialize()
 	ObjectManager::GetInstance();
 
 	// ¾À·Îµå
-	SceneManager::LoadScene<Scene03>();
+	SceneManager::LoadScene<TestScene>();
 
 }
 

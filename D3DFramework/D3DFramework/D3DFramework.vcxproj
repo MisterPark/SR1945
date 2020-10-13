@@ -147,6 +147,7 @@
     <ClInclude Include="AirPlaneTailMesh.h" />
     <ClInclude Include="AirPlaneWingMesh.h" />
     <ClInclude Include="Boss02.h" />
+    <ClInclude Include="Boss1.h" />
     <ClInclude Include="Boss4.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="AxisCube.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="AirPlaneTailMesh.cpp" />
     <ClCompile Include="AirPlaneWingMesh.cpp" />
     <ClCompile Include="Boss02.cpp" />
+    <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Boss4.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="AxisCube.cpp" />

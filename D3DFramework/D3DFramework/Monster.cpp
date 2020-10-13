@@ -14,7 +14,7 @@ PKH::Monster::Monster()
 	transform->scale = { 0.8f,0.8f,0.8f };
 	moveSpeed = 50.f;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
-	
+	hp = 3;
 	Mesh* mesh = (Mesh*)AddComponent<PKH::AirPlaneBodyMesh>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(150, 50, 50));
 	mesh = (Mesh*)AddComponent<PKH::AirPlaneWingMesh>(L"Mesh2");
@@ -64,7 +64,9 @@ void PKH::Monster::OnCollision(GameObject* target)
 		Missile* ms = (Missile*)target;
 		if (ms->isAlliance)
 		{
-			Die();
+			hp--;
+			if(hp < 1)
+				Die();
 		}
 	}
 }
@@ -87,7 +89,9 @@ void PKH::Monster::PostRender()
 
 	Vector3 pos = Camera::WorldToScreenPoint(transform->position);
 	
-	D2DRenderManager::DrawFont(L"∏ÛΩ∫≈Õ", pos.x, pos.y, Color::Red);
+	WCHAR wstr[64];
+	wsprintf(wstr, L"HP :%d/3", hp);
+	D2DRenderManager::DrawFont(wstr, pos.x, pos.y +10, Color::Red);
 }
 
 void PKH::Monster::SetAirWay()
