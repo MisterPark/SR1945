@@ -13,10 +13,12 @@ using namespace PKH;
 
 PKH::Player::Player()
 {
+	// TODO : À¯µµÅº
 	transform->position = { 0,0,0 };
 	transform->scale = { 0.5f,0.5f,0.5f };
 	moveSpeed = 50.f;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
+	isAlliance = true;
 
 	Mesh* mesh = (Mesh*)AddComponent<PKH::AirPlaneBodyMesh>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(50, 50, 50));
@@ -132,7 +134,15 @@ void PKH::Player::OnCollision(GameObject* target)
 	}
 	else if (dynamic_cast<Missile*>(target))
 	{
-		hp--;
+		if (target->isAlliance != isAlliance)
+		{
+			hp--;
+			if (hp < 1)
+			{
+				//Die();
+			}
+				
+		}
 	}
 }
 

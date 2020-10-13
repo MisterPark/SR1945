@@ -11,9 +11,10 @@
 PKH::Monster::Monster()
 {
 	transform->position = dest1;
-	transform->scale = { 0.8f,0.8f,0.8f };
+	transform->scale = { 1.0f,1.0f,1.0f };
 	moveSpeed = 50.f;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
+	isAlliance = false;
 	hp = 3;
 	Mesh* mesh = (Mesh*)AddComponent<PKH::AirPlaneBodyMesh>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(150, 50, 50));

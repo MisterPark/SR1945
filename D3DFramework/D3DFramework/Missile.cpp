@@ -54,6 +54,7 @@ void PKH::Missile::Die()
 
 void PKH::Missile::OnCollision(GameObject* target)
 {
+	if (dynamic_cast<Missile*>(target)) return;
 	if (target->isAlliance != isAlliance)
 	{
 		Die();

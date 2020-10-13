@@ -11,6 +11,7 @@ PKH::Boss1::Boss1()
 	transform->position = { 0,100,100 };
 	transform->scale = { 3.f,3.f,3.f };
 	moveSpeed = 50.f;
+	isAlliance = false;
 	transform->eulerAngles.x = D3DXToRadian(90.f);
 	Mesh* mesh = (Mesh*)AddComponent<PKH::AirPlaneBodyMesh>(L"Mesh");
 	mesh->SetColor(D3DCOLOR_XRGB(150, 50, 50));
