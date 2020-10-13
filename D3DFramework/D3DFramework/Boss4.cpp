@@ -8,6 +8,7 @@
 #include "CollisionManager4.h"
 #include "Effect4.h"
 
+
 PKH::Boss4::Boss4()
 {
 	TargetPlayer = nullptr;
@@ -280,6 +281,6 @@ void PKH::Boss4::OnCollision(GameObject* target)
 		*(e->GetTransform()->Get_Pos()) = transform->position;
 		e->Ready();
 	}
-
+	dynamic_cast<Player4*>(ObjectManager::GetInstance()->FindObject<Player4>())->SetBossDie();
 	isDead = true;
 }

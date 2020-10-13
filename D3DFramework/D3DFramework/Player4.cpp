@@ -6,6 +6,9 @@
 #include "Cube.h"
 #include "CollisionManager4.h"
 #include "QuakeManager4.h"
+#include "SceneManager.h"
+#include "TestScene.h"
+
 using namespace PKH;
 
 PKH::Player4::Player4()
@@ -13,7 +16,7 @@ PKH::Player4::Player4()
 	moveSpeed = 3.f;
 	Key_Z = false;
 	Key_X = false;
-	Key_T = false;
+	Key_C = false;
 	Dimension3D = false;
 	Camera::SetProjection3D(false);
 	PlayerHp = 1000;
@@ -23,6 +26,9 @@ PKH::Player4::Player4()
 	transform->scale = Vector3{ 1.5f, 1.5f, 1.5f };
 	InvinTime = 0.f;
 	InvinEffect = 0.f;
+
+	 BossDie = false;
+	 SceneChangeTime = 0.f;
 }
 
 PKH::Player4::~Player4()
@@ -31,6 +37,15 @@ PKH::Player4::~Player4()
 
 void PKH::Player4::Update()
 {
+	if (BossDie) {
+		SceneChangeTime += TimeManager::DeltaTime();
+		if (SceneChangeTime > 5.f) {
+			Camera::SetProjection3D(true);
+			SceneManager::LoadScene<TestScene>();
+		}
+
+	}
+
 	if(InvinTime > 0.f) {
 		InvinTime -= TimeManager::DeltaTime();
 		InvinEffect += TimeManager::DeltaTime();
@@ -89,17 +104,17 @@ void PKH::Player4::Update()
 	else {
 		Key_X = false;
 	}
-	if (InputManager::GetKey('T'))
+	if (InputManager::GetKey('C'))
 	{
-		if (!Key_T && !SkillCool) {
-			Key_T = true;
+		if (!Key_C && !SkillCool) {
+			Key_C = true;
 			QuakeManager4::SetQuakeStart();
 			if (Dimension3D) {
 				Dimension3D = false;
 				SkillCool = true;
 				Camera::SetProjection3D(false);
-				if (SkillCoolTime < 2.5f)
-					SkillCoolTime = 2.5f;
+				if (SkillCoolTime < 2.f)
+					SkillCoolTime = 2.f;
 			}
 			else {
 				Dimension3D = true;
@@ -108,7 +123,7 @@ void PKH::Player4::Update()
 		}
 	}
 	else {
-		Key_T = false;
+		Key_C = false;
 	}
 	if (Dimension3D) {
 		SkillCoolTime += TimeManager::DeltaTime();
@@ -116,7 +131,7 @@ void PKH::Player4::Update()
 			Dimension3D = false;
 			Camera::SetProjection3D(false);
 			SkillCool = true;
-			SkillCoolTime = 5.f;
+			SkillCoolTime = 4.f;
 			QuakeManager4::SetQuakeStart();
 		}
 	}
@@ -174,3 +189,4 @@ void PKH::Player4::OnCollision(GameObject* target)
 {
 	InvinTime = 2.f;
 }
+

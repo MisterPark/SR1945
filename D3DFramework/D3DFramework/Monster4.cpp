@@ -15,7 +15,7 @@ PKH::Monster4::Monster4()
 	MonsterBulletRegenTime = 0.f;
 	MonsterPatternTime = 0.f;
 	MonsterPosZ = 0;
-	MonsterHp = 5;
+	MonsterHp = 4;
 }
 
 PKH::Monster4::~Monster4()
