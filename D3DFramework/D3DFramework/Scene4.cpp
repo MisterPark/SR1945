@@ -72,7 +72,7 @@ void Scene4::Update()
 		m->SetCode(2);
 		m->Ready();
 	}
-	if (!BossGen && SceneStartTime >= 30.f) {
+	if (!BossGen && SceneStartTime >= 50.f) {
 		BossGen = true;
 		GameObject* g = ObjectManager::GetInstance()->CreateObject<Boss4>();
 		Boss4* b = dynamic_cast<Boss4*>(g);

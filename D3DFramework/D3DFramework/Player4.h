@@ -14,6 +14,7 @@ namespace PKH
 		virtual void Update() override;
 	public:
 		void DecHp(int Att) { PlayerHp -= Att; }
+		void SetBossDie() { BossDie = true; }
 		int GetHp() { return PlayerHp; }
 		bool Get_Dimension3D() { return Dimension3D; }
 		float GetInvinTime() {return InvinTime; }
@@ -23,13 +24,16 @@ namespace PKH
 	private:
 		bool Key_Z;
 		bool Key_X;
-		bool Key_T;
+		bool Key_C;
 		bool Dimension3D;
 		int PlayerHp;
 		float SkillCoolTime;
 		bool SkillCool;
 		float InvinTime;
 		float InvinEffect;
+
+		bool BossDie;
+		float SceneChangeTime;
 	};
 
 
