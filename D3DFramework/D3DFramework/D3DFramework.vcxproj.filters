@@ -207,9 +207,6 @@
     <ClInclude Include="Enemy02.h">
       <Filter>강희재\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Triangle02.h">
-      <Filter>강희재\Mesh\Plane</Filter>
-    </ClInclude>
     <ClInclude Include="MyCollisionManager.h">
       <Filter>강희재\MyCollisionManager</Filter>
     </ClInclude>
@@ -290,6 +287,12 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Shield03.h">
+      <Filter>길문호\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Triangle02.h">
+      <Filter>강희재\Mesh\PlayerBullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -481,6 +484,9 @@
     </ClCompile>
     <ClCompile Include="Cursor.cpp">
       <Filter>Cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="Shield03.cpp">
+      <Filter>길문호\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

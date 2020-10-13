@@ -65,8 +65,9 @@ void PKH::Bullet03::Update()
 						mesh->SetColor(D3DCOLOR_XRGB(mon->zTypeColor[0], mon->zTypeColor[1], mon->zTypeColor[2]));
 					}
 				}
-				isSetting = true;
+				
 			}
+			isSetting = true;
 		}
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player != nullptr)
@@ -106,6 +107,7 @@ void PKH::Bullet03::Update()
 			{
 				dynamic_cast<Player03*>(player)->hp--;
 				dynamic_cast<Player03*>(player)->MyColor -= 25;
+				dynamic_cast<Player03*>(player)->mesh->SetColor(D3DCOLOR_RGBA(0, dynamic_cast<Player03*>(player)->MyColor, dynamic_cast<Player03*>(player)->MyColor, 0));
 				if (player->transform->scale.x > 0.5f)
 				{
 					dynamic_cast<Player03*>(player)->transform->scale -= Vector3{ 0.1f,0.1f,0.1f };
@@ -195,6 +197,7 @@ void PKH::Bullet03::Update()
 					{
 						dynamic_cast<Monster03*>(monster)->BossRotateSpeed += 0.1f;
 						dynamic_cast<Monster03*>(monster)->MyColor += 250 / dynamic_cast<Monster03*>(monster)->Maxhp;
+						
 						if (dynamic_cast<Monster03*>(monster)->transform->position.z > 5.f)
 						{
 							dynamic_cast<Monster03*>(monster)->transform->position.z -= 0.1f;
