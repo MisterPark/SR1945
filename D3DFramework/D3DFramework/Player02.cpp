@@ -26,7 +26,11 @@ void Player02::Update()
 		if (0.f > coolTime) canAttack = true;
 	}
 
-	if (InputManager::GetKeyDown('Z'))
+	if (InputManager::GetKey('Z'))
+	{
+		Attack();
+	}
+	if (InputManager::GetKeyDown('X'))
 	{
 		isInvincible ^= true;
 	}
@@ -53,11 +57,7 @@ void Player02::Update()
 	{
 		float futureValue = transform->position.x + (moveSpeed * TimeManager::DeltaTime());
 
-		if(futureValue <= 3.9f) MoveToTarget(transform->position + Vector3::RIGHT);
-	}
-	if (InputManager::GetKey(VK_SPACE))
-	{
-		Attack();
+		if (futureValue <= 3.9f) MoveToTarget(transform->position + Vector3::RIGHT);
 	}
 
 	for (auto& iter : components)

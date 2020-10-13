@@ -39,6 +39,8 @@ void PKH::MainGame::Destroy()
 
 void PKH::MainGame::Initialize()
 {
+	Random::InitState();
+
     // 다른 모든 매니저 초기화
 	TimeManager::GetInstance();
 	TimeManager::SetFPS(60.f);
@@ -72,7 +74,7 @@ void PKH::MainGame::Initialize()
 	ObjectManager::GetInstance();
 
 	// 씬로드
-	SceneManager::LoadScene<Scene4>();
+	SceneManager::LoadScene<Scene02>();
 
 }
 

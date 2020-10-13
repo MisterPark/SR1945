@@ -4,6 +4,7 @@
 #include "Enemy02.h"
 #include "Boss02.h"
 #include "MyCollisionManager.h"
+#include "Scene03.h"
 
 void Scene02::OnLoaded()
 {
@@ -26,18 +27,22 @@ void Scene02::Update()
 {
 	if (IsEndScene())
 	{
-		// ¾À ÀüÈ¯
-		int i = 0;
+		endCount += TimeManager::DeltaTime();
+
+		if (endCount >= 3.f) SceneManager::LoadScene<Scene03>();
 	}
 
-	SpawnByTime();
+	else
+	{
+		SpawnByTime();
 
-	MyCollisionManager::GetInstance()->Collide(MyCollisionManager::ENEMY, MyCollisionManager::PLAYER_BULLET);
-	MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::BOSS, MyCollisionManager::PLAYER_BULLET);
-	MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::PLAYER, MyCollisionManager::ENEMY_BULLET);
-	MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::ENEMY_BULLET);
-	MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::PLAYER_BULLET);
-	MyCollisionManager::GetInstance()->CullingEnemy();
+		MyCollisionManager::GetInstance()->Collide(MyCollisionManager::ENEMY, MyCollisionManager::PLAYER_BULLET);
+		MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::BOSS, MyCollisionManager::PLAYER_BULLET);
+		MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::PLAYER, MyCollisionManager::ENEMY_BULLET);
+		MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::ENEMY_BULLET);
+		MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::PLAYER_BULLET);
+		MyCollisionManager::GetInstance()->CullingEnemy();
+	}
 }
 
 bool Scene02::IsEndScene()
@@ -59,11 +64,26 @@ void Scene02::SpawnByTime()
 
 		if (30.f < playTime)
 		{
-			SpawnEnemy01({ -1.5f, 5.f, 0.f });
-			SpawnEnemy01({ 1.5f, 5.f, 0.f });
+			float xPos, yPos, zPos;
 
-			SpawnEnemy02({ -2.5f, 1.5f, 5.f });
-			SpawnEnemy02({ 2.5f, 1.5f, 5.f });
+			SpawnEnemy01({ 0.f, 5.f, 0.f });
+			SpawnEnemy02({ 0.f, 2.f, 5.f });
+
+			yPos = Random::Range(5.f, 8.f);
+			SpawnEnemy01({ -1.5f, yPos, 0.f });
+
+			yPos = Random::Range(5.f, 8.f);
+			SpawnEnemy01({ 1.5f, yPos, 0.f });
+
+			xPos = Random::Range(-2.5f, -1.f);
+			yPos = Random::Range(1.5f, 2.5f);
+			zPos = Random::Range(3.f, 8.f);
+			SpawnEnemy02({ xPos, yPos, zPos });
+
+			xPos = Random::Range(1.f, 2.5f);
+			yPos = Random::Range(1.5f, 2.5f);
+			zPos = Random::Range(3.f, 8.f);
+			SpawnEnemy02({ xPos, yPos, zPos });
 
 			SpawnBoss({ 0.f, 2.5f, 0.f });
 		}
@@ -72,16 +92,27 @@ void Scene02::SpawnByTime()
 		{
 			++spawnType;
 
+			float xPos, yPos, zPos;
+
 			if (spawnType % 2)
 			{
-				SpawnEnemy01({ -1.5f, 5.f, 0.f });
-				SpawnEnemy01({ 1.5f, 5.f, 0.f });
+				xPos = Random::Range(-1.5f, 0.f);
+				SpawnEnemy01({ xPos, 5.f, 0.f });
+
+				xPos = Random::Range(0.f, 1.5f);
+				SpawnEnemy01({ xPos, 5.f, 0.f });
 			}
 			else
 			{
 				SpawnEnemy01({ 0.f, 5.f, 0.f });
-				SpawnEnemy01({ 3.f, 5.f, 0.f });
-				SpawnEnemy01({ -3.f, 5.f, 0.f });
+
+				xPos = Random::Range(1.5f, 2.5f);
+				yPos = Random::Range(5.f, 8.f);
+				SpawnEnemy01({ xPos, yPos, 0.f });
+
+				xPos = Random::Range(-2.5f, -1.5f);
+				yPos = Random::Range(5.f, 8.f);
+				SpawnEnemy01({ xPos, yPos, 0.f });
 			}
 
 			spawnTime = 0.f;
@@ -91,14 +122,35 @@ void Scene02::SpawnByTime()
 		{
 			++spawnType2;
 
+			float xPos, yPos, zPos;
+
 			if (spawnType2 % 2)
 			{
-				SpawnEnemy02({ 0.f, 1.5f, 4.f });
+				xPos = Random::Range(-2.5f, -1.f);
+				yPos = Random::Range(-1.f, 2.f);
+				zPos = Random::Range(4.f, 6.f);
+
+				SpawnEnemy02({ xPos, yPos, zPos });
+
+				xPos = Random::Range(1.f, 2.5f);
+				yPos = Random::Range(-1.f, 2.f);
+				zPos = Random::Range(4.f, 6.f);
+
+				SpawnEnemy02({ xPos, yPos, zPos });
 			}
 			else
 			{
-				SpawnEnemy02({ -2.5f, 1.5f, 4.f });
-				SpawnEnemy02({ 2.5f, 1.5f, 4.f });
+				SpawnEnemy02({ 0.f, 1.5f, 7.f });
+
+				xPos = Random::Range(-2.5f, -1.f);
+				yPos = Random::Range(-1.f, 2.f);
+				zPos = Random::Range(4.f, 6.f);
+				SpawnEnemy02({ xPos, yPos, zPos });
+
+				xPos = Random::Range(1.f, 2.5f);
+				yPos = Random::Range(-1.f, 2.f);
+				zPos = Random::Range(4.f, 6.f);
+				SpawnEnemy02({ xPos, yPos, zPos });
 			}
 
 			spawnTime2 = 0.f;

@@ -36,5 +36,6 @@ private:
 
 	float spawnTime = 0.f;
 	float spawnTime2 = 0.f;
+	float endCount = 0.f;
 };
 
