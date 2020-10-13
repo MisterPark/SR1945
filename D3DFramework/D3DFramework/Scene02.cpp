@@ -38,6 +38,7 @@ void Scene02::Update()
 
 		MyCollisionManager::GetInstance()->Collide(MyCollisionManager::ENEMY, MyCollisionManager::PLAYER_BULLET);
 		MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::BOSS, MyCollisionManager::PLAYER_BULLET);
+		MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::PLAYER, MyCollisionManager::ENEMY);
 		MyCollisionManager::GetInstance()->Collide2(MyCollisionManager::PLAYER, MyCollisionManager::ENEMY_BULLET);
 		MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::ENEMY_BULLET);
 		MyCollisionManager::GetInstance()->CullingBullet(MyCollisionManager::PLAYER_BULLET);
