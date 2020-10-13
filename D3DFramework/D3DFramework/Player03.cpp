@@ -70,7 +70,7 @@ void PKH::Player03::Update()
 		//	}
 		//}
 	
-	if (InputManager::GetKey(VK_SPACE))
+	if (InputManager::GetKey('Z'))
 	{
 		GameObject* monstercheck = ObjectManager::GetInstance()->FindObject<Monster03>();
 
