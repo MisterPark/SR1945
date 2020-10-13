@@ -113,7 +113,7 @@ void PKH::Boss1::PostRender()
 	Vector3 pos = Camera::WorldToScreenPoint(transform->position);
 
 	WCHAR wstr[64];
-	wsprintf(wstr, L"HP :%d/100", hp);
+	wsprintf(wstr, L"HP :%d/300", hp);
 	D2DRenderManager::DrawFont(wstr, pos.x, pos.y + 10, Color::Red);
 }
 

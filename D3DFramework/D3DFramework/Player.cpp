@@ -59,14 +59,7 @@ void PKH::Player::Update()
 			transform->eulerAngles.x = angleX;
 		}
 	}
-	if (InputManager::GetKey('A'))
-	{
-		Move(Vector3::LEFT);
-	}
-	if (InputManager::GetKey('D'))
-	{
-		Move(Vector3::RIGHT);
-	}
+	
 	if (InputManager::GetKey('Q'))
 	{
 		Move(Vector3::FORWARD);
