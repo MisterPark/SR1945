@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CollisionManager03.h"
+#include <algorithm>
 
 using namespace PKH;
 
