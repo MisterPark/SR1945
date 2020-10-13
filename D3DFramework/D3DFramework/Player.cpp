@@ -31,6 +31,7 @@ PKH::Player::Player()
 
 PKH::Player::~Player()
 {
+	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Player::Update()
@@ -131,19 +132,20 @@ void PKH::Player::OnCollision(GameObject* target)
 	}
 	else if (dynamic_cast<Missile*>(target))
 	{
-		
+		hp--;
 	}
 }
 
 void PKH::Player::Die()
 {
 	GameObject::Die();
-	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Player::PostRender()
 {
-	
+	WCHAR wstr[64] = {};
+	wsprintf(wstr, L"HP : %d / 100", hp);
+	D2DRenderManager::DrawFont(wstr);
 }
 
 void PKH::Player::Attack()

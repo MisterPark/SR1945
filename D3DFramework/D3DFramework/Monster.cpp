@@ -27,6 +27,7 @@ PKH::Monster::Monster()
 
 PKH::Monster::~Monster()
 {
+	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Monster::Update()
@@ -74,7 +75,7 @@ void PKH::Monster::OnCollision(GameObject* target)
 void PKH::Monster::Die()
 {
 	GameObject::Die();
-	CollisionManager::DisregisterObject(this);
+	
 }
 
 void PKH::Monster::PostRender()

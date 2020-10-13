@@ -12,6 +12,7 @@ PKH::Missile::Missile()
 
 PKH::Missile::~Missile()
 {
+	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Missile::Update()
@@ -49,9 +50,12 @@ void PKH::Missile::Update()
 void PKH::Missile::Die()
 {
 	GameObject::Die();
-	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Missile::OnCollision(GameObject* target)
 {
+	if (target->isAlliance != isAlliance)
+	{
+		Die();
+	}
 }

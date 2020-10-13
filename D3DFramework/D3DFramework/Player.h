@@ -21,6 +21,7 @@ namespace PKH
 		float attackTick = 0.f;
 		float attackDelay = 0.2f;
 		bool attackFlag = true;
+		int hp = 100;
 	};
 
 

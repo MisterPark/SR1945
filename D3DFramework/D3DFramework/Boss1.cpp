@@ -24,6 +24,7 @@ PKH::Boss1::Boss1()
 
 PKH::Boss1::~Boss1()
 {
+	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Boss1::Update()
@@ -67,7 +68,6 @@ void PKH::Boss1::OnCollision(GameObject* target)
 void PKH::Boss1::Die()
 {
 	GameObject::Die();
-	CollisionManager::DisregisterObject(this);
 }
 
 void PKH::Boss1::PostRender()

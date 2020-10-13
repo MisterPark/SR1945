@@ -17,7 +17,6 @@ namespace PKH
     public:
         GameObject* target = nullptr;
         Vector3 targetPos;
-        bool isAlliance = true;
 
         float lifeTick = 0.f;
         float lifeTime = 5.f;
