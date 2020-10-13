@@ -55,21 +55,7 @@ void PKH::Player03::Update()
 				MoveToTarget(transform->position + Vector3::RIGHT);
 			}
 		}
-		//if (InputManager::GetKey('Z'))
-		//{
-		//	if (transform->position.z < 1)
-		//	{
-		//		MoveToTarget(transform->position + Vector3::FORWARD);
-		//	}
-		//}
-		//if (InputManager::GetKey('X'))
-		//{
-		//	if (transform->position.z > -1)
-		//	{
-		//		MoveToTarget(transform->position + Vector3::BACK);
-		//	}
-		//}
-	
+
 	if (InputManager::GetKey('Z'))
 	{
 		GameObject* monstercheck = ObjectManager::GetInstance()->FindObject<Monster03>();
@@ -95,7 +81,14 @@ void PKH::Player03::Update()
 			}
 		}
 	}
-
+	if (InputManager::GetKey('X'))
+	{
+		nohit = true;
+	}
+	if (InputManager::GetKey('C'))
+	{
+		nohit = false;
+	}
 	//if (InputManager::GetKey('C'))
 	//{
 	//	

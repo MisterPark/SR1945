@@ -55,7 +55,7 @@ void Scene03::Update()
 		//}
 	}
 	//playercheck
-	if (InputManager::GetKey(VK_NUMPAD1))
+	if (InputManager::GetKey(VK_RETURN))
 	{
 		GameObject* player = ObjectManager::GetInstance()->FindObject<Player03>();
 		if (player == nullptr)
@@ -66,193 +66,193 @@ void Scene03::Update()
 		
 	}
 	
-	if (MonsterMakeCount == 0)
-	{//test
-	//bosstype
-		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-		m->SetPosition(Vector3{ 0.f,5.f,11.f });
-		m->BossType = true;
-		m->transform->scale = { 10.f,10.f,10.f };
-		MonsterMakeCount++;
-	}
-	////////////////////////////////////////
-
-
-	////monster check
-	//GameObject* monstercheck = ObjectManager::GetInstance()->FindObject<Monster03>();
-	//if (!monstercheck)
-	//{
-	//	// xtype
-
-	//	//Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	//m->SetPosition(Vector3{ -10.f,0.f,5.f });
-	//	//m->xType = true;
-	//	//m->AddComponent<PKH::Cube>(L"Mesh");
-
-	//	//m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	//m->SetPosition(Vector3{ -10.f,5.f,5.f });
-	//	//m->xType = true;
-	//	//m->AddComponent<PKH::Cube>(L"Mesh");
-
-	//	//m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	//m->SetPosition(Vector3{ -10.f,-5.f,5.f });
-	//	//m->xType = true;
-	//	//m->AddComponent<PKH::Cube>(L"Mesh");
-	//}
-
-
-	////持失
-	//if (tick > 2.f && MonsterMakeCount==0)
-	//{
-	//	Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,0.f,5.f });
-	//	m->xType = true;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,5.f,5.f });
-	//	m->xType = true;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,-5.f,5.f });
-	//	m->xType = true;
-	//	MonsterMakeCount++;
-	//}
-
-	//if (tick > 6.f && MonsterMakeCount == 1)
-	//{
-
-	//	//ytype
-	//	Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -5.f,10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = -5.f;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -2.f,-10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = -2.f;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 2.f,10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = 2.f;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 5.f,-10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = 5.f;
-	//	MonsterMakeCount++;
-	//}
-
-	//if (tick > 10.f && MonsterMakeCount == 2)
-	//{
-	//	//ztype
-
-	//	Monster03*  m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -6.f,0.f,8.f });
-	//	
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -3.f,0.f,8.f });
-	//	
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -0.f,0.f,8.f });
-	//	
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 3.f,0.f,8.f });
-	//	
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 6.f,0.f,8.f });
-	//	MonsterMakeCount++;
-	//}
-
-
-	//if (tick > 15.f && MonsterMakeCount == 3)
-	//{
-	//	//xtype
-
-	//	Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,0.f,5.f });
-	//	m->xType = true;
-	//	
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,5.f,5.f });
-	//	m->xType = true;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -10.f,-5.f,5.f });
-	//	m->xType = true;
-	//	
-	//	//ytype
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 2.f,10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = 2.f;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -2.f,-10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = -2.f;
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 5.f,10.f,5.f });
-	//	m->yType = true;
-	//	m->yTypex = 5.f;
-	//	
-	//	//ztype
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -6.f,5.f,8.f });
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -3.f,-5.f,8.f });
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ -0.f,0.f,8.f });
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 3.f,-5.f,8.f });
-
-	//	m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
-	//	m->SetPosition(Vector3{ 6.f,5.f,8.f });
-	//	MonsterMakeCount++;
-	//}
-
-	//if (!monstercheck && MonsterMakeCount == 4)
-	//{
-	//	tick = 10;
-	//	MonsterMakeCount = 3;
-	//	++BossmakeCount;
-	//}
-
-	//if (BossmakeCount > 1)
-	//{
-	//	//bosstype
+	//if (MonsterMakeCount == 0)
+	//{//test
+	////bosstype
 	//	Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
 	//	m->SetPosition(Vector3{ 0.f,5.f,11.f });
 	//	m->BossType = true;
 	//	m->transform->scale = { 10.f,10.f,10.f };
+	//	MonsterMakeCount++;
+	//}
+	////////////////////////////////////////
 
-	//	BossmakeCount = 0;
-	//	MonsterMakeCount = 10;
-	//	
-	//}
-	//if (player != nullptr)
-	//{
-	//	if (dynamic_cast<Player03*>(player)->SceneChange == 1)
-	//	{
-	//		GameEnd = true;
-	//	}
-	//}
 
-	//if (GameEnd)
-	//{
-	//	EndCount += TimeManager::DeltaTime();
-	//	if (EndCount > 5)
-	//	{
-	//		SceneManager::LoadScene<Scene4>();
-	//	}
-	//}
+	//monster check
+	GameObject* monstercheck = ObjectManager::GetInstance()->FindObject<Monster03>();
+	if (!monstercheck)
+	{
+		// xtype
+
+		//Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		//m->SetPosition(Vector3{ -10.f,0.f,5.f });
+		//m->xType = true;
+		//m->AddComponent<PKH::Cube>(L"Mesh");
+
+		//m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		//m->SetPosition(Vector3{ -10.f,5.f,5.f });
+		//m->xType = true;
+		//m->AddComponent<PKH::Cube>(L"Mesh");
+
+		//m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		//m->SetPosition(Vector3{ -10.f,-5.f,5.f });
+		//m->xType = true;
+		//m->AddComponent<PKH::Cube>(L"Mesh");
+	}
+
+
+	//持失
+	if (tick > 2.f && MonsterMakeCount==0)
+	{
+		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,0.f,5.f });
+		m->xType = true;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,5.f,5.f });
+		m->xType = true;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,-5.f,5.f });
+		m->xType = true;
+		MonsterMakeCount++;
+	}
+
+	if (tick > 6.f && MonsterMakeCount == 1)
+	{
+
+		//ytype
+		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -5.f,10.f,5.f });
+		m->yType = true;
+		m->yTypex = -5.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -2.f,-10.f,5.f });
+		m->yType = true;
+		m->yTypex = -2.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 2.f,10.f,5.f });
+		m->yType = true;
+		m->yTypex = 2.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 5.f,-10.f,5.f });
+		m->yType = true;
+		m->yTypex = 5.f;
+		MonsterMakeCount++;
+	}
+
+	if (tick > 10.f && MonsterMakeCount == 2)
+	{
+		//ztype
+
+		Monster03*  m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -6.f,0.f,8.f });
+		
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -3.f,0.f,8.f });
+		
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -0.f,0.f,8.f });
+		
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 3.f,0.f,8.f });
+		
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 6.f,0.f,8.f });
+		MonsterMakeCount++;
+	}
+
+
+	if (tick > 15.f && MonsterMakeCount == 3)
+	{
+		//xtype
+
+		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,0.f,5.f });
+		m->xType = true;
+		
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,5.f,5.f });
+		m->xType = true;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -10.f,-5.f,5.f });
+		m->xType = true;
+		
+		//ytype
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 2.f,10.f,5.f });
+		m->yType = true;
+		m->yTypex = 2.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -2.f,-10.f,5.f });
+		m->yType = true;
+		m->yTypex = -2.f;
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 5.f,10.f,5.f });
+		m->yType = true;
+		m->yTypex = 5.f;
+		
+		//ztype
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -6.f,5.f,8.f });
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -3.f,-5.f,8.f });
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ -0.f,0.f,8.f });
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 3.f,-5.f,8.f });
+
+		m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 6.f,5.f,8.f });
+		MonsterMakeCount++;
+	}
+
+	if (!monstercheck && MonsterMakeCount == 4)
+	{
+		tick = 10;
+		MonsterMakeCount = 3;
+		++BossmakeCount;
+	}
+
+	if (BossmakeCount > 1)
+	{
+		//bosstype
+		Monster03* m = (Monster03*)ObjectManager::GetInstance()->CreateObject<Monster03>();
+		m->SetPosition(Vector3{ 0.f,5.f,11.f });
+		m->BossType = true;
+		m->transform->scale = { 10.f,10.f,10.f };
+
+		BossmakeCount = 0;
+		MonsterMakeCount = 10;
+		
+	}
+	if (player != nullptr)
+	{
+		if (dynamic_cast<Player03*>(player)->SceneChange == 1)
+		{
+			GameEnd = true;
+		}
+	}
+
+	if (GameEnd)
+	{
+		EndCount += TimeManager::DeltaTime();
+		if (EndCount > 5)
+		{
+			SceneManager::LoadScene<Scene4>();
+		}
+	}
 
 
 

@@ -103,7 +103,7 @@ void PKH::Bullet03::Update()
 			float fZ = player->transform->position.z - transform->position.z;
 			float fDist = sqrtf(fX * fX + fY * fY + fZ * fZ);
 
-			if (fDist - fRadiusSum < 0)
+			if (fDist - fRadiusSum < 0&& !dynamic_cast<Player03*>(player)->nohit)
 			{
 				dynamic_cast<Player03*>(player)->hp--;
 				dynamic_cast<Player03*>(player)->MyColor -= 25;

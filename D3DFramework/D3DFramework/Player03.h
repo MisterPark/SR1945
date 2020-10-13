@@ -17,6 +17,7 @@ namespace PKH
 		float delay = 1.f;
 		int hp = 1;
 		int mp = 5;
+		bool nohit = false;	
 		float mpgen = 0.f;
 		int MyColor = 250;
 		int SceneChange = 0;
